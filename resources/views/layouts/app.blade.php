@@ -1,80 +1,126 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<!DOCTYPE html>
+
+<html lang="en">
+
+<!--begin::Head-->
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <base href="">
+    <meta charset="utf-8" />
+    <title>Metronic | Dashboard</title>
+    <meta name="description" content="Updates and statistics" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
+    <link href="assets/plugins/custom/fullcalendar/fullcalendar.bundle.css?v=7.0.5" rel="stylesheet" type="text/css" />
+    <link href="assets/plugins/global/plugins.bundle.css?v=7.0.5" rel="stylesheet" type="text/css" />
+    <link href="assets/plugins/custom/prismjs/prismjs.bundle.css?v=7.0.5" rel="stylesheet" type="text/css" />
+    <link href="assets/css/style.bundle.css?v=7.0.5" rel="stylesheet" type="text/css" />
+    <link rel="shortcut icon" href="assets/media/logos/favicon.ico" />
 </head>
-<body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
+<body id="kt_body" style="background-image: url(assets/media/bg/bg-10.jpg)"
+    class="page-loading-enabled page-loading quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled aside-enabled aside-static page-loading">
+    <!--begin::Main Mainin-->
+    @include('partials._header-mobile')
+    <!--[html-partial:include:{"file":"partials/_header-mobile.html"}]/-->
+    <div class="d-flex flex-column flex-root">
 
-                    </ul>
+        <!--begin::Page-->
+        <div class="d-flex flex-row flex-column-fluid page">
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
+            <!--begin::Wrapper-->
+            <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
+                <!--[html-partial:include:{"file":"partials/_header.html"}]/-->
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
+                <!--begin::Content-->
+                <div class="content  d-flex flex-column flex-column-fluid" id="kt_content">
+
+                    <!--[html-partial:include:{"file":"partials/_subheader.html"}]/-->
+
+                    <!--[html-partial:include:{"file":"partials/_content.html"}]/-->
                 </div>
-            </div>
-        </nav>
 
-        <main class="py-4">
-            @yield('content')
-        </main>
+                <!--end::Content-->
+
+                <!--[html-partial:include:{"file":"partials/_footer/compact.html"}]/-->
+            </div>
+
+            <!--end::Wrapper-->
+        </div>
+
+        <!--end::Page-->
     </div>
+
+    <!--end::Main-->
+
+    <script>
+        var KTAppSettings = {
+            "breakpoints": {
+                "sm": 576,
+                "md": 768,
+                "lg": 992,
+                "xl": 1200,
+                "xxl": 1200
+            },
+            "colors": {
+                "theme": {
+                    "base": {
+                        "white": "#ffffff",
+                        "primary": "#6993FF",
+                        "secondary": "#E5EAEE",
+                        "success": "#1BC5BD",
+                        "info": "#8950FC",
+                        "warning": "#FFA800",
+                        "danger": "#F64E60",
+                        "light": "#F3F6F9",
+                        "dark": "#212121"
+                    },
+                    "light": {
+                        "white": "#ffffff",
+                        "primary": "#E1E9FF",
+                        "secondary": "#ECF0F3",
+                        "success": "#C9F7F5",
+                        "info": "#EEE5FF",
+                        "warning": "#FFF4DE",
+                        "danger": "#FFE2E5",
+                        "light": "#F3F6F9",
+                        "dark": "#D6D6E0"
+                    },
+                    "inverse": {
+                        "white": "#ffffff",
+                        "primary": "#ffffff",
+                        "secondary": "#212121",
+                        "success": "#ffffff",
+                        "info": "#ffffff",
+                        "warning": "#ffffff",
+                        "danger": "#ffffff",
+                        "light": "#464E5F",
+                        "dark": "#ffffff"
+                    }
+                },
+                "gray": {
+                    "gray-100": "#F3F6F9",
+                    "gray-200": "#ECF0F3",
+                    "gray-300": "#E5EAEE",
+                    "gray-400": "#D6D6E0",
+                    "gray-500": "#B5B5C3",
+                    "gray-600": "#80808F",
+                    "gray-700": "#464E5F",
+                    "gray-800": "#1B283F",
+                    "gray-900": "#212121"
+                }
+            },
+            "font-family": "Poppins"
+        };
+
+    </script>
+    <script src="assets/plugins/global/plugins.bundle.js?v=7.0.5"></script>
+    <script src="assets/plugins/custom/prismjs/prismjs.bundle.js?v=7.0.5"></script>
+    <script src="assets/js/scripts.bundle.js?v=7.0.5"></script>
+    <script src="assets/plugins/custom/fullcalendar/fullcalendar.bundle.js?v=7.0.5"></script>
+    <script src="assets/js/pages/widgets.js?v=7.0.5"></script>
+
 </body>
+
 </html>
