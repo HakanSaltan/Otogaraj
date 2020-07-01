@@ -4,7 +4,7 @@
 
 	<!--begin::Logo-->
 	<a href="index.html">
-		<img alt="Logo" src="assets/media/logos/logo-letter-1.png" class="logo-default max-h-30px" />
+	<img alt="Logo" src="{{URL::asset('assets/media/logos/logo-letter-1.png')}}" class="logo-default max-h-30px" />
 	</a>
 
 	<!--end::Logo-->
@@ -20,7 +20,7 @@
 		<button class="btn btn-icon btn-hover-transparent-white p-0 ml-3" id="kt_header_mobile_topbar_toggle">
 			<span class="svg-icon svg-icon-xl">
 
-				<!--begin::Svg Icon | path:assets/media/svg/icons/General/User.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+			<!--begin::Svg Icon | path:assets/media/svg/icons/General/User.svg--><svg xmlns="{{URL::asset('assets/media/svg/icons/General/User.svg')}}" xmlns:xlink="{{URL::asset('assets/media/svg/icons/General/User.svg')}}" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 					<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 						<polygon points="0 0 24 0 24 24 0 24" />
 						<path d="M12,11 C9.790861,11 8,9.209139 8,7 C8,4.790861 9.790861,3 12,3 C14.209139,3 16,4.790861 16,7 C16,9.209139 14.209139,11 12,11 Z" fill="#000000" fill-rule="nonzero" opacity="0.3" />

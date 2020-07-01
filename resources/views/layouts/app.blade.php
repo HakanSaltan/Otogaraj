@@ -7,21 +7,22 @@
 <head>
     <base href="">
     <meta charset="utf-8" />
-    <title>Metronic | Dashboard</title>
+    <title>@yield('baslik')</title>
     <meta name="description" content="Updates and statistics" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
-    <link href="assets/plugins/custom/fullcalendar/fullcalendar.bundle.css?v=7.0.5" rel="stylesheet" type="text/css" />
-    <link href="assets/plugins/global/plugins.bundle.css?v=7.0.5" rel="stylesheet" type="text/css" />
-    <link href="assets/plugins/custom/prismjs/prismjs.bundle.css?v=7.0.5" rel="stylesheet" type="text/css" />
-    <link href="assets/css/style.bundle.css?v=7.0.5" rel="stylesheet" type="text/css" />
-    <link rel="shortcut icon" href="assets/media/logos/favicon.ico" />
+    <link href="{{ URL::asset('assets/plugins/custom/fullcalendar/fullcalendar.bundle.css?v=7.0.5') }}" rel="stylesheet" type="text/css" />
+    <link href="{{URL::asset('assets/plugins/global/plugins.bundle.css?v=7.0.5')}}" rel="stylesheet" type="text/css" />
+    <link href="{{URL::asset('assets/plugins/custom/prismjs/prismjs.bundle.css?v=7.0.5"')}} rel="stylesheet" type="text/css" />
+    <link href="{{URL::asset('assets/css/style.bundle.css?v=7.0.5')}}" rel="stylesheet" type="text/css" />
+    <link rel="shortcut icon" href="{{URL::asset('assets/media/logos/favicon.ico')}}" />
+    @yield('css')
 </head>
 
-<body id="kt_body" style="background-image: url(assets/media/bg/bg-10.jpg)"
+<body id="kt_body" style="background-image: url({{URL::asset('assets/media/bg/bg-10.jpg')}})"
     class="page-loading-enabled page-loading quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled aside-enabled aside-static page-loading">
     <!--begin::Main Mainin-->
-    @include('partials._header-mobile')
+    @include('layouts.partials._header-mobile')
     <!--[html-partial:include:{"file":"partials/_header-mobile.html"}]/-->
     <div class="d-flex flex-column flex-root">
 
@@ -35,10 +36,7 @@
 
                 <!--begin::Content-->
                 <div class="content  d-flex flex-column flex-column-fluid" id="kt_content">
-
-                    <!--[html-partial:include:{"file":"partials/_subheader.html"}]/-->
-
-                    <!--[html-partial:include:{"file":"partials/_content.html"}]/-->
+                    @yield('content')
                 </div>
 
                 <!--end::Content-->
@@ -53,7 +51,7 @@
     </div>
 
     <!--end::Main-->
-
+    @yield('script')
     <script>
         var KTAppSettings = {
             "breakpoints": {
@@ -115,11 +113,11 @@
         };
 
     </script>
-    <script src="assets/plugins/global/plugins.bundle.js?v=7.0.5"></script>
-    <script src="assets/plugins/custom/prismjs/prismjs.bundle.js?v=7.0.5"></script>
-    <script src="assets/js/scripts.bundle.js?v=7.0.5"></script>
-    <script src="assets/plugins/custom/fullcalendar/fullcalendar.bundle.js?v=7.0.5"></script>
-    <script src="assets/js/pages/widgets.js?v=7.0.5"></script>
+    <script src="{{URL::asset('assets/plugins/global/plugins.bundle.js?v=7.0.5')}}"></script>
+    <script src="{{URL::asset('assets/plugins/custom/prismjs/prismjs.bundle.js?v=7.0.5')}}"></script>
+    <script src="{{URL::asset('assets/js/scripts.bundle.js?v=7.0.5')}}"></script>
+    <script src="{{URL::asset('assets/plugins/custom/fullcalendar/fullcalendar.bundle.js?v=7.0.5')}}"></script>
+    <script src="{{URL::asset('assets/js/pages/widgets.js?v=7.0.5')}}"></script>
 
 </body>
 
