@@ -40,7 +40,7 @@
                 </div>
 
                 <!--end::Content-->
-
+                @include('layouts.partials._footer.compact')
                 <!--[html-partial:include:{"file":"partials/_footer/compact.html"}]/-->
             </div>
 
