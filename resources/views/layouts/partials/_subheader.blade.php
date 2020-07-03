@@ -11,7 +11,7 @@
 
 				<!--begin::Title-->
 				<h2 class="text-white font-weight-bold my-2 mr-5">
-					Dashboard </h2>
+					Anasayfa </h2>
 
 				<!--end::Title-->
 
@@ -28,14 +28,14 @@
 					<!--begin::Item-->
 					<span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
 					<a href="" class="text-white text-hover-white opacity-75 hover-opacity-100">
-						Dashboard </a>
+						Anasayfa </a>
 
 					<!--end::Item-->
 
 					<!--begin::Item-->
 					<span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
 					<a href="" class="text-white text-hover-white opacity-75 hover-opacity-100">
-						Latest Updated </a>
+						İçerik </a>
 
 					<!--end::Item-->
 				</div>
@@ -53,7 +53,7 @@
 
 			<!--begin::Button-->
 			<a href="#" class="btn btn-transparent-white font-weight-bold  py-3 px-6 mr-2">
-				Reports
+				Rapor
 			</a>
 
 			<!--end::Button-->
@@ -61,7 +61,7 @@
 			<!--begin::Dropdown-->
 			<div class="dropdown dropdown-inline ml-2" data-toggle="tooltip" title="Quick actions" data-placement="top">
 				<a href="#" class="btn btn-white font-weight-bold py-3 px-6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					Actions
+					Aktivite
 				</a>
 				<div class="dropdown-menu p-0 m-0 dropdown-menu-md dropdown-menu-right">
 
@@ -73,33 +73,6 @@
 							<a href="#" class="navi-link">
 								<span class="navi-icon"><i class="flaticon2-drop"></i></span>
 								<span class="navi-text">New Group</span>
-							</a>
-						</li>
-						<li class="navi-item">
-							<a href="#" class="navi-link">
-								<span class="navi-icon"><i class="flaticon2-list-3"></i></span>
-								<span class="navi-text">Contacts</span>
-							</a>
-						</li>
-						<li class="navi-item">
-							<a href="#" class="navi-link">
-								<span class="navi-icon"><i class="flaticon2-rocket-1"></i></span>
-								<span class="navi-text">Groups</span>
-								<span class="navi-link-badge">
-									<span class="label label-light-primary label-inline font-weight-bold">new</span>
-								</span>
-							</a>
-						</li>
-						<li class="navi-item">
-							<a href="#" class="navi-link">
-								<span class="navi-icon"><i class="flaticon2-bell-2"></i></span>
-								<span class="navi-text">Calls</span>
-							</a>
-						</li>
-						<li class="navi-item">
-							<a href="#" class="navi-link">
-								<span class="navi-icon"><i class="flaticon2-gear"></i></span>
-								<span class="navi-text">Settings</span>
 							</a>
 						</li>
 						<li class="navi-separator my-3"></li>

@@ -1,32 +1,16 @@
 @extends('layouts.app')
 
 @section('baslik')
-Giriş Yap - OtoGaraj    
+Giriş Yap - OtoGaraj
 @endsection
 
-@section('script') 
-    <script>var HOST_URL = "/metronic/tools/preview";</script>
-    <!--begin::Global Config(global config for global JS scripts)-->
-    <script>var KTAppSettings = { "breakpoints": { "sm": 576, "md": 768, "lg": 992, "xl": 1200, "xxl": 1200 }, "colors": { "theme": { "base": { "white": "#ffffff", "primary": "#6993FF", "secondary": "#E5EAEE", "success": "#1BC5BD", "info": "#8950FC", "warning": "#FFA800", "danger": "#F64E60", "light": "#F3F6F9", "dark": "#212121" }, "light": { "white": "#ffffff", "primary": "#E1E9FF", "secondary": "#ECF0F3", "success": "#C9F7F5", "info": "#EEE5FF", "warning": "#FFF4DE", "danger": "#FFE2E5", "light": "#F3F6F9", "dark": "#D6D6E0" }, "inverse": { "white": "#ffffff", "primary": "#ffffff", "secondary": "#212121", "success": "#ffffff", "info": "#ffffff", "warning": "#ffffff", "danger": "#ffffff", "light": "#464E5F", "dark": "#ffffff" } }, "gray": { "gray-100": "#F3F6F9", "gray-200": "#ECF0F3", "gray-300": "#E5EAEE", "gray-400": "#D6D6E0", "gray-500": "#B5B5C3", "gray-600": "#80808F", "gray-700": "#464E5F", "gray-800": "#1B283F", "gray-900": "#212121" } }, "font-family": "Poppins" };</script>
-    <!--end::Global Config-->
-    <!--begin::Global Theme Bundle(used by all pages)-->
-    <script src="{{URL::asset('assets/plugins/global/plugins.bundle.js?v=7.0.5')}}"></script>
-    <script src="{{URL::asset('assets/plugins/custom/prismjs/prismjs.bundle.js?v=7.0.5')}}"></script>
-    <script src="{{URL::asset('assets/js/scripts.bundle.js?v=7.0.5')}}"></script>
-    <!--end::Global Theme Bundle-->
-    <!--begin::Page Scripts(used by this page)-->
+@section('script')
     <script src="{{URL::asset('assets/js/pages/custom/login/login-general.js?v=7.0.5')}}"></script>
 @endsection
 
-@section('css') 
+@section('css')
         <link rel="stylesheet" href="{{URL::asset('assets/css/pages/login/classic/login-3.css?v=7.0.5')}}">
-        <link href="{{URL::asset('assets/plugins/global/plugins.bundle.css?v=7.0.5')}}" rel="stylesheet" type="text/css" />
-		<link href="{{URL::asset('assets/plugins/custom/prismjs/prismjs.bundle.css?v=7.0.5')}}" rel="stylesheet" type="text/css" />
-		<link href="{{URL::asset('assets/css/style.bundle.css?v=7.0.5')}}" rel="stylesheet" type="text/css" />
-		<script>(function(h,o,t,j,a,r){ h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)}; h._hjSettings={hjid:1070954,hjsv:6}; a=o.getElementsByTagName('head')[0]; r=o.createElement('script');r.async=1; r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv; a.appendChild(r); })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');</script>
-		<!-- Global site tag (gtag.js) - Google Analytics -->
-		<script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-37564768-1"></script>
-		<script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'UA-37564768-1');</script>
+        <script>(function(h,o,t,j,a,r){ h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)}; h._hjSettings={hjid:1070954,hjsv:6}; a=o.getElementsByTagName('head')[0]; r=o.createElement('script');r.async=1; r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv; a.appendChild(r); })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');</script>
 @endsection
 
 @section('content')
@@ -79,30 +63,48 @@ Giriş Yap - OtoGaraj
                         <h3>Kaydol</h3>
                         <p class="opacity-60">Hesabınızı oluşturmak için bilgilerinizi girin</p>
                     </div>
-                    <form class="form text-center" id="kt_login_signup_form">
+                    <form class="form text-center" id="kt_login_signup_form" method="POST" action="{{ route('register') }}">
+                        @csrf
                         <div class="form-group">
-                            <input class="form-control h-auto text-white placeholder-white opacity-70 bg-dark-o-70 rounded-pill border-0 py-4 px-8" type="text" placeholder="Ad Soyad" name="fullname" />
+                            <input id="name" type="text" class="form-control h-auto text-white placeholder-white opacity-70 bg-dark-o-70 rounded-pill border-0 py-4 px-8 @error('Ad Soyad') is-invalid @enderror" name="name" placeholder="Ad Soyad" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                            @error('name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                         </div>
                         <div class="form-group">
-                            <input class="form-control h-auto text-white placeholder-white opacity-70 bg-dark-o-70 rounded-pill border-0 py-4 px-8" type="text" placeholder="Email" name="email" autocomplete="off" />
+                            <input id="email" type="email" class="form-control h-auto text-white placeholder-white opacity-70 bg-dark-o-70 rounded-pill border-0 py-4 px-8 @error('email') is-invalid @enderror" name="email" placeholder="Email" value="{{ old('email') }}" required autocomplete="email">
+
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="form-group">
-                            <input class="form-control h-auto text-white placeholder-white opacity-70 bg-dark-o-70 rounded-pill border-0 py-4 px-8" type="password" placeholder="Şifre" name="password" />
+                            <input id="password" type="password" class="form-control h-auto text-white placeholder-white opacity-70 bg-dark-o-70 rounded-pill border-0 py-4 px-8 @error('password') is-invalid @enderror" name="password" placeholder="Şifre Giriniz" required autocomplete="new-password">
+
+                            @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="form-group">
-                            <input class="form-control h-auto text-white placeholder-white opacity-70 bg-dark-o-70 rounded-pill border-0 py-4 px-8" type="password" placeholder="Şifre Tekrarı" name="cpassword" />
+                            <input id="password-confirm" type="password" placeholder="Şifre Tekrarı" class="form-control h-auto text-white placeholder-white opacity-70 bg-dark-o-70 rounded-pill border-0 py-4 px-8" name="password_confirmation" required autocomplete="new-password">
                         </div>
                         <div class="form-group text-left px-8">
                             <div class="checkbox-inline">
                                 <label class="checkbox checkbox-outline checkbox-white text-white m-0">
                                 <input type="checkbox" name="agree" />
-                                <span></span>Kullanım koşullarını 
+                                <span></span>Kullanım koşullarını
                                 <a href="#" class="text-white font-weight-bold ml-1">kabul ediyorum</a>.</label>
                             </div>
                             <div class="form-text text-muted text-center"></div>
                         </div>
                         <div class="form-group">
-                            <button id="kt_login_signup_submit" class="btn btn-pill btn-outline-white font-weight-bold opacity-90 px-15 py-3 m-2">Kaydol</button>
+                            <button type="submit" class="btn btn-pill btn-outline-white font-weight-bold opacity-90 px-15 py-3 m-2">Kaydol</button>
                             <button id="kt_login_signup_cancel" class="btn btn-pill btn-outline-white font-weight-bold opacity-70 px-15 py-3 m-2">İptal</button>
                         </div>
                     </form>
@@ -120,7 +122,7 @@ Giriş Yap - OtoGaraj
                         </div>
                         <div class="form-group">
                             <button id="kt_login_forgot_submit" class="btn btn-pill btn-outline-white font-weight-bold opacity-90 px-15 py-3 m-2">Talep</button>
-                            <button id="kt_login_forgot_cancel" class="btn btn-pill btn-outline-white font-weight-bold opacity-70 px-15 py-3 m-2">İptaş</button>
+                            <button id="kt_login_forgot_cancel" class="btn btn-pill btn-outline-white font-weight-bold opacity-70 px-15 py-3 m-2">İptal</button>
                         </div>
                     </form>
                 </div>
@@ -128,5 +130,5 @@ Giriş Yap - OtoGaraj
             </div>
         </div>
 
-    <!--end::Login-->  
+    <!--end::Login-->
 @endsection
