@@ -52,7 +52,7 @@
 								</div>
 							</li>
 
-							<li class="menu-item " aria-haspopup="true"><a href="{{ asset('admin/kullancilar')}}" class="menu-link "><i class="menu-bullet menu-bullet-line"><span></span></i><span class="menu-text">Kullanicilar</span><span class="menu-label"><span class="label label-danger label-inline">new</span></span></a></li>
+							<li class="menu-item " aria-haspopup="true"><a href="{{ asset('admin/kullanicilar')}}" class="menu-link "><i class="menu-bullet menu-bullet-line"><span></span></i><span class="menu-text">Kullanicilar</span><span class="menu-label"><span class="label label-danger label-inline">new</span></span></a></li>
 						</ul>
 					</div>
 				</li>

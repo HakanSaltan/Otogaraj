@@ -10,5 +10,5 @@ Route::group(['prefix' => '/admin'], function(){
     Route::post('/kullanicilar', 'AdminPostController@kullanicilar');
 });
 Route::group(['prefix' => '/reload'], function(){
-    Route::get('/kullanicilar', 'AdminReloadController@kullanicilar');
+    Route::get('/admin/kullanicilar', 'AdminReloadController@kullanicilar');
 });

@@ -1,4 +1,3 @@
-
 @extends("layouts.app")
 @section('css')
 @endsection
@@ -33,7 +32,7 @@
                 <div class="col-xs-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">Sınav Türleri</h4>
+                            <h4 class="card-title">Kullanicilar</h4>
                             <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
                             <div class="heading-elements">
                                 <ul class="list-inline mb-0">
@@ -66,13 +65,13 @@
                                     <tbody>
                                         <tr v-for="(bilgi,index) in gelenBilgi.data">
                                             <td><a v-text="bilgi.id"></a></td>
-                                            <td><a v-text="bilgi.adi"></a></td>
-                                            <td><a v-text="bilgi.uygulama_turu"></a></td>
+                                            <td><a v-text="bilgi.name"></a></td>
+                                            <td><a v-text="bilgi.email"></a></td>
                                             <td><a v-text.number="bilgi.created_at"></a></td>
                                             <td><a v-text.number="bilgi.updated_at"></a></td>
                                             <td>
-                                                @if($yetki->duzenleme=='true')<button type="button" class="btn btn-float btn-info btn-round" v-on:click="sendInfo(bilgi,bilgi.id)"><i class="icon-edit2"></i></button>@endif
-                                                @if($yetki->silme=='true')<button type="button" class="btn btn-float btn-danger btn-round" v-on:click="sendInfo(bilgi,'sil')"><i class="icon-trash-o"></i></button>@endif
+                                                <button type="button" class="btn btn-float btn-info btn-round" v-on:click="sendInfo(bilgi,bilgi.id)"><i class="icon-edit2"></i></button>
+                                                <button type="button" class="btn btn-float btn-danger btn-round" v-on:click="sendInfo(bilgi,'sil')"><i class="icon-trash-o"></i></button>
                                             </td>
 
                                         </tr>
@@ -120,7 +119,7 @@
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true" class="white">×</span>
                             </button>
-                            <label class="modal-title text-text-bold-600">Sınav Türü Arama | Önce Aramak İstediğiniz Kriteri Seçiniz</label>
+                            <label class="modal-title text-text-bold-600">Kullanici Arama | Önce Aramak İstediğiniz Kriteri Seçiniz</label>
                         </div>
                         <div class="modal-body">
                             <div class="form-group">
@@ -129,8 +128,16 @@
                             <div class="row">
                                 <div class="col-md-3">
                                         <label class="container">
-                                            <input type="radio" v-model="aranacakSutun" name="adayAramaInput" value="adi">
+                                            <input type="radio" v-model="aranacakSutun" name="adayAramaInput" value="name">
                                             <span class="checkmark">Adı</span>
+                                        </label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                        <label class="container">
+                                            <input type="radio" v-model="aranacakSutun" name="adayAramaInput" value="email">
+                                            <span class="checkmark">Email</span>
                                         </label>
                                 </div>
                             </div>
@@ -147,7 +154,7 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content" v-for="secilen in secilenBilgi">
                         <div class="modal-header white">
-                        <i class="modal-title white">Sınav Türü Formu</i>
+                        <i class="modal-title white">Kullanici Formu</i>
 
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
@@ -155,17 +162,8 @@
                         </div>
                         <div class="modal-body">
                             <div class="form-group">
-                                <label for="">Sınav Türü Adı</label>
-                                <input type="text" class="form-control" v-model="secilen.adi" ref="myk">
-                            </div>
-                        </div>
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label for="">Uygulama Türü</label>
-                                <select v-model="secilen.uygulama_turu" class="form-control">
-                                    <option value="performans">Performans</option>
-                                    <option value="teorik">Teorik</option>
-                                </select>
+                                <label for="">Kullanici Adı</label>
+                                <input type="text" class="form-control" v-model="secilen.adi">
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -193,10 +191,10 @@
             loading: false,
             gelenBilgi: [],
             secilenBilgi: [],
-            postUrl : "/tanimlamalar/sinav-turu",
-			releoadUrl : "/releoad/tanimlamalar/sinav-turu",
+            postUrl : "/admin/kullanicilar",
+			releoadUrl : "/reload/admin/kullanicilar",
             aranacakKelime: '',
-            aranacakSutun: 'adi',
+            aranacakSutun: 'name',
             orderByColumn: 'created_at',
             orderByType: 'DESC',
             page: 1,
@@ -209,14 +207,12 @@
                     this.secilenBilgi.push({
                         tip:tip,
                         adi:'',
-                        uygulama_turu:'performans',
                         id:''
                     });
                 }else{
                     this.secilenBilgi.push({
                         tip:tip,
                         adi:veri.adi,
-                        uygulama_turu:veri.uygulama_turu,
                         id:veri.id
                     });
                 }
