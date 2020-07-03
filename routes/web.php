@@ -1,13 +1,14 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
 Auth::routes();
 
 Route::get('/', array('as'=>'index','uses'=>'HomeController@index'));
 Route::get('/home', array('as'=>'index','uses'=>'HomeController@index'));
 
-// Route::group(['prefix' => '/user'], function(){
-// 	Route::get('/proile', 'UserController@index');
-// });
-
+Route::group(['prefix' => '/admin'], function(){
+    Route::get('/kullanicilar', 'AdminGetController@kullanicilar');
+    Route::post('/kullanicilar', 'AdminPostController@kullanicilar');
+});
+Route::group(['prefix' => '/reload'], function(){
+    Route::get('/kullanicilar', 'AdminReloadController@kullanicilar');
+});
