@@ -179,7 +179,7 @@ Kullanıcılar
         </div>
     </div>
 </div>
-@endsection()
+@endsection
 <!-- VUE JS-->
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.js"></script>
@@ -295,5 +295,5 @@ Kullanıcılar
 
     });
 </script>
-@endsection()
+@endsection
 
