@@ -32,71 +32,74 @@
                                 alt="" />
                         </a>
                     </div>
+                    <div class="col-md-12">
+                        
+                            <div class="mb-20">
+                                <h3>Kaydol</h3>
+                                <p class="opacity-60">Hesabınızı oluşturmak için bilgilerinizi girin</p>
+                            </div>
+                            <form class="form text-center" id="kt_login_signup_form" method="POST"
+                                action="{{ route('register') }}">
+                                @csrf
+                                <div class="form-group">
+                                    <input id="name" type="text"
+                                        class="form-control h-auto text-white placeholder-white opacity-70 bg-dark-o-70 rounded-pill border-0 py-4 px-8 @error('Ad Soyad') is-invalid @enderror"
+                                        name="name" placeholder="Ad Soyad" value="{{ old('name') }}" required
+                                        autocomplete="name" autofocus>
+                                    @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <input id="email" type="email"
+                                        class="form-control h-auto text-white placeholder-white opacity-70 bg-dark-o-70 rounded-pill border-0 py-4 px-8 @error('email') is-invalid @enderror"
+                                        name="email" placeholder="Email" value="{{ old('email') }}" required
+                                        autocomplete="email">
+    
+                                    @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <input id="password" type="password"
+                                        class="form-control h-auto text-white placeholder-white opacity-70 bg-dark-o-70 rounded-pill border-0 py-4 px-8 @error('password') is-invalid @enderror"
+                                        name="password" placeholder="Şifre Giriniz" required autocomplete="new-password">
+    
+                                    @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <input id="password-confirm" type="password" placeholder="Şifre Tekrarı"
+                                        class="form-control h-auto text-white placeholder-white opacity-70 bg-dark-o-70 rounded-pill border-0 py-4 px-8"
+                                        name="password_confirmation" required autocomplete="new-password">
+                                </div>
+                                <div class="form-group text-left px-8">
+                                    <div class="checkbox-inline">
+                                        <label class="checkbox checkbox-outline checkbox-white text-white m-0">
+                                            <input type="checkbox" name="agree" />
+                                            <span></span>Kullanım koşullarını
+                                            <a href="#" class="text-white font-weight-bold ml-1">kabul ediyorum</a>.</label>
+                                    </div>
+                                    <div class="form-text text-muted text-center"></div>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit"
+                                        class="btn btn-pill btn-outline-white font-weight-bold opacity-90 px-15 py-3 m-2">Kaydol</button>
+                                    <a href="{{ asset('/login')}}" id="kt_login_signup" class="text-white font-weight-bold">Giriş Yap</a>
+                                </div>
+                            </form>
+                        
+                    </div>
                     <!--end::Login Header-->
                     <!--begin::Login Sign up form-->
-                    <div class="login-signup">
-                        <div class="mb-20">
-                            <h3>Kaydol</h3>
-                            <p class="opacity-60">Hesabınızı oluşturmak için bilgilerinizi girin</p>
-                        </div>
-                        <form class="form text-center" id="kt_login_signup_form" method="POST"
-                            action="{{ route('register') }}">
-                            @csrf
-                            <div class="form-group">
-                                <input id="name" type="text"
-                                    class="form-control h-auto text-white placeholder-white opacity-70 bg-dark-o-70 rounded-pill border-0 py-4 px-8 @error('Ad Soyad') is-invalid @enderror"
-                                    name="name" placeholder="Ad Soyad" value="{{ old('name') }}" required
-                                    autocomplete="name" autofocus>
-                                @error('name')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <input id="email" type="email"
-                                    class="form-control h-auto text-white placeholder-white opacity-70 bg-dark-o-70 rounded-pill border-0 py-4 px-8 @error('email') is-invalid @enderror"
-                                    name="email" placeholder="Email" value="{{ old('email') }}" required
-                                    autocomplete="email">
-
-                                @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <input id="password" type="password"
-                                    class="form-control h-auto text-white placeholder-white opacity-70 bg-dark-o-70 rounded-pill border-0 py-4 px-8 @error('password') is-invalid @enderror"
-                                    name="password" placeholder="Şifre Giriniz" required autocomplete="new-password">
-
-                                @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <input id="password-confirm" type="password" placeholder="Şifre Tekrarı"
-                                    class="form-control h-auto text-white placeholder-white opacity-70 bg-dark-o-70 rounded-pill border-0 py-4 px-8"
-                                    name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                            <div class="form-group text-left px-8">
-                                <div class="checkbox-inline">
-                                    <label class="checkbox checkbox-outline checkbox-white text-white m-0">
-                                        <input type="checkbox" name="agree" />
-                                        <span></span>Kullanım koşullarını
-                                        <a href="#" class="text-white font-weight-bold ml-1">kabul ediyorum</a>.</label>
-                                </div>
-                                <div class="form-text text-muted text-center"></div>
-                            </div>
-                            <div class="form-group">
-                                <button type="submit"
-                                    class="btn btn-pill btn-outline-white font-weight-bold opacity-90 px-15 py-3 m-2">Kaydol</button>
-                                <a href="{{ asset('/login')}}" id="kt_login_signup" class="text-white font-weight-bold">Giriş Yap</a>
-                            </div>
-                        </form>
-                    </div>
+                    
                     <!--end::Login Sign up form-->
                 </div>
             </div>
