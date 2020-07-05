@@ -205,7 +205,7 @@
 				<!--begin::Toggle-->
 				<div class="topbar-item" data-toggle="dropdown" data-offset="10px,0px">
 					<div class="btn btn-icon btn-hover-transparent-white btn-dropdown btn-lg mr-1">
-						<img class="h-20px w-20px rounded-sm" src="{{URL::asset('assets/media/svg/flags/226-united-states.svg')}}" alt="" />
+						<img class="h-20px w-20px rounded-sm" src="{{URL::asset('assets/media/svg/flags/006-turkey.svg')}}" alt="" />
 					</div>
 				</div>
 

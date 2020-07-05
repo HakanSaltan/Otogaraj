@@ -3,6 +3,20 @@
 <ul class="navi navi-hover py-4">
 
 	<!--begin::Item-->
+	
+	<li class="navi-item">
+		<a href="#" class="navi-link">
+			<span class="symbol symbol-20 mr-3">
+				<img src="{{URL::asset('assets/media/svg/flags/006-turkey.svg')}}" alt="" />
+			</span>
+			<span class="navi-text">Türkçe</span>
+		</a>
+	</li>
+
+	<!--end::Item-->
+
+	<!--begin::Item-->
+	<!--
 	<li class="navi-item">
 		<a href="#" class="navi-link">
 			<span class="symbol symbol-20 mr-3">
@@ -10,11 +24,12 @@
 			</span>
 			<span class="navi-text">English</span>
 		</a>
-	</li>
+	</li>-->
 
 	<!--end::Item-->
 
 	<!--begin::Item-->
+	<!--
 	<li class="navi-item active">
 		<a href="#" class="navi-link">
 			<span class="symbol symbol-20 mr-3">
@@ -22,11 +37,12 @@
 			</span>
 			<span class="navi-text">Spanish</span>
 		</a>
-	</li>
+	</li>-->
 
 	<!--end::Item-->
 
 	<!--begin::Item-->
+	<!--
 	<li class="navi-item">
 		<a href="#" class="navi-link">
 			<span class="symbol symbol-20 mr-3">
@@ -34,11 +50,12 @@
 			</span>
 			<span class="navi-text">German</span>
 		</a>
-	</li>
-
+	</li>-->
+	
 	<!--end::Item-->
 
 	<!--begin::Item-->
+	<!--
 	<li class="navi-item">
 		<a href="#" class="navi-link">
 			<span class="symbol symbol-20 mr-3">
@@ -46,11 +63,12 @@
 			</span>
 			<span class="navi-text">Japanese</span>
 		</a>
-	</li>
+	</li>-->
 
 	<!--end::Item-->
 
 	<!--begin::Item-->
+	<!--
 	<li class="navi-item">
 		<a href="#" class="navi-link">
 			<span class="symbol symbol-20 mr-3">
@@ -58,9 +76,10 @@
 			</span>
 			<span class="navi-text">French</span>
 		</a>
-	</li>
+	</li>-->
 
 	<!--end::Item-->
+
 </ul>
 
 <!--end::Nav-->

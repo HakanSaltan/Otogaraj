@@ -1,6 +1,9 @@
 @extends('layouts.app')
 @section('css')
 @endsection
+@section('baslik')
+Kullanıcılar
+@endsection
 @section("content")
 <div>
     <div class="card card-custom gutter-b card-stretch">
