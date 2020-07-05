@@ -31,7 +31,7 @@
 			</div>
 		</div>
 		<a href="#" class="symbol symbol-70 flex-shrink-0">
-			<img src="assets/media/stock-600x400/img-1.jpg" title="" alt="" />
+			<img src="{{URL::asset('assets/media/stock-600x400/img-1.jpg')}}" title="" alt="" />
 		</a>
 	</div>
 
@@ -60,7 +60,7 @@
 			</div>
 		</div>
 		<a href="#" class="symbol symbol-70 flex-shrink-0">
-			<img src="assets/media/stock-600x400/img-2.jpg" title="" alt="" />
+			<img src="{{URL::asset('assets/media/stock-600x400/img-2.jpg')}}" title="" alt="" />
 		</a>
 	</div>
 
@@ -90,7 +90,7 @@
 			</div>
 		</div>
 		<a href="#" class="symbol symbol-70 flex-shrink-0">
-			<img src="assets/media/stock-600x400/img-3.jpg" title="" alt="" />
+			<img src="{{URL::asset('assets/media/stock-600x400/img-3.jpg')}}" title="" alt="" />
 		</a>
 	</div>
 
@@ -119,7 +119,7 @@
 			</div>
 		</div>
 		<a href="#" class="symbol symbol-70 flex-shrink-0">
-			<img src="assets/media/stock-600x400/img-4.jpg" title="" alt="" />
+			<img src="{{URL::asset('assets/media/stock-600x400/img-4.jpg')}}" title="" alt="" />
 		</a>
 	</div>
 

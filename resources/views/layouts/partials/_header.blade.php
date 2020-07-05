@@ -11,8 +11,8 @@
 			<!--begin::Header Logo-->
 			<div class="header-logo">
 				<a href="index.html">
-					<img alt="Logo" src="assets/media/logos/logo-letter-9.png" class="logo-default max-h-40px" />
-					<img alt="Logo" src="assets/media/logos/logo-letter-1.png" class="logo-sticky max-h-40px" />
+					<img alt="Logo" src="{{URL::asset('assets/media/logos/logo-letter-9.png')}}" class="logo-default max-h-40px" />
+					<img alt="Logo" src="{{URL::asset('assets/media/logos/logo-letter-1.png')}}" class="logo-sticky max-h-40px" />
 				</a>
 			</div>
 
@@ -205,7 +205,7 @@
 				<!--begin::Toggle-->
 				<div class="topbar-item" data-toggle="dropdown" data-offset="10px,0px">
 					<div class="btn btn-icon btn-hover-transparent-white btn-dropdown btn-lg mr-1">
-						<img class="h-20px w-20px rounded-sm" src="assets/media/svg/flags/226-united-states.svg" alt="" />
+						<img class="h-20px w-20px rounded-sm" src="{{URL::asset('assets/media/svg/flags/226-united-states.svg')}}" alt="" />
 					</div>
 				</div>
 

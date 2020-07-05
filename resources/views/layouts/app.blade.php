@@ -13,6 +13,7 @@
     <link href="{{URL::asset('assets/css/style.bundle.css?v=7.0.5')}}" rel="stylesheet" type="text/css" />
     <link rel="shortcut icon" href="{{URL::asset('assets/media/logos/favicon.ico')}}" />
     @yield('css')
+
 </head>
 
 <body id="kt_body" style="background-image: url({{URL::asset('assets/media/bg/bg-10.jpg')}})" class="page-loading-enabled page-loading quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled aside-enabled aside-static page-loading">
@@ -57,7 +58,6 @@
     <script src="{{URL::asset('assets/plugins/global/plugins.bundle.js?v=7.0.5')}}"></script>
     <script src="{{URL::asset('assets/plugins/custom/prismjs/prismjs.bundle.js?v=7.0.5')}}"></script>
     <script src="{{URL::asset('assets/js/scripts.bundle.js?v=7.0.5')}}"></script>
-    <script src="{{URL::asset('assets/plugins/custom/fullcalendar/fullcalendar.bundle.js?v=7.0.5')}}"></script>
     <script src="{{URL::asset('assets/js/pages/widgets.js?v=7.0.5')}}"></script>
     <script>
     var KTAppSettings = {
@@ -126,5 +126,6 @@
     <script src="https://cdn.jsdelivr.net/npm/vue-content-loader@0.2.3/dist/vue-content-loader.min.js"></script>
     <!-- END VUE JS-->
     @yield('script')
+
 </body>
 </html>

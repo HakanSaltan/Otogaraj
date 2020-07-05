@@ -1,8 +1,8 @@
-@extends("layouts.app")
+@extends('layouts.app')
 @section('css')
 @endsection
 @section("content")
-<div id="app">
+<div>
     <div class="card card-custom gutter-b card-stretch">
         <div class="card-header border-0 pt-5">
             <div class="card-title">
@@ -177,7 +177,11 @@
     </div>
 </div>
 @endsection()
-
+<!-- VUE JS-->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue-content-loader@0.2.3/dist/vue-content-loader.min.js"></script>
+<!-- END VUE JS-->
 @section('js')
 <script>
     let vm = new Vue({
