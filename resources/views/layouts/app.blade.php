@@ -27,10 +27,10 @@
             </form>
         @endauth
         <!--begin::Page-->
-        <div class="d-flex flex-row flex-column-fluid page">
+        <div id="app" class="d-flex flex-row flex-column-fluid page">
 
             <!--begin::Wrapper-->
-            <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
+            <div  class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
                 @include('layouts.partials._header')
 
                 <!--begin::Content-->
