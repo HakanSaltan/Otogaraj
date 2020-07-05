@@ -125,7 +125,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue-content-loader@0.2.3/dist/vue-content-loader.min.js"></script>
     <!-- END VUE JS-->
-    @yield('script')
+    @yield('js')
 
 </body>
 </html>
