@@ -11,6 +11,7 @@
     <link href="{{URL::asset('assets/plugins/global/plugins.bundle.css?v=7.0.5')}}" rel="stylesheet" type="text/css" />
     <link href="{{URL::asset('assets/plugins/custom/prismjs/prismjs.bundle.css?v=7.0.5')}}" rel="stylesheet" type="text/css" />
     <link href="{{URL::asset('assets/css/style.bundle.css?v=7.0.5')}}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="{{URL::asset('css/app.css')}}">
     <link rel="shortcut icon" href="{{URL::asset('assets/media/logos/favicon.ico')}}" />
     @yield('css')
 
@@ -120,6 +121,7 @@
         };
 
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/hotkeys-js@3.8.1/index.min.js"></script>
     <!-- VUE JS-->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.js"></script>

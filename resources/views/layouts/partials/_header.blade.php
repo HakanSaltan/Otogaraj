@@ -232,7 +232,7 @@
 						<span class="text-white opacity-70 font-weight-bold font-size-base d-none d-md-inline mr-1">Hoşgeldin,</span>
                         <span class="text-white opacity-90 font-weight-bolder font-size-base d-none d-md-inline mr-4">{{Auth::user()->name}}</span>
 						<span class="symbol symbol-35">
-							<span class="symbol-label text-white font-size-h5 font-weight-bold bg-white-o-30">P</span>
+							<span class="symbol-label text-white font-size-h5 font-weight-bold bg-white-o-30"><i class="flaticon-avatar"></i></span>
 						</span>
 					</div>
 				</div>

@@ -1,19 +1,20 @@
 @extends('layouts.app')
-@section('css')
-@endsection
 @section('baslik')
-Anasayfa
+Kullanıcılar
 @endsection
 @section('subheader')
-<h2 class="text-white font-weight-bold my-2 mr-5">Anasayfa</h2>
+<h2 class="text-white font-weight-bold my-2 mr-5">Kullancilar</h2>
 @endsection
 @section('subheaderalt')
 <a href="#" class="opacity-75 hover-opacity-100">
     <i class="flaticon2-shelter text-white icon-1x"></i>
 </a>
 <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
-<a href="" class="text-white text-hover-white opacity-75 hover-opacity-100">Anasayfa</a>
+<a href="" class="text-white text-hover-white opacity-75 hover-opacity-100">Kullancilar</a>
+<span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
+<a href="" class="text-white text-hover-white opacity-75 hover-opacity-100">İçerik</a>
 @endsection
+
 @section('content')
 <div class="alert alert-custom alert-white alert-shadow gutter-b" role="alert">
     <div class="alert-icon alert-icon-top">
@@ -39,15 +40,7 @@ Anasayfa
             specifications and preview it in real time. The configured layout options will be
             saved until you change or reset them. To use the layout builder, choose the layout
             options and click the
-            <code>Preview</code>button to preview the changes and click the
-            <code>Export</code>button to download the HTML template with its includable partials
-            of this demo. In the downloaded folder the partials(header, footer, aside, topbar,
-            etc) will be placed seperated from the base layout to allow you to integrate base
-            layout into your application</p>
-        <p>
-            <span class="label label-inline label-pill label-danger label-rounded mr-2">NOTE:</span>The
-            downloaded version does not include the assets folder since the layout builder's
-            main purpose is to help to generate the final HTML code without hassle.</p>
+        </p>
     </div>
 </div>
 <div class="card card-custom gutter-b card-stretch">
@@ -74,17 +67,17 @@ Anasayfa
             </div>
         </div>
     </div>
-
     <div class="card-body">
-        @if (session('status'))
-        <div class="alert alert-success" role="alert">
-            {{ session('status') }}
-        </div>
-        @endif
-
         Hoşgeldin {{Auth::user()->name }}
     </div>
 
 </div>
+@endsection
+
+@section('js')
+
+@endsection
+
+@section('css')
 
 @endsection

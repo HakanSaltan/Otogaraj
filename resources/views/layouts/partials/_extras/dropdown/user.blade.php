@@ -10,7 +10,7 @@
 	<!--end::Symbol-->
 
 	<!--begin::Text-->
-	<div class="text-dark m-0 flex-grow-1 mr-3 font-size-h5">Sean Stone</div>
+	<div class="text-dark m-0 flex-grow-1 mr-3 font-size-h5">{{Auth::user()->name}}</div>
 	<span class="label label-light-success label-lg font-weight-bold label-inline">3 messages</span>
 
 	<!--end::Text-->
@@ -102,9 +102,9 @@
 	<!--begin::Footer-->
 	<div class="navi-separator mt-3"></div>
 	<div class="navi-footer  px-8 py-5">
-		<a href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault();
+		<a href="{{ route('logout') }}" class="btn btn-danger btn-block" onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">
-                        <i class="ni ni-user-run"></i>
+                        <i class="flaticon2-cancel"></i>
                         <span>{{ __('Çıkış Yap') }}</span>
                     </a>
 	</div>

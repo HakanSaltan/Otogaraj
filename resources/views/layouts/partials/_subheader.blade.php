@@ -1,73 +1,31 @@
-
-<!--begin::Subheader-->
 <div class="subheader py-2 py-lg-12  subheader-transparent " id="kt_subheader">
 	<div class=" container  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
 
-		<!--begin::Info-->
+
 		<div class="d-flex align-items-center flex-wrap mr-1">
 
-			<!--begin::Heading-->
 			<div class="d-flex flex-column">
+                @yield('subheader')
 
-				<!--begin::Title-->
-				<h2 class="text-white font-weight-bold my-2 mr-5">
-					Anasayfa </h2>
 
-				<!--end::Title-->
-
-				<!--begin::Breadcrumb-->
 				<div class="d-flex align-items-center font-weight-bold my-2">
-
-					<!--begin::Item-->
-					<a href="#" class="opacity-75 hover-opacity-100">
-						<i class="flaticon2-shelter text-white icon-1x"></i>
-					</a>
-
-					<!--end::Item-->
-
-					<!--begin::Item-->
-					<span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
-					<a href="" class="text-white text-hover-white opacity-75 hover-opacity-100">
-						Anasayfa </a>
-
-					<!--end::Item-->
-
-					<!--begin::Item-->
-					<span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
-					<a href="" class="text-white text-hover-white opacity-75 hover-opacity-100">
-						İçerik </a>
-
-					<!--end::Item-->
+                    @yield('subheaderalt')
 				</div>
 
-				<!--end::Breadcrumb-->
 			</div>
 
-			<!--end::Heading-->
 		</div>
 
-		<!--end::Info-->
-
-		<!--begin::Toolbar-->
 		<div class="d-flex align-items-center">
 
-			<!--begin::Button-->
 			<a href="#" class="btn btn-transparent-white font-weight-bold  py-3 px-6 mr-2">
 				Rapor
 			</a>
-
-			<!--end::Button-->
-
-			<!--begin::Dropdown-->
 			<div class="dropdown dropdown-inline ml-2" data-toggle="tooltip" title="Quick actions" data-placement="top">
 				<a href="#" class="btn btn-white font-weight-bold py-3 px-6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					Aktivite
 				</a>
 				<div class="dropdown-menu p-0 m-0 dropdown-menu-md dropdown-menu-right">
-
-					<!--[html-partial:begin:{"id":"demo1/dist/inc/view/partials/content/dropdowns/dropdown-4","page":"index"}]/-->
-
-					<!--begin::Navigation-->
 					<ul class="navi navi-hover py-5">
 						<li class="navi-item">
 							<a href="#" class="navi-link">
@@ -92,18 +50,9 @@
 							</a>
 						</li>
 					</ul>
-
-					<!--end::Navigation-->
-
-					<!--[html-partial:end:{"id":"demo1/dist/inc/view/partials/content/dropdowns/dropdown-4","page":"index"}]/-->
 				</div>
 			</div>
-
-			<!--end::Dropdown-->
 		</div>
-
-		<!--end::Toolbar-->
 	</div>
 </div>
 
-<!--end::Subheader-->

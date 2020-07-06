@@ -28,7 +28,7 @@ class AdminReloadController extends Controller
     $aranacakSutun =  $request->aranacakSutun;
     $orderbycolumn =  $request->orderbycolumn;
     $orderbytype =    $request->orderbytype;
-    $veri = User::all();
+    $veri = User::select('*');
     if(!empty($aranacakKelime)){
         $veri = $veri->where($aranacakSutun,'like','%'.$aranacakKelime.'%');
     }

@@ -162,45 +162,26 @@ Kullanıcılar
                         <div class="form-group">
                             <input ref="arama" class="form-control" v-model="aranacakKelime" type="text">
                         </div>
-                        <div class="form-group">
-                            <div class="radio-inline">
-                                <label class="radio radio-square">
-                                <input type="radio" v-model="aranacakSutun" name="adayAramaInput" value="name">
-                                <span></span>Adı</label>
-
-                                <label class="radio radio-square">
-                                <input type="radio" v-model="aranacakSutun" name="adayAramaInput" value="email">
-                                <span></span>Email</label>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label class="container">
+                                    <input type="radio" v-model="aranacakSutun" name="adayAramaInput" value="name">
+                                    <span class="checkmark">Adı</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label class="container">
+                                    <input type="radio" v-model="aranacakSutun" name="adayAramaInput" value="email">
+                                    <span class="checkmark">Email</span>
+                                </label>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" v-on:click="reload" class="btn btn-lg btn-block btn-danger mb-2"
                             data-dismiss="modal">Aramayı Tamamla</button>
-                    </div>
-                </div>
-            </div>
-        </template>
-    </div>
-    <div v-if="loading" class="modal fade text-left show" id="modalAc" tabindex="-1" role="dialog">
-        <template>
-            <div class="modal-dialog" role="document">
-                <div class="modal-content" v-for="secilen in secilenBilgi">
-                    <div class="modal-header">
-                        <label class="modal-title text-text-bold-600">Kullanici Formu</label>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <i aria-hidden="true" class="ki ki-close"></i>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="">Kullanici Adı</label>
-                            <input type="text" class="form-control" v-model="secilen.adi">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn grey btn-danger" data-dismiss="modal">Kapat</button>
-                        <button type="button" @click="post" class="btn btn-success" data-dismiss="modal">Kaydet</button>
                     </div>
                 </div>
             </div>
@@ -217,12 +198,9 @@ Kullanıcılar
             'content-loader': window.contentLoaders.ListLoader,
         },
         data: {
-            ozet: false,
-            odak: false,
             loading: false,
             loading2: true,
             gelenBilgi: [],
-            secilenBilgi: [],
             postUrl: "/admin/kullanicilar",
             releoadUrl: "/reload/admin/kullanicilar",
             aranacakKelime: '',
@@ -233,45 +211,6 @@ Kullanıcılar
             pageAktif: '',
         },
         methods: {
-            async sendInfo(veri, tip) {
-                this.secilenBilgi = [];
-                if (veri == 'yeni') {
-                    this.secilenBilgi.push({
-                        tip: tip,
-                        adi: '',
-                        id: ''
-                    });
-                } else {
-                    this.secilenBilgi.push({
-                        tip: tip,
-                        adi: veri.adi,
-                        id: veri.id
-                    });
-                }
-                if (tip == "sil") {
-                    vm.post()
-                } else if (tip == "yeni") {
-                    $('#modalAc').modal('show');
-                } else {
-                    $('#modalAc').modal('show');
-                }
-
-            },
-            aramaAc() {
-                $('#aramaAc').modal('show');
-            },
-            post() {
-                axios({
-                    url: "#",
-                    method: "POST",
-                    data: this.secilenBilgi
-                }).then(function (data) {
-                    vm.reload();
-                }).catch(function (err) {
-                    //hata mesajı döner
-                });
-
-            },
             sirala(sira) {
                 this.orderByColumn = sira;
                 this.orderByType = this.orderByType == "ASC" ? "DESC" : "ASC";
@@ -305,22 +244,6 @@ Kullanıcılar
                 });
             }.bind(this), 10000);
         },
-        // created: function () {
-        //     document.addEventListener('keypress',function (e) {
-        //         console.log(e);
-        //         if (e.key === 'Enter') {
-        //             vm.reload();
-        //         }
-
-        //     });
-        //     $(document).bind('keydown', 'ctrl+f', function(e) {
-        // 		e.preventDefault();
-        //         vm.aramaAc();
-        //         vm.$refs.arama.focus();
-        // 		return false;
-        //     });
-
-        // },
         watch: {
             page: {
                 handler: function (value) {
@@ -333,6 +256,7 @@ Kullanıcılar
 
 </script>
 @endsection
+
 @section('css')
 
 @endsection
