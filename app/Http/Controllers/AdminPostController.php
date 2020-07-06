@@ -40,4 +40,21 @@ class AdminPostController extends Controller
             return response(["error"=>true]);
         }
     }
+    public function kullaniciUp(Request $request)
+    {
+        $g = User::where('id','=',Auth::user()->id)->first();
+        $g->name=$request->kullaniciAdi;
+        $g->email=$request->kullaniciMail;
+        $g->update();
+
+        if($g->update())
+        {
+            return 'true';
+        }
+        else
+        {
+            return 'false';
+        }
+
+    }
 }
