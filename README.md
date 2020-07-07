@@ -26,19 +26,21 @@ cp .env.example .env
 ```bash
 php artisan key:generate
 ```
+```bash
+php artisan config:clear
+`
 
 ```bash
-npm install
-```
+php artisan migrate
+`
 
 ```bash
-npm run dev
-```
+php artisan Otogaraj:roles
+`
 
 ```bash
 php artisan serve
-```
-
+`
 And navigate to generated server link (http://127.0.0.1:8000)
 
 ### Copyright
