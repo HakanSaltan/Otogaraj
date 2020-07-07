@@ -64,10 +64,32 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        DB::beginTransaction();
+
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        if(!$user)
+        {
+            DB::rollBack();
+
+            return false;
+        }
+
+        $role = auth()->user()->assignRole('Super Admin');
+
+        if(!$role)
+        {
+            DB::rollBack();
+
+            return false;
+        }
+
+        DB::commit();
+
+        return $user;
     }
 }
