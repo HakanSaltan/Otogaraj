@@ -37,9 +37,9 @@ Profil
                     <label class="col-xl-3 col-lg-3 col-form-label">Kullanıcı Adı</label>
                     <div class="col-lg-9 col-xl-6">
                         <input class="form-control form-control-lg form-control-solid" type="text" v-model='kullaniciAdi'>
-                        
+
                        <!-- <div class="spinner spinner-sm spinner-success spinner-right">
-                            
+
                         </div>-->
                     </div>
                 </div>
@@ -67,7 +67,7 @@ Profil
                     </div>
                 </div>
             </div>
-        
+
         <!--end::Form-->
     </div>
     <!--end::Card-->
@@ -89,21 +89,17 @@ Profil
                 let formData = new FormData();
                     formData.append('kullaniciAdi',vm.kullaniciAdi);
                     formData.append('kullaniciMail',vm.kullaniciMail);
-        
+
                     axios.post('/admin/kullaniciUp',formData)
-                    .then(function(response){
-                        console.log(response.data)
-                        if(response.data==true)
-                        {
-                            swal({
+                    .then(function (data) {
+                        swal({
                             icon: "success",
-                            });
-                        }
-                        else
-                        {
-                        console.log('olmadı');
-                        
-                        }
+                        });
+                    }).catch(function (err) {
+                        swal({
+                            icon: "error",
+                        });
+                        console.log(err);
                     });
                  }
         },

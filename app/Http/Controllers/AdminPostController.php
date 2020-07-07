@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 class AdminPostController extends Controller
@@ -18,43 +19,53 @@ class AdminPostController extends Controller
     }
 
 
-     /*
-	@author: Hakan SALTAN
-    @since: 03.07.2020
-    @desc: Eğer veri tipi yeni ise ekleme, sil ise silme, bunların dışında ise güncelleme işlemi uygulanmaktadır.
-	@param $request[0]["adi"]: adı
-
-   */
+    /*
+        @author: Hakan SALTAN
+        @since: 03.07.2020
+        @desc: Eğer veri tipi yeni ise ekleme, sil ise silme, bunların dışında ise güncelleme işlemi uygulanmaktadır.
+        @param $request[0]["adi"]: adı
+    */
     public function kullanicilar(Request $request)
     {
         try{
-            if($request[0]["tip"]=='yeni'){
-                User::insert(["name"=>$request[0]["adi"]]);
-            }elseif($request[0]["tip"]=='sil'){
-                User::where('id',$request[0]["id"])->delete();
-            }else{
-                User::where('id',$request[0]["id"])->update(["name"=>$request[0]["adi"]]);
-            }
+            DB::beginTransaction();
+                if($request[0]["tip"]=='yeni'){
+                    User::insert(["name"=>$request[0]["adi"]]);
+                }elseif($request[0]["tip"]=='sil'){
+                    User::where('id',$request[0]["id"])->delete();
+                }else{
+                    User::where('id',$request[0]["id"])->update(["name"=>$request[0]["adi"]]);
+                }
+            DB::commit();
             return response(["error"=>false]);
         }catch(Exception $e){
             return response(["error"=>true]);
         }
     }
+
+    /*
+        @author: Batuhan HAYMANA
+        @since: 06.07.2020
+        @desc:
+        @param $request->kullaniciAdi: adı
+        @param $request->kullaniciMail: mail
+    */
     public function kullaniciUp(Request $request)
     {
-        $g = User::where('id','=',Auth::user()->id)->first();
-        $g->name=$request->kullaniciAdi;
-        $g->email=$request->kullaniciMail;
-        $g->update();
+        try{
+            DB::beginTransaction();
+                $g = User::where('id','=',Auth::user()->id)->first();
+                $g->name=$request->kullaniciAdi;
+                $g->email=$request->kullaniciMail;
+                $g->update();
+            DB::commit();
+            return response(["error"=>false]);
+        }catch(Exception $err){
+            return response(["error"=>true]);
+        }
 
-        if($g->update())
-        {
-            return 'true';
-        }
-        else
-        {
-            return 'false';
-        }
+
+
 
     }
 }
