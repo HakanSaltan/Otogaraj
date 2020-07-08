@@ -16,6 +16,7 @@ class AdminGetController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware(['role:super-admin']);
     }
 
     public function kullanicilar()
@@ -24,7 +25,7 @@ class AdminGetController extends Controller
         return view('pages.admin.kullanicilar');
     }
     public function profile()
-    {   
+    {
         $profile = User::where('id','=',Auth::user()->id)->first();
         return view('pages.admin.profile')->with('profil',$profile);
     }
