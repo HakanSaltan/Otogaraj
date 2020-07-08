@@ -20,7 +20,7 @@ Route::group(['prefix' => 'uye', 'middleware' => ['role:super-admin|uye']], func
     Route::get('/home', array('as'=>'index','uses'=>'HomeController@index'));
 });
 
-Route::group(['middleware' => 'auth:api'], function () {
+Route::group(['middleware' => ['role:super-admin','auth:web']], function () {
 
     Route::get('/permissions', 'RoleManager@permissionsIndex')
         ->name('permissions.index')

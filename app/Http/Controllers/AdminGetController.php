@@ -21,7 +21,6 @@ class AdminGetController extends Controller
 
     public function kullanicilar()
     {
-        // dd('?');
         return view('pages.admin.kullanicilar');
     }
     public function profile()

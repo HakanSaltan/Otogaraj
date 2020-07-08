@@ -121,7 +121,6 @@
         };
 
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/hotkeys-js@3.8.1/index.min.js"></script>
     <!-- VUE JS-->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.js"></script>

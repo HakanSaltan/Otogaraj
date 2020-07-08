@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use App\User;
 
 class RolePermissionBootstrap extends Command
 {
@@ -53,24 +54,24 @@ class RolePermissionBootstrap extends Command
         $this->line('------------- Rolleri Ayarlama:');
 
         foreach ($roles as $role) {
-            $role = Role::updateOrCreate(['name' => $role, 'guard_name' => 'api']);
+            $role = Role::updateOrCreate(['name' => $role, 'guard_name' => 'web']);
             $this->info($role->name . " Role Oluşturuldu");
         }
 
         $this->line('------------- İzinleri Ayarlama:');
 
-        $superAdminRole = Role::where('name', "Super Admin")->first();
+        $superAdminRole = Role::where('name', "super-admin")->first();
 
         foreach ($permissions as $perm_name) {
             $permission = Permission::updateOrCreate(['name' => $perm_name,
-                'guard_name' => 'api']);
+                'guard_name' => 'web']);
 
             $superAdminRole->givePermissionTo($permission);
 
             $this->info($permission->name . " Permission Oluşturuldu");
         }
 
-        $this->info("Tüm izinler Süper Yönetici'ye verildi");
+        $this->info("Tüm izinler Süper Admin'e verildi");
         $this->line('------------- Uygulama Önyükleme Tamamlandı.');
     }
 }
