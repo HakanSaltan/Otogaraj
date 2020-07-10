@@ -10,7 +10,7 @@ Makinenizin tüm gereksinimleri karşıladığını varsayarsak - Metronic Larav
 2. Aşağıdaki komutları çalıştırın
 
 ```bash
-composer install
+composer install or composer update
 ```
 
 ```bash
@@ -30,6 +30,10 @@ php artisan migrate
 
 ```bash
 php artisan Otogaraj:roles
+`
+
+```bash
+php artisan db:Seed
 `
 
 ```bash
