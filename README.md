@@ -10,7 +10,7 @@ Makinenizin tüm gereksinimleri karşıladığını varsayarsak - Metronic Larav
 2. Aşağıdaki komutları çalıştırın
 
 ```bash
-composer install or composer update
+composer install veya composer update
 ```
 
 ```bash
@@ -40,7 +40,7 @@ php artisan db:Seed
 ```bash
 php artisan serve
 ```
-And navigate to generated server link (http://127.0.0.1:8000)
+Ve oluşturulan sunucu bağlantısına gidin (http://127.0.0.1:8000)
 
-### Copyright Kodgaraj
+### Tüm Hakları Saklıdır Kodgaraj
 
