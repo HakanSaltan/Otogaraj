@@ -6,6 +6,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\Roles;
+use App\Permissions;
 class AdminGetController extends Controller
 {
     /**
@@ -20,8 +22,10 @@ class AdminGetController extends Controller
     }
 
     public function kullanicilar()
-    {
-        return view('pages.admin.kullanicilar');
+    {   
+        $roller = Roles::all();
+        $izinler = Permissions::all();
+        return view('pages.admin.kullanicilar')->with('rol',$roller)->with('izin',$izinler);
     }
     public function profile()
     {

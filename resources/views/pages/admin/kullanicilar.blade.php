@@ -31,11 +31,17 @@ Kullanıcılar
                         @click="sayfayaGit(gelenBilgi.current_page+1)"><i class="flaticon2-fast-next"></i></a>
                 </li>
                 <li class="nav-item ml-0"><a class="nav-link py-2 px-4 font-weight-bolder font-size-sm"
-                        v-on:click="aramaAc"><i class="flaticon-search"></i></a></li>
+                        v-on:click="aramaAc"><i class="flaticon-search"></i></a>
+                </li>
                 <li class="nav-item ml-0"><a class="nav-link py-2 px-4 font-weight-bolder font-size-sm"
-                        v-on:click="sendInfo('yeni','yeni')"><i class="flaticon-add"></i></a></li>
+                        v-on:click="sendInfo('yeni','yeni')"><i class="flaticon-add"></i></a>
+                </li>
                 <li class="nav-item ml-0"><a class="nav-link py-2 px-4 font-weight-bolder font-size-sm"
-                        v-on:click="reload"><i class="flaticon-refresh"></i></a></li>
+                        v-on:click="sendInfo('role','role')"><i class="flaticon-user"></i></a>
+                </li>                     
+                <li class="nav-item ml-0"><a class="nav-link py-2 px-4 font-weight-bolder font-size-sm"
+                        v-on:click="reload"><i class="flaticon-refresh"></i></a>
+                </li>
             </ul>
         </div>
     </div>
@@ -206,6 +212,52 @@ Kullanıcılar
             </div>
         </template>
     </div>
+    <div v-if="loading" class="modal fade text-left show" id="roleAc" tabindex="-1" role="dialog">
+        <template>
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" v-for="secilen in secilenBilgi">
+                    <div class="modal-header">
+                        <label class="modal-title text-text-bold-600">Kullanıcılara Yetki Ver</label>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <i aria-hidden="true" class="ki ki-close"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="">Kullanici Seç</label>
+                            <select class="form-control" id="exampleSelect1">
+                                <option v-for='(bilgi,index) in gelenBilgi.data' :value="bilgi.id" v-text='bilgi.name'></option>
+                               </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Rolleri</label>
+                            <div class="checkbox-inline">
+                                <label class="checkbox">
+                                    <input type="checkbox" name="Checkboxes2">
+                                    <span></span>
+                                    Option 1
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Yetkileri</label>
+                            <div class="checkbox-inline">
+                                <label class="checkbox">
+                                    <span></span>
+                                    <input type="checkbox" name="Checkboxes2">
+                                    Option 1
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn grey btn-danger" data-dismiss="modal">Kapat</button>
+                        <button type="button" @click="post" class="btn btn-success" data-dismiss="modal">Kaydet</button>
+                    </div>
+                </div>
+            </div>
+        </template>
+    </div>
 @endcan
 </div>
 
@@ -256,7 +308,10 @@ Kullanıcılar
                     vm.post()
                 } else if (tip == "yeni") {
                     $('#modalAc').modal('show');
-                } else {
+                } else if (tip == 'role'){
+                    $('#roleAc').modal('show');
+                } 
+                else {
                     $('#modalAc').modal('show');
                 }
 
@@ -336,7 +391,6 @@ Kullanıcılar
         },
 
     });
-
 </script>
 @endsection
 @section('css')
