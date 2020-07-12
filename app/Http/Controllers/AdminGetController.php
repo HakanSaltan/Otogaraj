@@ -23,9 +23,8 @@ class AdminGetController extends Controller
 
     public function kullanicilar()
     {   
-        $roller = Roles::all();
-        $izinler = Permissions::all();
-        return view('pages.admin.kullanicilar')->with('rol',$roller)->with('izin',$izinler);
+        
+        return view('pages.admin.kullanicilar');
     }
     public function profile()
     {

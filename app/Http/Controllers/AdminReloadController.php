@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Roles;
+use App\Permissions;
 use Illuminate\Http\Request;
 
 class AdminReloadController extends Controller
@@ -25,16 +27,29 @@ class AdminReloadController extends Controller
 	@param $request->orderbytype: desc | asc
     */
    public function kullanicilar(Request $request){
-    $aranacakKelime = $request->aranacakKelime;
-    $aranacakSutun =  $request->aranacakSutun;
-    $orderbycolumn =  $request->orderbycolumn;
-    $orderbytype =    $request->orderbytype;
-    $veri = User::select('*');
-    if(!empty($aranacakKelime)){
-        $veri = $veri->where($aranacakSutun,'like','%'.$aranacakKelime.'%');
+        $aranacakKelime = $request->aranacakKelime;
+        $aranacakSutun =  $request->aranacakSutun;
+        $orderbycolumn =  $request->orderbycolumn;
+        $orderbytype =    $request->orderbytype;
+        $veri = User::select('*');
+        if(!empty($aranacakKelime)){
+            $veri = $veri->where($aranacakSutun,'like','%'.$aranacakKelime.'%');
+        }
+        $veri = $veri->orderBy($orderbycolumn,$orderbytype)
+        ->paginate(10);
+        return response($veri);
     }
-    $veri = $veri->orderBy($orderbycolumn,$orderbytype)
-    ->paginate(10);
-    return response($veri);
-}
+     /*
+	@author: Batuhan Haymana
+    @since: 12.07.2020
+    @desc: rol ve izinler tablosu çekilerek kullanıcılar sayfasasına yönlendirilir..
+    */
+    public function roller(){
+        $roller = Roles::all();
+        return $roller;
+    }
+    public function izinler(){
+        $izinler = Permissions::all();
+        return $izinler;
+    }
 }
