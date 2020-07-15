@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Roles;
 use App\Permissions;
+use Spatie\Permission\Contracts\Permission;
+
 class AdminGetController extends Controller
 {
     /**
@@ -22,9 +24,10 @@ class AdminGetController extends Controller
     }
 
     public function kullanicilar()
-    {   
-        
-        return view('pages.admin.kullanicilar');
+    {
+        $roles = Roles::all();
+        $permissions = Permissions::all();
+        return view('pages.admin.kullanicilar')->with('roles',$roles)->with('permissions',$permissions);
     }
     public function profile()
     {

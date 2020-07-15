@@ -35,7 +35,7 @@ Kullanıcılar
                 </li>
                 <li class="nav-item ml-0"><a class="nav-link py-2 px-4 font-weight-bolder font-size-sm"
                         v-on:click="sendInfo('yeni','yeni')"><i class="flaticon-add"></i></a>
-                </li>                     
+                </li>
                 <li class="nav-item ml-0"><a class="nav-link py-2 px-4 font-weight-bolder font-size-sm"
                         v-on:click="reload"><i class="flaticon-refresh"></i></a>
                 </li>
@@ -112,7 +112,7 @@ Kullanıcılar
                                     <!--end::Svg Icon-->
                                 </span>
                             </a>
-                            <a v-on:click="sendInfo(yetki,bilgi.id)" class="btn btn-icon btn-light btn-hover-primary btn-sm">
+                            <a v-on:click="sendInfo(bilgi,'yetki')" class="btn btn-icon btn-light btn-hover-primary btn-sm">
                                 <span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2020-07-07-181510/theme/html/demo2/dist/../src/media/svg/icons/Media/Shuffle.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                         <rect x="0" y="0" width="24" height="24"/>
@@ -223,25 +223,18 @@ Kullanıcılar
             <div class="modal-dialog" role="document">
                 <div class="modal-content" v-for="secilen in secilenBilgi">
                     <div class="modal-header">
-                        <label class="modal-title text-text-bold-600">Kullanıcılara Yetki Ver</label>
+                        <label class="modal-title text-text-bold-600"><strong v-text="secilen.adi"></strong> Yetki Ver</label>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <i aria-hidden="true" class="ki ki-close"></i>
                         </button>
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="">Kullanici Seç</label>
-                            <select class="form-control" id="exampleSelect1">
-                                <option v-for='(bilgi,index) in gelenBilgi.data' :value="bilgi.id" v-text='bilgi.name'></option>
-                               </select>
-                        </div>
-                        <div class="form-group">
                             <label for="">Rolleri</label>
                             <div class="checkbox-list">
                                 <label class="checkbox" v-for='rol in roller'>
                                     <input type="checkbox" :value='rol.id' name="Checkboxes2">
-                                    <span></span>
-                                    @{{rol.name}}
+                                    <span v-text="rol.name"></span>
                                 </label>
                             </div>
                         </div>
@@ -249,9 +242,14 @@ Kullanıcılar
                             <label for="">Yetkileri</label>
                             <div class="checkbox-list">
                                 <label class="checkbox" v-for='izin in izinler'>
-                                    <span></span>
-                                    <input type="checkbox" :value='izin.id' name="Checkboxes2">
-                                    @{{izin.name}}
+                                    <template v-if="seciliKontrol(izin.id)">
+                                        <span v-text="izin.name"></span>
+                                        <input type="checkbox" :value='izin.id' checked name="Checkboxes4">
+                                    </template>
+                                    <template v-else>
+                                        <span v-text="izin.name"></span>
+                                        <input type="checkbox" :value='izin.id' name="Checkboxes4">
+                                    </template>
                                 </label>
                             </div>
                         </div>
@@ -291,10 +289,8 @@ Kullanıcılar
             orderByType: 'DESC',
             page: 1,
             pageAktif: '',
-            roller:[],
-            izinler:[],
-            roleSorgu: "/reload/admin/roller",
-            izinSorgu: "/reload/admin/izinler",
+            roller:{!! json_encode($roles) !!},
+            izinler:{!! json_encode($permissions) !!},
         },
         methods: {
             async sendInfo(veri, tip) {
@@ -304,14 +300,16 @@ Kullanıcılar
                         tip: tip,
                         adi: '',
                         email: '',
-                        id: ''
+                        id: '',
+                        permission:[]
                     });
                 } else {
                     this.secilenBilgi.push({
                         tip: tip,
                         adi: veri.name,
                         email: veri.email,
-                        id: veri.id
+                        id: veri.id,
+                        permission: veri.permission
                     });
                 }
                 if (tip == "sil") {
@@ -319,10 +317,14 @@ Kullanıcılar
                 } else if (tip == "yeni") {
                     $('#modalAc').modal('show');
                 }
+                else if (tip == "yetki")  {
+                    yetkiAc
+                    $('#yetkiAc').modal('show');
+                }
                 else {
                     $('#modalAc').modal('show');
                 }
-                
+
             },
             aramaAc() {
                 $('#aramaAc').modal('show');
@@ -347,6 +349,14 @@ Kullanıcılar
             sayfayaGit(page) {
                 this.page = page;
             },
+            seciliKontrol(id){
+                const listItem = this.secilenBilgi[0].permission.find(x => x.permission_id === id );
+                if(listItem != null){
+                    return true;
+                }else{
+                    return false
+                }
+            },
             async reload() {
                 $('#aramaAc').modal('hide');
                 this.loading = false;
@@ -356,54 +366,11 @@ Kullanıcılar
                     this.gelenBilgi = response.data;
                     this.loading = true;
                 });
-            },
-            rol(){
-                axios.get(this.roleSorgu).then((response) => {
-                    this.roller = response.data;
-                    this.loading = true;
-                })
-            },
-            izin(){
-                axios.get(this.izinSorgu).then((response) => {
-                    this.izinler = response.data;
-                    this.loading = true;
-                })
-            },
+            }
         },
         mounted() {
             this.reload();
-            this.rol();
-            this.izin();
-            setInterval(function () {
-                if(this.aranacakKelime == ''){
-                    this.loading2 = false;
-                    axios.get(this.releoadUrl + "?page=" + this.page + "&aranacakSutun=" + this
-                        .aranacakSutun + "&orderbycolumn=" + this
-                        .orderByColumn + "&orderbytype=" + this.orderByType, {}).then((response) => {
-                        this.gelenBilgi = response.data;
-                        this.loading2 = true;
-                    }).catch((error) => {
-                        alert('Lütfen Sayfayı Yenileyiniz');
-                    });
-                }
-            }.bind(this), 10000);
         },
-        // created: function () {
-        //     document.addEventListener('keypress',function (e) {
-        //         console.log(e);
-        //         if (e.key === 'Enter') {
-        //             vm.reload();
-        //         }
-
-        //     });
-        //     $(document).bind('keydown', 'ctrl+f', function(e) {
-        // 		e.preventDefault();
-        //         vm.aramaAc();
-        //         vm.$refs.arama.focus();
-        // 		return false;
-        //     });
-
-        // },
         watch: {
             page: {
                 handler: function (value) {

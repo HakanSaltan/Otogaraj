@@ -14,8 +14,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'role:super-admin'], function
 });
 Route::group(['prefix' => 'reload'], function(){
     Route::get('/admin/kullanicilar', 'AdminReloadController@kullanicilar');
-    Route::get('/admin/roller','AdminReloadController@roller');
-    Route::get('/admin/izinler','AdminReloadController@izinler');
 });
 
 Route::group(['prefix' => 'uye', 'middleware' => ['role:super-admin|uye']], function () {
