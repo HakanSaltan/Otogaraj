@@ -18,6 +18,37 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        'Illuminate\Auth\Events\Registered' => [
+            'App\Listeners\LogRegisteredUser',
+        ],
+
+        // 'Illuminate\Auth\Events\Attempting' => [
+        //     'App\Listeners\LogAuthenticationAttempt',
+        // ],
+
+        // 'Illuminate\Auth\Events\Authenticated' => [
+        //     'App\Listeners\LogAuthenticated',
+        // ],
+
+        'Illuminate\Auth\Events\Login' => [
+            'App\Listeners\LogSuccessfulLogin',
+        ],
+
+        'Illuminate\Auth\Events\Failed' => [
+            'App\Listeners\LogFailedLogin',
+        ],
+
+        'Illuminate\Auth\Events\Logout' => [
+            'App\Listeners\LogSuccessfulLogout',
+        ],
+
+        'Illuminate\Auth\Events\Lockout' => [
+            'App\Listeners\LogLockout',
+        ],
+
+        'Illuminate\Auth\Events\PasswordReset' => [
+            'App\Listeners\LogPasswordReset',
+        ],
     ];
 
     /**
@@ -29,6 +60,26 @@ class EventServiceProvider extends ServiceProvider
     {
         parent::boot();
 
-        //
+        Event::listen(\Illuminate\Auth\Events\Login::class, function ($event) {
+            LogLogin::insert(
+                [
+                  "user_id"=>"{$event->user->id}",
+                  "aciklama"=>"{$event->user->name} Giriş Yaptı",
+                  "islem_kodu"=>"1",
+                  "ip"=>\Illuminate\Support\Facades\Request::ip(),
+                  "islem_aciklama"=>json_encode($request->all(), false)
+                ]);
+        });
+
+        Event::listen(\Illuminate\Auth\Events\Logout::class, function ($event) {
+            LogLogin::insert(
+                [
+                  "user_id"=>"{$event->user->id}",
+                  "aciklama"=>"{$event->user->name} Çıkış Yaptı",
+                  "islem_kodu"=>"0",
+                  "ip"=>\Illuminate\Support\Facades\Request::ip(),
+                  "islem_aciklama"=>json_encode($request->all(), false)
+                ]);
+        });
     }
 }
