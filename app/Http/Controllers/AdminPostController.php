@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use Illuminate\Support\Facades\Hash;
+
 class AdminPostController extends Controller
 {
     /**
@@ -32,11 +34,11 @@ class AdminPostController extends Controller
         try{
             DB::beginTransaction();
                 if($request[0]["tip"]=='yeni'){
-                    User::insert(["name"=>$request[0]["adi"],"email"=>$request[0]["email"] ]);
+                    User::insert(["name"=>$request[0]["adi"],"email"=>$request[0]["email"],"password"=>Hash::make($request[0]["password"])]);
                 }elseif($request[0]["tip"]=='sil'){
                     User::where('id',$request[0]["id"])->delete();
                 }else{
-                    User::where('id',$request[0]["id"])->update(["name"=>$request[0]["adi"],"email"=>$request[0]["email"]]);
+                    User::where('id',$request[0]["id"])->update(["name"=>$request[0]["adi"],"email"=>$request[0]["email"],"password"=>Hash::make($request[0]["password"])]);
                 }
             DB::commit();
             return response(["error"=>false]);
