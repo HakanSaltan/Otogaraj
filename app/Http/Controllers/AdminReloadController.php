@@ -30,32 +30,7 @@ class AdminReloadController extends Controller
 	@param $request->orderbycolumn: sıralanacak kolon
 	@param $request->orderbytype: desc | asc
     */
-   public function kullanicilar2(Request $request){
-        $aranacakKelime = $request->aranacakKelime;
-        $aranacakSutun =  $request->aranacakSutun;
-        $orderbycolumn =  $request->orderbycolumn;
-        $orderbytype = $request->orderbytype;
-        $veri = User::select('*');
-        if(!empty($aranacakKelime)){
-            $veri = $veri->where($aranacakSutun,'like','%'.$aranacakKelime.'%');
-        }
-        $veri = $veri->orderBy($orderbycolumn,$orderbytype)
-        ->get();
-
-        $collect = collect($veri)->toArray();
-        $sonuc = array();
-
-        foreach ($collect as $ver){
-
-            $kontrol = UserPermission::where('model_id',$ver["id"])->get();
-            array_push(
-                $sonuc, array_merge($ver,array("permission"=>collect($kontrol)->toArray()))
-            );
-        }
-        $newcollect = (new Collection($sonuc))->paginate(10);
-        dd($newcollect);
-        return $newcollect;
-    }
+   
     public function kullanicilar(Request $request)
     {
         $aranacakKelime = $request->aranacakKelime;
@@ -67,7 +42,7 @@ class AdminReloadController extends Controller
             $veri = $veri->where($aranacakSutun,'like','%'.$aranacakKelime.'%');
         }
         $veri = $veri->orderBy($orderbycolumn,$orderbytype)
-        ->with('permission')
+        ->with('permission') //User modelindeki permission fonksiyonundan gelir
         ->paginate(10);
 
         return $veri;

@@ -1,3 +1,4 @@
+
 @extends('layouts.app')
 @section('baslik')
 Kullanıcılar
@@ -209,6 +210,10 @@ Kullanıcılar
                             <label for="">Email</label>
                             <input type="text" class="form-control" v-model="secilen.email">
                         </div>
+                        <div class="form-group">
+                            <label for="">Şifre</label>
+                            <input type="password" class="form-control" v-model="secilen.password">
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn grey btn-danger" data-dismiss="modal">Kapat</button>
@@ -231,25 +236,27 @@ Kullanıcılar
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="">Rolleri</label>
-                            <div class="checkbox-list">
+                            <div class="checkbox-list" >
                                 <label class="checkbox" v-for='rol in roller'>
-                                    <input type="checkbox" :value='rol.id' name="Checkboxes2">
-                                    <span v-text="rol.name"></span>
+                                    <input type="checkbox" :value='rol.id'>
+                                    <span></span>
+                                    @{{rol.name}}
                                 </label>
                             </div>
-                        </div>
+                        </div> 
                         <div class="form-group">
                             <label for="">Yetkileri</label>
-                            <div class="checkbox-list">
+                            <div class="checkbox-list" >
                                 <label class="checkbox" v-for='izin in izinler'>
-                                    <template v-if="seciliKontrol(izin.id)">
-                                        <span v-text="izin.name"></span>
-                                        <input type="checkbox" :value='izin.id' checked name="Checkboxes4">
-                                    </template>
-                                    <template v-else>
-                                        <span v-text="izin.name"></span>
-                                        <input type="checkbox" :value='izin.id' name="Checkboxes4">
-                                    </template>
+                                    <div v-if="seciliKontrol(izin.id)">
+                                        <input type="checkbox" checked :value='izin.id'>
+                                        @{{izin.name}}
+                                    </div>
+                                    <div v-else>
+                                        <input type="checkbox" :value='izin.id'>
+                                        <span></span>
+                                        @{{izin.name}}
+                                    </div>
                                 </label>
                             </div>
                         </div>
@@ -300,6 +307,7 @@ Kullanıcılar
                         tip: tip,
                         adi: '',
                         email: '',
+                        password: '',
                         id: '',
                         permission:[]
                     });
@@ -309,6 +317,7 @@ Kullanıcılar
                         adi: veri.name,
                         email: veri.email,
                         id: veri.id,
+                        password:'',
                         permission: veri.permission
                     });
                 }
