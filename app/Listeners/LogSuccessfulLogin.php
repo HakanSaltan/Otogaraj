@@ -1,0 +1,38 @@
+<?php
+
+namespace App\Listeners;
+
+use Illuminate\Auth\Events\Login;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\InteractsWithQueue;
+use Auth;
+use App\LogLogin;
+class LogSuccessfulLogin
+{
+    /**
+     * Create the event listener.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        //
+    }
+
+    /**
+     * Handle the event.
+     *
+     * @param  Login  $event
+     * @return void
+     */
+    public function handle(Login $event)
+    {
+        LogLogin::insert(
+            [
+                "user_id"=>Auth::user()->id,
+                "aciklama"=>Auth::user()->name . " Giriş Yaptı",
+                "islem_kodu"=>"1",
+                "ip"=>\Illuminate\Support\Facades\Request::ip()
+            ]);
+    }
+}
