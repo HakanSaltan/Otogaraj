@@ -234,30 +234,38 @@ Kullanıcılar
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div class="form-group">
-                            <label for="">Rolleri</label>
-                            <div class="checkbox-list" >
-                                <label class="checkbox" v-for='rol in roller'>
-                                    <input type="checkbox" :value='rol.id'>
-                                    <span></span>
-                                    @{{rol.name}}
-                                </label>
+                        <div class="form-group row">
+                            <label class="col-3 col-form-label">Rolleri</label>
+                            <div class="col-12"  v-for='rol in roller'>
+                                <span class="switch switch-sm switch-icon" >
+                                    <label if='seciliKontrol(rol.id)'>
+                                        <input type="checkbox" checked :value='rol.id'>
+                                        <span></span>
+                                        @{{rol.name}}
+                                    </label>
+                                    <label v-else>
+                                        <input type="checkbox"  :value='rol.id'>
+                                        <span></span>
+                                        @{{rol.name}}
+                                    </label>
+                                </span>
                             </div>
                         </div> 
-                        <div class="form-group">
+                        <div class="form-group row">
                             <label for="">Yetkileri</label>
-                            <div class="checkbox-list" >
-                                <label class="checkbox" v-for='izin in izinler'>
-                                    <div v-if="seciliKontrol(izin.id)">
-                                        <input type="checkbox" checked :value='izin.id'>
-                                        @{{izin.name}}
-                                    </div>
-                                    <div v-else>
+                            <div class="col-12" v-for='izin in izinler'>
+                                <span class="switch switch-sm switch-icon">
+                                    <label v-if="seciliKontrol(izin.id)">
+                                            <input type="checkbox" checked :value='izin.id'>
+                                            <span></span>
+                                            @{{izin.name}}
+                                    </label>
+                                    <label v-else>
                                         <input type="checkbox" :value='izin.id'>
                                         <span></span>
                                         @{{izin.name}}
-                                    </div>
-                                </label>
+                                    </label>
+                                </span>
                             </div>
                         </div>
                     </div>
