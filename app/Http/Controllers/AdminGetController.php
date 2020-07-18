@@ -23,6 +23,11 @@ class AdminGetController extends Controller
         $this->middleware(['role:super-admin']);
     }
 
+    public function index()
+    {
+        return view('pages.admin.home');
+    }
+
     public function kullanicilar()
     {
         $roles = Roles::all();

@@ -81,7 +81,7 @@ Admin Anasayfa
             {{ session('status') }}
         </div>
         @endif
-
+        Admin
         Hoşgeldin {{Auth::user()->name }}
     </div>
 

@@ -82,7 +82,7 @@ Profil
         data: {
             kullaniciAdi:'{{$profil->name}}',
             kullaniciMail:'{{$profil->email}}',
-            token:'{{csrf_token()}}'
+            postUrl: "#",
         },
         methods: {
             kullaniciUp(){
@@ -90,15 +90,18 @@ Profil
                     formData.append('kullaniciAdi',vm.kullaniciAdi);
                     formData.append('kullaniciMail',vm.kullaniciMail);
 
-                    axios.post('/admin/kullaniciUp',formData)
+                    axios.post(this.postUrl,formData)
                     .then(function (data) {
-                        swal({
-                            icon: "success",
-                        });
+                        // swal({
+                        //     icon: "success",
+                        // });
+                        toastr.success ("İşlem Başarılı", "Mesaj");
+
                     }).catch(function (err) {
-                        swal({
-                            icon: "error",
-                        });
+                        // swal({
+                        //     icon: "error",
+                        // });
+                        toastr.error("İşlem Başarısız", "Hata");
                         console.log(err);
                     });
                  }
@@ -107,6 +110,7 @@ Profil
     });
 
 </script>
+
 @endsection
 @section('css')
 

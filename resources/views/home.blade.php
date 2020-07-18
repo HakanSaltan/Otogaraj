@@ -85,7 +85,7 @@ Anasayfa
             {{ session('status') }}
         </div>
         @endif
-
+        Diğer
         Hoşgeldin {{Auth::user()->name }}
     </div>
 
