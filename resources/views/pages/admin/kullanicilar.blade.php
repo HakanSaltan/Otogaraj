@@ -254,14 +254,17 @@ Kullanıcılar
                         <div class="form-group row">
                             <label for="">Yetkileri</label>
                             <div class="col-12" v-for='izin in izinler'>
-                                <span class="switch switch-sm switch-icon">
-                                    <label v-if="seciliKontrol(izin.id)">
-                                            <input type="checkbox" checked :value='izin.id'>
-                                            <span></span>
-                                            @{{izin.name}}
+                                
+                                <span class="switch switch-sm switch-icon" v-if="seciliKontrol(izin.id)">
+                                    <label>
+                                        <input type="checkbox" checked :value='izin.id'>
+                                        <span></span>
+                                        @{{izin.name}}
                                     </label>
-                                    <label v-else>
-                                        <input type="checkbox" :value='izin.id'>
+                                </span>
+                                <span class="switch switch-sm switch-icon" v-else>
+                                    <label>
+                                        <input type="checkbox"  :value='izin.id'>
                                         <span></span>
                                         @{{izin.name}}
                                     </label>
@@ -271,7 +274,7 @@ Kullanıcılar
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn grey btn-danger" data-dismiss="modal">Kapat</button>
-                        <button type="button" @click="post" class="btn btn-success" data-dismiss="modal">Kaydet</button>
+                        <button type="button" @click="post()" class="btn btn-success" data-dismiss="modal">Kaydet</button>
                     </div>
                 </div>
             </div>
@@ -317,7 +320,7 @@ Kullanıcılar
                         email: '',
                         password: '',
                         id: '',
-                        permission:[]
+                        permission:[],
                     });
                 } else {
                     this.secilenBilgi.push({
