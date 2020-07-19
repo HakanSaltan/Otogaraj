@@ -30,7 +30,7 @@ class AdminReloadController extends Controller
 	@param $request->orderbycolumn: sıralanacak kolon
 	@param $request->orderbytype: desc | asc
     */
-   
+
     public function kullanicilar(Request $request)
     {
         $aranacakKelime = $request->aranacakKelime;
@@ -43,6 +43,7 @@ class AdminReloadController extends Controller
         }
         $veri = $veri->orderBy($orderbycolumn,$orderbytype)
         ->with('permission') //User modelindeki permission fonksiyonundan gelir
+        ->with('role')
         ->paginate(10);
 
         return $veri;

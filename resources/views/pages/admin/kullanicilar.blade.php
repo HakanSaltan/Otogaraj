@@ -236,35 +236,21 @@ Kullanıcılar
                     <div class="modal-body">
                         <div class="form-group row">
                             <label class="col-3 col-form-label">Rolleri</label>
-                            <div class="col-12"  v-for='rol in roller'>
+                            <div class="col-12">
                                 <span class="switch switch-sm switch-icon" >
-                                    <label if='seciliKontrol(rol.id)'>
-                                        <input type="checkbox" checked :value='rol.id'>
-                                        <span></span>
-                                        @{{rol.name}}
-                                    </label>
-                                    <label v-else>
-                                        <input type="checkbox"  :value='rol.id'>
-                                        <span></span>
-                                        @{{rol.name}}
-                                    </label>
+                                    <select class="form-control" v-model="secilen.role">
+                                        <option selected disabled v-text="roleName(secilen.role)"></option>
+                                        <option v-for="role in roller" :value="role.id" v-text="role.name"></option>
+                                    </select>
                                 </span>
                             </div>
-                        </div> 
+                        </div>
                         <div class="form-group row">
                             <label for="">Yetkileri</label>
                             <div class="col-12" v-for='izin in izinler'>
-                                
-                                <span class="switch switch-sm switch-icon" v-if="seciliKontrol(izin.id)">
+                                <span class="switch switch-sm switch-icon">
                                     <label>
-                                        <input type="checkbox" checked :value='izin.id'>
-                                        <span></span>
-                                        @{{izin.name}}
-                                    </label>
-                                </span>
-                                <span class="switch switch-sm switch-icon" v-else>
-                                    <label>
-                                        <input type="checkbox"  :value='izin.id'>
+                                        <input type="checkbox" :value='izin.id' v-model="secilen.permission">
                                         <span></span>
                                         @{{izin.name}}
                                     </label>
@@ -321,6 +307,7 @@ Kullanıcılar
                         password: '',
                         id: '',
                         permission:[],
+                        role:''
                     });
                 } else {
                     this.secilenBilgi.push({
@@ -329,7 +316,8 @@ Kullanıcılar
                         email: veri.email,
                         id: veri.id,
                         password:'',
-                        permission: veri.permission
+                        permission: this.izin(veri.permission),
+                        role:veri.role.role_id
                     });
                 }
                 if (tip == "sil") {
@@ -369,13 +357,18 @@ Kullanıcılar
             sayfayaGit(page) {
                 this.page = page;
             },
-            seciliKontrol(id){
-                const listItem = this.secilenBilgi[0].permission.find(x => x.permission_id === id );
-                if(listItem != null){
-                    return true;
-                }else{
-                    return false
-                }
+            izin(dizi){
+                console.log("Değer buraya girdi");
+                let list=[];
+                $.each(dizi, function(key, value) {
+                    list.push(value.permission_id);
+                });
+                console.log(list);
+                return list;
+            },
+            roleName(id){
+                const listItem = this.roller.find(x => x.id === id );
+                return listItem.name;
             },
             async reload() {
                 $('#aramaAc').modal('hide');
