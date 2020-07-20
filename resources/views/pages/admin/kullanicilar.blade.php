@@ -299,7 +299,7 @@ Kullanıcılar
         methods: {
             async sendInfo(veri, tip) {
                 this.secilenBilgi = [];
-                if (veri == 'yeni') {
+                if(veri == 'yeni'){
                     this.secilenBilgi.push({
                         tip: tip,
                         adi: '',
@@ -309,7 +309,7 @@ Kullanıcılar
                         permission:[],
                         role:''
                     });
-                } else {
+                }else {
                     this.secilenBilgi.push({
                         tip: tip,
                         adi: veri.name,
@@ -320,13 +320,14 @@ Kullanıcılar
                         role:veri.role.role_id
                     });
                 }
+
+
                 if (tip == "sil") {
                     vm.post()
-                } else if (tip == "yeni") {
+                }else if (tip === "yeni") {
                     $('#modalAc').modal('show');
                 }
-                else if (tip == "yetki")  {
-                    yetkiAc
+                else if (tip === "yetki")  {
                     $('#yetkiAc').modal('show');
                 }
                 else {

@@ -15,6 +15,7 @@ Admin Anasayfa
 <a href="" class="text-white text-hover-white opacity-75 hover-opacity-100">Admin Anasayfa</a>
 @endsection
 @section('content')
+@can('KullaniciGor')
 <div class="alert alert-custom alert-white alert-shadow gutter-b" role="alert">
     <div class="alert-icon alert-icon-top">
         <span class="svg-icon svg-icon-3x svg-icon-primary mt-4">
@@ -50,6 +51,7 @@ Admin Anasayfa
             main purpose is to help to generate the final HTML code without hassle.</p>
     </div>
 </div>
+@endcan
 <div class="card card-custom gutter-b card-stretch">
     <div class="card-header border-0 pt-5">
         <div class="card-title">
