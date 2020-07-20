@@ -124,8 +124,13 @@
   <component name="ProjectId" id="1eVSkgZgA9qGDAYBcN4M5cEme2K" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/layouts" />
     <property name="nodejs_package_manager_path" value="npm" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\xampp\htdocs\Otogaraj\resources\views\layouts" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -156,7 +161,7 @@
       <option name="presentableId" value="Default" />
       <updated>1594405411334</updated>
       <workItem from="1594405412582" duration="6097000" />
-      <workItem from="1595265620186" duration="1888000" />
+      <workItem from="1595265620186" duration="4900000" />
     </task>
     <servers />
   </component>
