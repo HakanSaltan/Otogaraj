@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
-
+use App\Uyeler;
+use App\UserUye;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -54,7 +55,8 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string'],
+            'isyeri' => ['required','string'],
         ]);
     }
 
@@ -74,14 +76,29 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+        
+        if($user)
+        {
+            $uye = new Uyeler();
+            $uye->isyeri_adi=$data['isyeri'];
+            $uye->durum=0;
+            $uye->save();
 
+            $userUye = new UserUye();
+            $userUye->user_id=$user->id;
+            $userUye->uye_id=$uye->id;
+            $userUye->save();
+        }
+        
+            
+        
         if(!$user)
         {
             DB::rollBack();
 
             return false;
         }
-
+        /*
         $role = auth()->user()->assignRole('super-admin');
 
         if(!$role)
@@ -89,7 +106,7 @@ class RegisterController extends Controller
             DB::rollBack();
 
             return false;
-        }
+        } */
 
         DB::commit();
 

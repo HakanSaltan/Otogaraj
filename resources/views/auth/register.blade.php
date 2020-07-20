@@ -67,7 +67,7 @@
                                 <div class="form-group">
                                     <input id="password" type="password"
                                         class="form-control h-auto text-white placeholder-white opacity-70 bg-dark-o-70 rounded-pill border-0 py-4 px-8 @error('password') is-invalid @enderror"
-                                        name="password" placeholder="Şifre Giriniz" required autocomplete="new-password">
+                                        name="password" placeholder="Şifre Giriniz" required>
     
                                     @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -76,10 +76,17 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <input id="password-confirm" type="password" placeholder="Şifre Tekrarı"
-                                        class="form-control h-auto text-white placeholder-white opacity-70 bg-dark-o-70 rounded-pill border-0 py-4 px-8"
-                                        name="password_confirmation" required autocomplete="new-password">
+                                    <input id="isyeri" type="text"
+                                        class="form-control h-auto text-white placeholder-white opacity-70 bg-dark-o-70 rounded-pill border-0 py-4 px-8 @error('İs yeri') is-invalid @enderror"
+                                        name="isyeri" placeholder="İşletme Adı" value="{{ old('isyeri') }}" required
+                                        autocomplete="isyeri" autofocus>
+                                    @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
+
                                 <div class="form-group text-left px-8">
                                     <div class="checkbox-inline">
                                         <label class="checkbox checkbox-outline checkbox-white text-white m-0">
