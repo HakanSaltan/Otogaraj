@@ -82,7 +82,7 @@ class RegisterController extends Controller
             return false;
         }
 
-        $role = auth()->user()->assignRole('Super Admin');
+        $role = auth()->user()->assignRole('super-admin');
 
         if(!$role)
         {
