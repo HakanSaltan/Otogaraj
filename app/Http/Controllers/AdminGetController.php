@@ -25,7 +25,9 @@ class AdminGetController extends Controller
 
     public function index()
     {
-        return view('pages.admin.home');
+        $roles = Roles::all();
+        $permissions = Permissions::all();
+        return view('pages.admin.home')->with('roles',$roles)->with('permissions',$permissions);
     }
 
     public function kullanicilar()

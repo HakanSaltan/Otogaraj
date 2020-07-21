@@ -25,6 +25,7 @@ Route::group(['prefix' => 'tedarikci', 'middleware' => ['role:super-admin|tedari
 
 Route::group(['prefix' => 'reload'], function(){
     Route::get('/admin/kullanicilar', 'AdminReloadController@kullanicilar');
+    Route::get('/admin/basvurular', 'AdminReloadController@basvuruOnayla');
 });
 
 // Route::group(['middleware' => ['role:super-admin','auth:web']], function () {

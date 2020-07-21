@@ -15,78 +15,303 @@ Admin Anasayfa
 <a href="" class="text-white text-hover-white opacity-75 hover-opacity-100">Admin Anasayfa</a>
 @endsection
 @section('content')
-@can('KullaniciGor')
-<div class="alert alert-custom alert-white alert-shadow gutter-b" role="alert">
-    <div class="alert-icon alert-icon-top">
-        <span class="svg-icon svg-icon-3x svg-icon-primary mt-4">
-            <!--begin::Svg Icon | path:../../../../../metronic/themes/metronic/theme/html/demo2/dist/assets/media/svg/icons/Tools/Tools.svg-->
-            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
-                height="24px" viewBox="0 0 24 24" version="1.1">
-                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                    <rect x="0" y="0" width="24" height="24"></rect>
-                    <path
-                        d="M15.9497475,3.80761184 L13.0246125,6.73274681 C12.2435639,7.51379539 12.2435639,8.78012535 13.0246125,9.56117394 L14.4388261,10.9753875 C15.2198746,11.7564361 16.4862046,11.7564361 17.2672532,10.9753875 L20.1923882,8.05025253 C20.7341101,10.0447871 20.2295941,12.2556873 18.674559,13.8107223 C16.8453326,15.6399488 14.1085592,16.0155296 11.8839934,14.9444337 L6.75735931,20.0710678 C5.97631073,20.8521164 4.70998077,20.8521164 3.92893219,20.0710678 C3.1478836,19.2900192 3.1478836,18.0236893 3.92893219,17.2426407 L9.05556629,12.1160066 C7.98447038,9.89144078 8.36005124,7.15466739 10.1892777,5.32544095 C11.7443127,3.77040588 13.9552129,3.26588995 15.9497475,3.80761184 Z"
-                        fill="#000000"></path>
-                    <path
-                        d="M16.6568542,5.92893219 L18.0710678,7.34314575 C18.4615921,7.73367004 18.4615921,8.36683502 18.0710678,8.75735931 L16.6913928,10.1370344 C16.3008685,10.5275587 15.6677035,10.5275587 15.2771792,10.1370344 L13.8629656,8.7228208 C13.4724413,8.33229651 13.4724413,7.69913153 13.8629656,7.30860724 L15.2426407,5.92893219 C15.633165,5.5384079 16.26633,5.5384079 16.6568542,5.92893219 Z"
-                        fill="#000000" opacity="0.3"></path>
-                </g>
-            </svg>
-            <!--end::Svg Icon-->
-        </span>
-    </div>
-    <div class="alert-text">
-        <p>The layout builder is to assist your set and configure your preferred project layout
-            specifications and preview it in real time. The configured layout options will be
-            saved until you change or reset them. To use the layout builder, choose the layout
-            options and click the
-            <code>Preview</code>button to preview the changes and click the
-            <code>Export</code>button to download the HTML template with its includable partials
-            of this demo. In the downloaded folder the partials(header, footer, aside, topbar,
-            etc) will be placed seperated from the base layout to allow you to integrate base
-            layout into your application</p>
-        <p>
-            <span class="label label-inline label-pill label-danger label-rounded mr-2">NOTE:</span>The
-            downloaded version does not include the assets folder since the layout builder's
-            main purpose is to help to generate the final HTML code without hassle.</p>
-    </div>
-</div>
-@endcan
-<div class="card card-custom gutter-b card-stretch">
-    <div class="card-header border-0 pt-5">
-        <div class="card-title">
-            <div class="font-weight-bolder">Anasayfa</div>
+<div class="card card-custom card-stretch gutter-b">
+
+    <div class="card-header border-0 pt-7">
+        <div class="card-title align-items-start flex-column">
+            <span class="card-label font-weight-bold font-size-h4 text-dark-75">Başvurular</span>
         </div>
         <div class="card-toolbar">
-            <div class="dropdown dropdown-inline">
-                <a href="#" class="btn btn-clean btn-sm btn-icon" data-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false">
-                    <i class="ki ki-bold-more-hor"></i>
-                </a>
-                <div class="dropdown-menu dropdown-menu-md dropdown-menu-right">
-                    <ul class="navi navi-hover py-5">
-                        <li class="navi-item">
-                            <a href="#" class="navi-link">
-                                <span class="navi-icon"><i class="flaticon2-drop"></i></span>
-                                <span class="navi-text">New Group</span>
+            <ul class="nav nav-pills nav-pills-sm nav-dark">
+                <li class="nav-item ml-0"><a class="nav-link py-2 px-4 font-weight-bolder font-size-sm"
+                        @click="sayfayaGit(gelenBilgi.current_page-1)"><i class="flaticon2-fast-back"></i></a>
+                </li>
+                <li class="nav-item ml-0"><a class="nav-link py-2 px-4 font-weight-bolder font-size-sm"
+                        @click="sayfayaGit(gelenBilgi.current_page+1)"><i class="flaticon2-fast-next"></i></a>
+                </li>
+                <li class="nav-item ml-0"><a class="nav-link py-2 px-4 font-weight-bolder font-size-sm"
+                        v-on:click="aramaAc"><i class="flaticon-search"></i></a>
+                </li>
+                <li class="nav-item ml-0"><a class="nav-link py-2 px-4 font-weight-bolder font-size-sm"
+                        v-on:click="reload"><i class="flaticon-refresh"></i></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <content-loader v-if="!loading" :speed="2" :animate="true"></content-loader>
+    <div class="card-body" v-if="loading">
+
+        <table class="table table-borderless mb-6">
+            <thead>
+                <tr>
+                    <th :class="{'asc' : orderByType == 'ASC' && orderByColumn == 'durum','desc' : orderByType != 'ASC' && orderByColumn == 'durum'}"
+                        @click="sirala('durum')">Durum</th>
+                    <th :class="{'asc' : orderByType == 'ASC' && orderByColumn == 'name','desc' : orderByType != 'ASC' && orderByColumn == 'name'}"
+                        @click="sirala('name')">Uye Adı</th>
+                    <th :class="{'asc' : orderByType == 'ASC' && orderByColumn == 'isyeri_adi','desc' : orderByType != 'ASC' && orderByColumn == 'isyeri_adi'}"
+                        @click="sirala('isyeri_adi')">Firma Adı</th>
+                    <th :class="{'asc' : orderByType == 'ASC' && orderByColumn == 'created_at','desc' : orderByType != 'ASC' && orderByColumn == 'created_at'}"
+                        @click="sirala('created_at')">Oluşturulma Tarihi</th>
+                    @can('KullaniciDuzenle')
+                    <th class="pr-0 text-right">İşlemler</th>
+                    @endcan
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(bilgi,index) in gelenBilgi.data">
+                    <td><a v-text="bilgi.durum == 0 ? 'Onaysız' : Onaylı"></a></td>
+                    <td><a v-text="bilgi.name"></a></td>
+                    <td><a v-text="bilgi.isyeri_adi"></a></td>
+                    <td><a v-text.number="bilgi.created_at"></a></td>
+                    @can('KullaniciDuzenle')
+                        <td class="pr-0 text-right">
+                            <a v-on:click="sendInfo(bilgi,'sil')" class="btn btn-icon btn-light btn-hover-primary btn-sm">
+                                <span class="svg-icon svg-icon-md svg-icon-primary">
+                                    <!--begin::Svg Icon | path:../../../../../metronic/themes/metronic/theme/html/demo2/dist/assets/media/svg/icons/General/Trash.svg-->
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                        width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                            <rect x="0" y="0" width="24" height="24"></rect>
+                                            <path
+                                                d="M6,8 L6,20.5 C6,21.3284271 6.67157288,22 7.5,22 L16.5,22 C17.3284271,22 18,21.3284271 18,20.5 L18,8 L6,8 Z"
+                                                fill="#000000" fill-rule="nonzero"></path>
+                                            <path
+                                                d="M14,4.5 L14,4 C14,3.44771525 13.5522847,3 13,3 L11,3 C10.4477153,3 10,3.44771525 10,4 L10,4.5 L5.5,4.5 C5.22385763,4.5 5,4.72385763 5,5 L5,5.5 C5,5.77614237 5.22385763,6 5.5,6 L18.5,6 C18.7761424,6 19,5.77614237 19,5.5 L19,5 C19,4.72385763 18.7761424,4.5 18.5,4.5 L14,4.5 Z"
+                                                fill="#000000" opacity="0.3"></path>
+                                        </g>
+                                    </svg>
+                                    <!--end::Svg Icon-->
+                                </span>
                             </a>
-                        </li>
-                    </ul>
+                            <a v-on:click="sendInfo(bilgi,'yetki')" class="btn btn-icon btn-light btn-hover-primary btn-sm">
+                                <span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2020-07-07-181510/theme/html/demo2/dist/../src/media/svg/icons/Media/Shuffle.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                        <rect x="0" y="0" width="24" height="24"/>
+                                        <path d="M18,15 L18,13.4774152 C18,13.3560358 18.0441534,13.2388009 18.1242243,13.147578 C18.3063883,12.9400428 18.622302,12.9194754 18.8298372,13.1016395 L21.7647988,15.6778026 C21.7814819,15.6924462 21.7971714,15.7081846 21.811763,15.7249133 C21.9932797,15.933015 21.9717282,16.2488631 21.7636265,16.4303797 L18.828665,18.9903994 C18.7375973,19.0698331 18.6208431,19.1135979 18.5,19.1135979 C18.2238576,19.1135979 18,18.8897403 18,18.6135979 L18,17 L16.445419,17 C14.5938764,17 12.8460429,16.1451629 11.7093057,14.6836437 L7.71198984,9.54423755 C6.95416504,8.56989138 5.7889427,8 4.55458097,8 L2,8 L2,6 L4.55458097,6 C6.40612357,6 8.15395708,6.85483706 9.29069428,8.31635632 L13.2880102,13.4557625 C14.045835,14.4301086 15.2110573,15 16.445419,15 L18,15 Z" fill="#000000" fill-rule="nonzero" opacity="0.3"/>
+                                        <path d="M18,6 L18,4.4774157 C18,4.3560363 18.0441534,4.23880134 18.1242243,4.14757848 C18.3063883,3.94004327 18.622302,3.9194759 18.8298372,4.10163997 L21.7647988,6.67780304 C21.7814819,6.69244668 21.7971714,6.70818509 21.811763,6.72491379 C21.9932797,6.93301548 21.9717282,7.24886356 21.7636265,7.43038021 L18.828665,9.99039986 C18.7375973,10.0698336 18.6208431,10.1135984 18.5,10.1135984 C18.2238576,10.1135984 18,9.88974079 18,9.61359842 L18,8 L16.445419,8 C15.2110573,8 14.045835,8.56989138 13.2880102,9.54423755 L9.29069428,14.6836437 C8.15395708,16.1451629 6.40612357,17 4.55458097,17 L2,17 L2,15 L4.55458097,15 C5.7889427,15 6.95416504,14.4301086 7.71198984,13.4557625 L11.7093057,8.31635632 C12.8460429,6.85483706 14.5938764,6 16.445419,6 L18,6 Z" fill="#000000" fill-rule="nonzero"/>
+                                    </g>
+                                </svg><!--end::Svg Icon--></span>
+                            </a>
+                        </td>
+                    @endcan
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="d-flex justify-content-between align-items-center flex-wrap">
+            <div class="d-flex flex-wrap py-2 mr-3">
+                <a @click="sayfayaGit(1)" class="btn btn-icon btn-sm btn-light mr-2 my-1"><i
+                        class="ki ki-bold-double-arrow-back icon-xs"></i></a>
+                <a @click="sayfayaGit(gelenBilgi.current_page-1)" class="btn btn-icon btn-sm btn-light mr-2 my-1"><i
+                        class="ki ki-bold-arrow-back icon-xs"></i></a>
+                <template v-for="page in gelenBilgi.last_page"
+                    v-if="page >= gelenBilgi.current_page - 3 && page <= gelenBilgi.current_page + 3">
+                    <a href="#"
+                        :class="{'btn btn-icon btn-sm border-0 btn-light btn-hover-primary active mr-2 my-1' : gelenBilgi.current_page == page, 'btn btn-icon btn-sm border-0 btn-light mr-2 my-1' : gelenBilgi.current_page != page}"
+                        v-text="page" @click="sayfayaGit(page)"></a>
+                </template>
+                <a @click="sayfayaGit(gelenBilgi.last_page)" class="btn btn-icon btn-sm btn-light mr-2 my-1"><i
+                        class="ki ki-bold-arrow-next icon-xs"></i></a>
+                <a @click="sayfayaGit(gelenBilgi.current_page-1)" class="btn btn-icon btn-sm btn-light mr-2 my-1"><i
+                        class="ki ki-bold-double-arrow-next icon-xs"></i></a>
+            </div>
+            <div class="d-flex align-items-center py-3">
+                <div class="d-flex align-items-center" v-if='!loading2'>
+                    <div class="mr-2 text-muted">Güncelleniyor...</div>
+                    <div class="spinner mr-10"></div>
                 </div>
+                <span class="text-muted">Toplam <strong v-text="gelenBilgi.total"></strong> Kayıttan <strong
+                        v-text="gelenBilgi.from + ' - ' + gelenBilgi.to"></strong>
+                    Arası Kayıt Gösteriliyor.</span>
             </div>
         </div>
     </div>
+    <div v-if="loading" class="modal fade" id="aramaAc" tabindex="-1" role="dialog" aria-hidden="true">
+        <template>
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <label class="modal-title text-text-bold-600">Kullanici Arama | Önce Aramak İstediğiniz Kriteri
+                            Seçiniz</label>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <i aria-hidden="true" class="ki ki-close"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <input ref="arama" class="form-control" v-model="aranacakKelime" type="text">
+                        </div>
+                        <div class="form-group">
+                            <div class="radio-inline">
+                                <label class="radio radio-square">
+                                <input type="radio" v-model="aranacakSutun" name="adayAramaInput" value="name">
+                                <span></span>Adı</label>
 
-    <div class="card-body">
-        @if (session('status'))
-        <div class="alert alert-success" role="alert">
-            {{ session('status') }}
-        </div>
-        @endif
-        Admin
-        Hoşgeldin {{Auth::user()->name }}
+                                <label class="radio radio-square">
+                                <input type="radio" v-model="aranacakSutun" name="adayAramaInput" value="email">
+                                <span></span>Email</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" v-on:click="reload" class="btn btn-lg btn-block btn-danger mb-2"
+                            data-dismiss="modal">Aramayı Tamamla</button>
+                    </div>
+                </div>
+            </div>
+        </template>
     </div>
-
+    <div v-if="loading" class="modal fade text-left show" id="yetkiAc" tabindex="-1" role="dialog">
+        <template>
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" v-for="secilen in secilenBilgi">
+                    <div class="modal-header">
+                        <label class="modal-title text-text-bold-600"><strong v-text="secilen.adi"></strong> Yetki Ver</label>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <i aria-hidden="true" class="ki ki-close"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group row">
+                            <label class="col-3 col-form-label">Rolleri</label>
+                            <div class="col-12">
+                                <span class="switch switch-sm switch-icon" >
+                                    <select class="form-control" v-model="secilen.role">
+                                        <option selected disabled v-text="roleName(secilen.role)"></option>
+                                        <option v-for="role in roller" :value="role.id" v-text="role.name"></option>
+                                    </select>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="">Yetkileri</label>
+                            <div class="col-12" v-for='izin in izinler'>
+                                <span class="switch switch-sm switch-icon">
+                                    <label>
+                                        <input type="checkbox" :value='izin.id' v-model="secilen.permission">
+                                        <span></span>
+                                        @{{izin.name}}
+                                    </label>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn grey btn-danger" data-dismiss="modal">Kapat</button>
+                        <button type="button" @click="post()" class="btn btn-success" data-dismiss="modal">Kaydet</button>
+                    </div>
+                </div>
+            </div>
+        </template>
+    </div>
 </div>
+
+@endsection
+
+@section('js')
+<script>
+    let vm = new Vue({
+        el: '#app',
+        components: {
+            'content-loader': window.contentLoaders.ListLoader,
+        },
+        data: {
+            ozet: false,
+            odak: false,
+            loading: false,
+            loading2: true,
+            gelenBilgi: [],
+            secilenBilgi: [],
+            postUrl: "/admin/basvurular",
+            releoadUrl: "/reload/admin/basvurular",
+            aranacakKelime: '',
+            aranacakSutun: 'name',
+            orderByColumn: 'created_at',
+            orderByType: 'DESC',
+            page: 1,
+            pageAktif: '',
+            roller:{!! json_encode($roles) !!},
+            izinler:{!! json_encode($permissions) !!},
+        },
+        methods: {
+            async sendInfo(veri, tip) {
+                this.secilenBilgi = [];
+                    this.secilenBilgi.push({
+                        tip: tip,
+                        adi: veri.name,
+                        email: veri.email,
+                        permission: this.izin(veri.permission),
+                        role:veri.role.role_id
+                    });
+                if (tip == "sil") {
+                    vm.post()
+                }
+                else if (tip === "yetki")  {
+                    $('#yetkiAc').modal('show');
+                }
+
+            },
+            aramaAc() {
+                $('#aramaAc').modal('show');
+            },
+            post() {
+                axios({
+                    url: "#",
+                    method: "POST",
+                    data: this.secilenBilgi
+                }).then(function (data) {
+                    vm.reload();
+                }).catch(function (err) {
+                    //hata mesajı döner
+                });
+
+            },
+            sirala(sira) {
+                this.orderByColumn = sira;
+                this.orderByType = this.orderByType == "ASC" ? "DESC" : "ASC";
+                vm.reload();
+            },
+            sayfayaGit(page) {
+                this.page = page;
+            },
+            izin(dizi){
+                console.log("Değer buraya girdi");
+                let list=[];
+                $.each(dizi, function(key, value) {
+                    list.push(value.permission_id);
+                });
+                console.log(list);
+                return list;
+            },
+            roleName(id){
+                const listItem = this.roller.find(x => x.id === id );
+                return listItem.name;
+            },
+            async reload() {
+                $('#aramaAc').modal('hide');
+                this.loading = false;
+                await axios.get(this.releoadUrl + "?page=" + this.page + "&aranacakKelime=" + this
+                    .aranacakKelime + "&aranacakSutun=" + this.aranacakSutun + "&orderbycolumn=" + this
+                    .orderByColumn + "&orderbytype=" + this.orderByType, {}).then((response) => {
+                    this.gelenBilgi = response.data;
+                    this.loading = true;
+                });
+            }
+        },
+        mounted() {
+            this.reload();
+        },
+        watch: {
+            page: {
+                handler: function (value) {
+                    this.reload();
+                }
+            }
+        },
+
+    });
+</script>
+@endsection
+@section('css')
 
 @endsection

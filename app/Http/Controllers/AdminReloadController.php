@@ -49,4 +49,39 @@ class AdminReloadController extends Controller
         return $veri;
     }
 
+    /*
+	@author: Hakan SALTAN
+    @since: 20.07.2020
+    @desc: Gelen veriler ile analiz yapılarak tabloya yazdırılır.
+	@param $request->page: current page
+	@param $request->aranacakKelime: aranacak içerik
+	@param $request->aranacakSutun: aranacak sütun
+	@param $request->orderbycolumn: sıralanacak kolon
+	@param $request->orderbytype: desc | asc
+    */
+
+    public function basvuruOnayla(Request $request)
+    {
+        $aranacakKelime = $request->aranacakKelime;
+        $aranacakSutun =  $request->aranacakSutun;
+        $orderbycolumn =  $request->orderbycolumn;
+        $orderbytype = $request->orderbytype;
+
+        $veri = User::select(
+        'users.name as name',
+        'users.created_at as created_at',
+        'uyeler.isyeri_adi as isyeri_adi',
+        'uyeler.durum as durum'
+        )
+        ->Join('user_uye','user_uye.user_id','users.id')
+        ->leftJoin('uyeler','uyeler.id','user_uye.uye_id');
+         if(!empty($aranacakKelime)){
+             $veri = $veri->where($aranacakSutun,'like','%'.$aranacakKelime.'%');
+         }
+         $veri = $veri->orderBy($orderbycolumn,$orderbytype)
+        ->where('uyeler.durum',0)
+        ->paginate(10);
+        return $veri;
+    }
+
 }
