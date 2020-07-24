@@ -10,7 +10,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'role:super-admin'], function
 
     Route::get('/kullanicilar', 'AdminGetController@kullanicilar');
     Route::post('/kullanicilar', 'AdminPostController@kullanicilar');
-
+    Route::post('/uyeOnay', 'AdminPostController@uyeOnay');
     Route::get('/profile','AdminGetController@profile');
     Route::post('/profile','AdminPostController@kullaniciUp');
 });

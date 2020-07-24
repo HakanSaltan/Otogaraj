@@ -71,10 +71,11 @@ class AdminReloadController extends Controller
         'users.name as name',
         'users.created_at as created_at',
         'uyeler.isyeri_adi as isyeri_adi',
-        'uyeler.durum as durum'
+        'uyeler.durum as durum',
+        'uyeler.id as id'
         )
-        ->Join('user_uye','user_uye.user_id','users.id')
-        ->leftJoin('uyeler','uyeler.id','user_uye.uye_id');
+        ->Join('user_uye','user_uye.user_id','users.id','id')
+        ->leftJoin('uyeler','uyeler.id','user_uye.uye_id','id');
          if(!empty($aranacakKelime)){
              $veri = $veri->where($aranacakSutun,'like','%'.$aranacakKelime.'%');
          }

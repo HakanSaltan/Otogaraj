@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\Uyeler;
 use Illuminate\Support\Facades\Hash;
+use Mockery\Expectation;
 
 class AdminPostController extends Controller
 {
@@ -69,6 +71,45 @@ class AdminPostController extends Controller
         }
 
 
+
+
+    }
+    /*
+        @author: Batuhan HAYMANA
+        @since: 25.07.2020
+        @desc: uyeOnay functionu onay ve red sistemi
+        @param $request->id: onaylanacak veya red edilecek üyenin id'si
+        @param $request->type: onaylanacak veya red alacak type yapısı
+    */
+    public function uyeOnay(Request $request){
+        
+        if($request->type == 'check')
+        {
+            try{
+                DB::beginTransaction();
+                    $u = Uyeler::where('id','=',$request->id)->first();
+                    $u->durum='1';
+                    $u->update();
+                DB::commit();
+                return response(["error"=>false]);
+            }catch(Exception $err){
+                return response(["error"=>true]);
+            }
+        }
+        else
+        {
+            try{
+                DB::beginTransaction();
+                    $u = Uyeler::where('id','=',$request->id)->first();
+                    $u->durum='2';
+                    $u->update();
+                DB::commit();
+                return response(["error"=>false]);
+            }catch(Exception $err){
+                return response(["error"=>true]);
+            }
+        }
+        
 
 
     }
