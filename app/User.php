@@ -46,4 +46,8 @@ class User extends Authenticatable
     {
          return $this->hasOne('App\UserRole','model_id','id');
     }
+    public function uye()
+    {
+        return $this->belongsToMany('App\Uyeler', 'user_uye','user_id','uye_id');
+    }
 }
