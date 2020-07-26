@@ -20,15 +20,16 @@ Roller
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>İsim:</strong>
-            {{ $role->name }}
+
+            {{ $veri->role->id }}
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Permissions:</strong>
-            @if(!empty($rolePermissions))
-                @foreach($rolePermissions as $v)
-                    <label class="label label-success">{{ $v->name }},</label>
+            @if(!empty($veri->permission))
+                @foreach($veri->permission as $v)
+                    <label class="label label-success">{{ $v->id }},</label>
                 @endforeach
             @endif
         </div>

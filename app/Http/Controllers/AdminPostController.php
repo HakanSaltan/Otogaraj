@@ -12,9 +12,12 @@ use Mockery\Expectation;
 
 class AdminPostController extends Controller
 {
+    /*
+    Roller ve İzinlerle ilgili Dökümanlara buradan ulaşabilirsiniz.
+    https://docs.spatie.be/laravel-permission/v3/basic-usage/basic-usage/
+    */
+
     /**
-     * Create a new controller instance.
-     *
      * @return void
      */
     public function __construct()
@@ -24,55 +27,52 @@ class AdminPostController extends Controller
     }
 
 
+
+
     /*
         @author: Hakan SALTAN
         @since: 03.07.2020
-        @desc: Eğer veri tipi YENİ ise EKLEME, SİL ise SİLME, KULLANİCİ ID ise GÜNCELLEME işlemi uygulanmaktadır.
-        @param $request[0]["adi"]: adı
-        @param $request[0]["email"]: email
+        @desc: Eğer veri tipi yeni ise EKLEME, sil ise SİLME, guncelle ise GÜNCELLEME, yetki ise YETKİLENDİRME işlemleri uygulanmaktadır.
+        @param $request->tip: adı
+        @param $request->email: email
+        @param $request->password: şifre
+        @param $request->role: role adı
+        @param $request->permissions: permission adları dizi olarak gelir
     */
     public function kullanicilar(Request $request)
     {
         try{
             DB::beginTransaction();
-                if($request[0]["tip"]=='yeni'){
-                    User::insert(["name"=>$request[0]["adi"],"email"=>$request[0]["email"],"password"=>Hash::make($request[0]["password"])]);
-                }elseif($request[0]["tip"]=='sil'){
-                    User::where('id',$request[0]["id"])->delete();
-                }else{
-                    User::where('id',$request[0]["id"])->update(["name"=>$request[0]["adi"],"email"=>$request[0]["email"],"password"=>Hash::make($request[0]["password"])]);
+                if($request->tip=='yeni'){
+                    $user = new User;
+                    $user->name=$request->adi;
+                    $user->email=$request->email;
+                    $user->password=Hash::make($request->password);
+                    $user->save();
+                    $user->assignRole($this->roleName($request->role));
+                }elseif($request->tip=='sil'){
+                    $user = User::where('id',$request->id)->delete();
+                }elseif($request->tip=='yetki'){
+                    $user = User::where('id',$request->id)->first();
+                    $user->syncRoles($request->role);
+                    $user->syncPermissions($request->permissions);
+                }elseif($request->tip=='guncelle'){
+                    $user = User::where('id',$request->id)->first();
+                    $user->name=$request->adi;
+                    $user->email=$request->email;
+                    $user->password=$request->password != null ? Hash::make($request->password) : $user->password;
+                    $user->update();
                 }
-            DB::commit();
+
+                if($user){
+                    DB::commit();
+                }else{
+                    DB::rollBack();
+                }
             return response(["error"=>false]);
         }catch(Exception $e){
             return response(["error"=>true]);
         }
-    }
-
-    /*
-        @author: Batuhan HAYMANA
-        @since: 06.07.2020
-        @desc:
-        @param $request->kullaniciAdi: adı
-        @param $request->kullaniciMail: mail
-    */
-    public function kullaniciUp(Request $request)
-    {
-        try{
-            DB::beginTransaction();
-                $g = User::where('id','=',Auth::user()->id)->first();
-                $g->name=$request->kullaniciAdi;
-                $g->email=$request->kullaniciMail;
-                $g->update();
-            DB::commit();
-            return response(["error"=>false]);
-        }catch(Exception $err){
-            return response(["error"=>true]);
-        }
-
-
-
-
     }
     /*
         @author: Batuhan HAYMANA
@@ -82,35 +82,26 @@ class AdminPostController extends Controller
         @param $request->type: onaylanacak veya red alacak type yapısı
     */
     public function uyeOnay(Request $request){
-        
-        if($request->type == 'check')
-        {
-            try{
-                DB::beginTransaction();
-                    $u = Uyeler::where('id','=',$request->id)->first();
-                    $u->durum='1';
-                    $u->update();
-                DB::commit();
-                return response(["error"=>false]);
-            }catch(Exception $err){
-                return response(["error"=>true]);
-            }
-        }
-        else
-        {
-            try{
-                DB::beginTransaction();
-                    $u = Uyeler::where('id','=',$request->id)->first();
-                    $u->durum='2';
-                    $u->update();
-                DB::commit();
-                return response(["error"=>false]);
-            }catch(Exception $err){
-                return response(["error"=>true]);
-            }
-        }
-        
 
+        try{
+            DB::beginTransaction();
+            if($request->tip == 'onayla')
+            {
+                $u = Uyeler::where('id','=',$request->id)->first();
+                $u->durum='1';
+                $u->update();
+            }
+            else if($request->tip == 'reddet')
+            {
+                $u = Uyeler::where('id','=',$request->id)->first();
+                $u->durum='2';
+                $u->update();
+            }
+            DB::commit();
+            return response(["error"=>false]);
+        }catch(Exception $err){
+            return response(["error"=>true]);
+        }
 
     }
 }

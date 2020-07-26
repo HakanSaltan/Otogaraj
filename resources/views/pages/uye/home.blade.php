@@ -6,41 +6,101 @@ Anasayfa
 @endsection
 
 @section('content')
-<div class="card card-custom gutter-b card-stretch">
-    <div class="card-header border-0 pt-5">
-        <div class="card-title">
-            <div class="font-weight-bolder">Anasayfa</div>
-        </div>
-        <div class="card-toolbar">
-            <div class="dropdown dropdown-inline">
-                <a href="#" class="btn btn-clean btn-sm btn-icon" data-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false">
-                    <i class="ki ki-bold-more-hor"></i>
-                </a>
-                <div class="dropdown-menu dropdown-menu-md dropdown-menu-right">
-                    <ul class="navi navi-hover py-5">
-                        <li class="navi-item">
-                            <a href="#" class="navi-link">
-                                <span class="navi-icon"><i class="flaticon2-drop"></i></span>
-                                <span class="navi-text">New Group</span>
-                            </a>
-                        </li>
-                    </ul>
+
+    <div class="col-md-3">
+        <!--begin::Card-->
+        <div class="card card-custom card-stretch">
+            <div class="card-header">
+                <div class="card-title" style="margin: auto">
+                    <h3 class="card-label">ARAÇ EKLE</h3>
                 </div>
             </div>
+            <div class="card-body text-center">
+            <a href="" class="text-primary text-hover-success"> <i class="fa fa-car icon-10x text-primary text-hover-success"></i>
+            <h2>YENİ ARAÇ EKLE</h2>
+            </a>
+            </div>
         </div>
+        <!--end::Card-->
+    </div>
+    <div class="col-md-3">
+        <!--begin::Card-->
+        <div class="card card-custom card-stretch">
+            <div class="card-header ">
+                <div class="card-title" style="margin: auto">
+                    <h3 class="card-label">FATURA</h3>
+                </div>
+            </div>
+            <div class="card-body text-center">
+                <a href="" class="text-primary text-hover-success"> <i class="fa fa-receipt icon-10x text-primary text-hover-success"></i>
+                <h2>FATURA OLUŞTUR</h2></a>
+            </div>
+        </div>
+        <!--end::Card-->
+    </div>
+    <div class="col-md-3">
+        <!--begin::Card-->
+        <div class="card card-custom card-stretch">
+            <div class="card-header ">
+                <div class="card-title" style="margin: auto">
+                    <h3 class="card-label">İŞLEM</h3>
+                </div>
+            </div>
+            <div class="card-body text-center">
+                <a href="" class="text-primary text-hover-success"> <i class="fa fa-tools icon-10x text-primary text-hover-success"></i>
+                <h2>İŞLEM OLUŞTUR</h2></a>
+            </div>
+        </div>
+        <!--end::Card-->
     </div>
 
-    <div class="card-body">
-        @if (session('status'))
-        <div class="alert alert-success" role="alert">
-            {{ session('status') }}
+    <div class="col-md-3">
+        <!--begin::Card-->
+        <div class="card card-custom card-stretch">
+            <div class="card-header ">
+                <div class="card-title" style="margin: auto">
+                    <h3 class="card-label">MÜŞTERİLERİM</h3>
+                </div>
+            </div>
+            <div class="card-body text-center">
+                <a href="" class="text-primary text-hover-success"> <i class="fa fa-users icon-10x text-primary text-hover-success"></i>
+                    <h2>KAYITLI MÜŞTERİLERİM</h2></a>
+            </div>
         </div>
-        @endif
-        Üye
-        Hoşgeldin {{Auth::user()->name }}
+        <!--end::Card-->
     </div>
 
-</div>
+    <div class="col-md-3" style="top: 20px">
+        <!--begin::Card-->
+        <div class="card card-custom card-stretch">
+            <div class="card-header ">
+                <div class="card-title" style="margin: auto">
+                    <h3 class="card-label">FİYAT LİSTESİ</h3>
+                </div>
+            </div>
+            <div class="card-body text-center">
+                <a href="" class="text-primary text-hover-success"> <i class="fa fa-shopping-cart icon-10x text-primary text-hover-success"></i>
+                    <h2>PARÇA FİYAT LİSTESİ</h2></a>
+            </div>
+        </div>
+        <!--end::Card-->
+    </div>
+
+    <div class="col-md-3" style="top: 20px">
+        <!--begin::Card-->
+        <div class="card card-custom card-stretch">
+            <div class="card-header ">
+                <div class="card-title" style="margin: auto">
+                    <h3 class="card-label">İŞLEM GEÇMİŞİ</h3>
+                </div>
+            </div>
+            <div class="card-body text-center">
+                <a href="" class="text-primary text-hover-success"> <i class="fa fa-history icon-10x text-primary text-hover-success"></i>
+                <h2>İŞLEM GEÇMİŞİ</h2></a>
+            </div>
+        </div>
+        <!--end::Card-->
+    </div>
+
 
 @endsection

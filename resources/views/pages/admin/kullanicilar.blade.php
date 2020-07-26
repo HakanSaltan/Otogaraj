@@ -52,6 +52,7 @@ Kullanıcılar
                 <tr>
                     <th :class="{'asc' : orderByType == 'ASC' && orderByColumn == 'id','desc' : orderByType != 'ASC' && orderByColumn == 'id'}"
                         @click="sirala('id')">ID</th>
+                    <th>Role</th>
                     <th :class="{'asc' : orderByType == 'ASC' && orderByColumn == 'name','desc' : orderByType != 'ASC' && orderByColumn == 'name'}"
                         @click="sirala('name')">Adı</th>
                     <th :class="{'asc' : orderByType == 'ASC' && orderByColumn == 'email','desc' : orderByType != 'ASC' && orderByColumn == 'email'}"
@@ -68,13 +69,14 @@ Kullanıcılar
             <tbody>
                 <tr v-for="(bilgi,index) in gelenBilgi.data">
                     <td><a v-text="bilgi.id"></a></td>
+                    <td><a v-text="roleName(bilgi.role.role_id)"></a></td>
                     <td><a v-text="bilgi.name"></a></td>
                     <td><a v-text="bilgi.email"></a></td>
                     <td><a v-text.number="bilgi.created_at"></a></td>
                     <td><a v-text.number="bilgi.updated_at"></a></td>
                     @can('KullaniciDuzenle')
                         <td class="pr-0 text-right">
-                            <a v-on:click="sendInfo(bilgi,bilgi.id)"
+                            <a v-on:click="sendInfo(bilgi,'guncelle')"
                                 class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3">
                                 <span class="svg-icon svg-icon-md svg-icon-primary">
                                     <!--begin::Svg Icon | path:../../../../../metronic/themes/metronic/theme/html/demo2/dist/assets/media/svg/icons/Communication/Write.svg-->
@@ -194,7 +196,7 @@ Kullanıcılar
     <div v-if="loading" class="modal fade text-left show" id="modalAc" tabindex="-1" role="dialog">
         <template>
             <div class="modal-dialog" role="document">
-                <div class="modal-content" v-for="secilen in secilenBilgi">
+                <div class="modal-content">
                     <div class="modal-header">
                         <label class="modal-title text-text-bold-600">Kullanici Formu</label>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -204,15 +206,15 @@ Kullanıcılar
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="">Kullanici Adı</label>
-                            <input type="text" class="form-control" v-model="secilen.adi">
+                            <input type="text" class="form-control" v-model="secilenBilgi.adi">
                         </div>
                         <div class="form-group">
                             <label for="">Email</label>
-                            <input type="text" class="form-control" v-model="secilen.email">
+                            <input type="text" class="form-control" v-model="secilenBilgi.email">
                         </div>
                         <div class="form-group">
                             <label for="">Şifre</label>
-                            <input type="password" class="form-control" v-model="secilen.password">
+                            <input type="password" class="form-control" v-model="secilenBilgi.password">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -226,36 +228,31 @@ Kullanıcılar
     <div v-if="loading" class="modal fade text-left show" id="yetkiAc" tabindex="-1" role="dialog">
         <template>
             <div class="modal-dialog" role="document">
-                <div class="modal-content" v-for="secilen in secilenBilgi">
+                <div class="modal-content">
                     <div class="modal-header">
-                        <label class="modal-title text-text-bold-600"><strong v-text="secilen.adi"></strong> Yetki Ver</label>
+                        <label class="modal-title text-text-bold-600"><strong v-text="secilenBilgi.adi"></strong> Yetki Ver</label>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <i aria-hidden="true" class="ki ki-close"></i>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div class="form-group row">
-                            <label class="col-3 col-form-label">Rolleri</label>
-                            <div class="col-12">
-                                <span class="switch switch-sm switch-icon" >
-                                    <select class="form-control" v-model="secilen.role">
-                                        <option selected disabled v-text="roleName(secilen.role)"></option>
-                                        <option v-for="role in roller" :value="role.id" v-text="role.name"></option>
-                                    </select>
-                                </span>
-                            </div>
+                        <div class="form-group">
+                            <label>Rolleri</label>
+                            <span class="switch switch-sm switch-icon" >
+                                <select class="form-control" v-model="secilenBilgi.role">
+                                    <option v-for="role in roller" :value="role.name" v-text="role.name"></option>
+                                </select>
+                            </span>
                         </div>
-                        <div class="form-group row">
-                            <label for="">Yetkileri</label>
-                            <div class="col-12" v-for='izin in izinler'>
-                                <span class="switch switch-sm switch-icon">
-                                    <label>
-                                        <input type="checkbox" :value='izin.id' v-model="secilen.permission">
-                                        <span></span>
-                                        @{{izin.name}}
-                                    </label>
-                                </span>
-                            </div>
+                        <div class="form-group">
+                            <label>Yetkileri</label>
+                            <span class="switch switch-sm switch-icon" v-for='izin in izinler'>
+                                <label>
+                                    <input type="checkbox" :value='izin.name' v-model="secilenBilgi.permissions">
+                                    <span></span>
+                                    @{{izin.name}}
+                                </label>
+                            </span>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -279,59 +276,57 @@ Kullanıcılar
             'content-loader': window.contentLoaders.ListLoader,
         },
         data: {
-            ozet: false,
-            odak: false,
             loading: false,
             loading2: true,
             gelenBilgi: [],
-            secilenBilgi: [],
+            secilenBilgi: {},
             postUrl: "/admin/kullanicilar",
-            releoadUrl: "/reload/admin/kullanicilar",
+            reloadUrl: "/reload/admin/kullanicilar",
             aranacakKelime: '',
             aranacakSutun: 'name',
             orderByColumn: 'created_at',
             orderByType: 'DESC',
             page: 1,
-            pageAktif: '',
             roller:{!! json_encode($roles) !!},
             izinler:{!! json_encode($permissions) !!},
         },
         methods: {
             async sendInfo(veri, tip) {
-                this.secilenBilgi = [];
-                if(veri == 'yeni'){
-                    this.secilenBilgi.push({
+                if(tip == 'yeni'){
+                    this.secilenBilgi={
                         tip: tip,
                         adi: '',
                         email: '',
                         password: '',
                         id: '',
-                        permission:[],
-                        role:''
-                    });
-                }else {
-                    this.secilenBilgi.push({
+                        role: 2
+                    };
+                    $('#modalAc').modal('show');
+                }else if(tip == 'yetki'){
+                    this.secilenBilgi={
+                        tip: tip,
+                        id: veri.id,
+                        permissions: vm.izin(veri.permission),
+                        role: vm.roleName(veri.role.role_id)
+                    };
+
+                    $('#yetkiAc').modal('show');
+                }else if(tip == 'guncelle'){
+                    this.secilenBilgi={
                         tip: tip,
                         adi: veri.name,
                         email: veri.email,
                         id: veri.id,
                         password:'',
-                        permission: this.izin(veri.permission),
-                        role:veri.role.role_id
-                    });
+                    };
+                    $('#modalAc').modal('show');
                 }
-
-
-                if (tip == "sil") {
+                else if(tip == 'sil'){
+                    this.secilenBilgi={
+                        tip: tip,
+                        id: veri.id,
+                    };
                     vm.post()
-                }else if (tip === "yeni") {
-                    $('#modalAc').modal('show');
-                }
-                else if (tip === "yetki")  {
-                    $('#yetkiAc').modal('show');
-                }
-                else {
-                    $('#modalAc').modal('show');
                 }
 
             },
@@ -344,9 +339,10 @@ Kullanıcılar
                     method: "POST",
                     data: this.secilenBilgi
                 }).then(function (data) {
+                    toastr.success ("İşlem Başarılı", "Mesaj");
                     vm.reload();
                 }).catch(function (err) {
-                    //hata mesajı döner
+                    toastr.error("İşlem Başarısız", "Hata");
                 });
 
             },
@@ -359,22 +355,24 @@ Kullanıcılar
                 this.page = page;
             },
             izin(dizi){
-                console.log("Değer buraya girdi");
                 let list=[];
                 $.each(dizi, function(key, value) {
-                    list.push(value.permission_id);
+                    list.push(vm.permissionName(value.permission_id));
                 });
-                console.log(list);
                 return list;
             },
             roleName(id){
-                const listItem = this.roller.find(x => x.id === id );
+                let listItem = this.roller.find(x => x.id == id );
+                return listItem.name;
+            },
+            permissionName(id){
+                let listItem = this.izinler.find(x => x.id == id );
                 return listItem.name;
             },
             async reload() {
                 $('#aramaAc').modal('hide');
                 this.loading = false;
-                await axios.get(this.releoadUrl + "?page=" + this.page + "&aranacakKelime=" + this
+                await axios.get(this.reloadUrl + "?page=" + this.page + "&aranacakKelime=" + this
                     .aranacakKelime + "&aranacakSutun=" + this.aranacakSutun + "&orderbycolumn=" + this
                     .orderByColumn + "&orderbytype=" + this.orderByType, {}).then((response) => {
                     this.gelenBilgi = response.data;

@@ -41,4 +41,12 @@ class AdminGetController extends Controller
         $profile = User::where('id','=',Auth::user()->id)->first();
         return view('pages.admin.profile')->with('profil',$profile);
     }
+    public function show()
+    {
+        $veri = User::where('id',Auth::user()->id)
+        ->with('permission') //User modelindeki permission fonksiyonundan gelir
+        ->with('role') //User modelindeki role fonksiyonundan gelir
+        ->first();
+        return view('pages.roles.show')->with('veri',$veri);
+    }
 }

@@ -5,11 +5,8 @@
             @include('layouts.partials._aside')
             <div class="content-wrapper flex-row-fluid">
                 <div class="row">
-                    <div class="col-md-12">
                         @yield('content')
-                    </div>
                 </div>
-
             </div>
         </div>
     </div>

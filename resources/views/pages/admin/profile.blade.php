@@ -59,11 +59,9 @@ Profil
                 </div>
                 <!--begin::Form Group-->
                 <div class="form-group row">
-                    <label class="col-xl-3 col-lg-3 col-form-label">Uygulama Dili</label>
+                    <label class="col-xl-3 col-lg-3 col-form-label">Şifre</label>
                     <div class="col-lg-9 col-xl-6">
-                        <select class="form-control form-control-lg form-control-solid">
-                            <option value="tr">Türkçe - Turkish</option>
-                        </select>
+                        <input type="text" class="form-control form-control-lg form-control-solid" v-model='kullaniciSifre' placeholder="Şifre">
                     </div>
                 </div>
             </div>
@@ -75,32 +73,30 @@ Profil
 @endsection
 
 @section('js')
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
     let vm = new Vue({
         el: '#app',
         data: {
+            kullaniciId:'{{$profil->id}}',
             kullaniciAdi:'{{$profil->name}}',
             kullaniciMail:'{{$profil->email}}',
-            postUrl: "#",
+            kullaniciSifre:'',
+            postUrl: "#"
         },
         methods: {
             kullaniciUp(){
                 let formData = new FormData();
-                    formData.append('kullaniciAdi',vm.kullaniciAdi);
-                    formData.append('kullaniciMail',vm.kullaniciMail);
+                    formData.append('id',vm.kullaniciId);
+                    formData.append('adi',vm.kullaniciAdi);
+                    formData.append('email',vm.kullaniciMail);
+                    formData.append('sifre',vm.kullaniciSifre);
+                    formData.append('tip','guncelle');
 
                     axios.post(this.postUrl,formData)
                     .then(function (data) {
-                        // swal({
-                        //     icon: "success",
-                        // });
                         toastr.success ("İşlem Başarılı", "Mesaj");
 
                     }).catch(function (err) {
-                        // swal({
-                        //     icon: "error",
-                        // });
                         toastr.error("İşlem Başarısız", "Hata");
                         console.log(err);
                     });

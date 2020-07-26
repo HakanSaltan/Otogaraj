@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Permissions;
+use App\Roles;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -48,6 +50,16 @@ class Controller extends BaseController
             ];
         }
         return $islemlerSonucu;
+
+    }
+    public function roleName($id){
+        $role = Roles::where('id','=',$id)->first();
+        return $role->name;
+
+    }
+    public function permissionName($id){
+        $role = Permissions::where('id','=',$id)->first();
+        return $role->name;
 
     }
 }

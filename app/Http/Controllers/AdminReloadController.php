@@ -43,7 +43,7 @@ class AdminReloadController extends Controller
         }
         $veri = $veri->orderBy($orderbycolumn,$orderbytype)
         ->with('permission') //User modelindeki permission fonksiyonundan gelir
-        ->with('role')
+        ->with('role')  //User modelindeki role fonksiyonundan gelir
         ->paginate(10);
 
         return $veri;

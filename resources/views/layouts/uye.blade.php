@@ -37,7 +37,7 @@
                 <!--begin::Content-->
                 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
 
-                    @include('layouts.partials._content')
+                    @include('layouts.partials._uyecontent')
                 </div>
                 <!--end::Content-->
                 @include('layouts.partials._footer.compact')
@@ -119,6 +119,29 @@
             },
             "font-family": "Poppins"
         };
+
+    </script>
+    <script>
+
+
+        toastr.options = {
+          "closeButton": true,
+          "debug": false,
+          "newestOnTop": false,
+          "progressBar": true,
+          "positionClass": "toast-bottom-right",
+          "preventDuplicates": true,
+          "onclick": null,
+          "showDuration": "300",
+          "hideDuration": "1000",
+          "timeOut": "5000",
+          "extendedTimeOut": "1000",
+          "showEasing": "swing",
+          "hideEasing": "linear",
+          "showMethod": "fadeIn",
+          "hideMethod": "fadeOut"
+        };
+
 
     </script>
     <!-- VUE JS-->
