@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Uyeler;
 
 class UyeGetController extends Controller
 {
@@ -21,5 +22,11 @@ class UyeGetController extends Controller
     public function index()
     {
         return view('pages.uye.home');
+    }
+    public function profil()
+    {   
+        $profile = Uyeler::where('id','=',Auth::user()->id)->first();
+        return $profile;
+        return view('pages.uye.profile')->with('profil',$profile);
     }
 }

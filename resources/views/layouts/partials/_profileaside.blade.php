@@ -1,5 +1,6 @@
 
 	<!--begin::Profile Card-->
+	@role('super-admin')
 	<div class="card card-custom card-stretch">
 		<!--begin::Body-->
 		<div class="card-body pt-4">
@@ -57,3 +58,4 @@
 		<!--end::Body-->
 	</div>
 	<!--end::Profile Card-->
+	@endrole

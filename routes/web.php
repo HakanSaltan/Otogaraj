@@ -18,6 +18,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'role:super-admin'], function
 
 Route::group(['prefix' => 'uye', 'middleware' => ['role:super-admin|uye']], function () {
     Route::get('/home', 'UyeGetController@index')->name('uyeHome');
+    Route::get('/profile', 'UyeGetController@profil')->name('uyeProfil');
 });
 
 Route::group(['prefix' => 'tedarikci', 'middleware' => ['role:super-admin|tedarikci']], function () {

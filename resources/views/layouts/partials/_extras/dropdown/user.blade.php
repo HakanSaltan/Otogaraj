@@ -23,6 +23,7 @@
 <div class="navi navi-spacer-x-0 pt-5">
 
 	<!--begin::Item-->
+ @role('super-admin')	
 	<a href="{{URL::asset('/admin/profile')}}" class="navi-item px-8">
 		<div class="navi-link">
 			<div class="navi-icon mr-2">
@@ -32,14 +33,24 @@
 				<div class="font-weight-bold">
 					Profil
 				</div>
-				<div class="text-muted">
-					Account settings and more
-					<span class="label label-light-danger label-inline font-weight-bold">update</span>
+			</div>
+		</div>
+	</a>
+@endrole
+@role('uye')	
+	<a href="{{URL::asset('/uye/profile')}}" class="navi-item px-8">
+		<div class="navi-link">
+			<div class="navi-icon mr-2">
+				<i class="flaticon2-calendar-3 text-success"></i>
+			</div>
+			<div class="navi-text">
+				<div class="font-weight-bold">
+					Profil
 				</div>
 			</div>
 		</div>
 	</a>
-
+@endrole
 	<!--end::Item-->
 
 	<!--begin::Item-->
