@@ -216,6 +216,14 @@ Kullanıcılar
                             <label for="">Şifre</label>
                             <input type="password" class="form-control" v-model="secilenBilgi.password">
                         </div>
+                        <div class="form-group" v-if="secilenBilgi.tip == 'yeni'">
+                            <label>Rolleri</label>
+                            <span class="switch switch-sm switch-icon" >
+                                <select class="form-control" v-model="secilenBilgi.role">
+                                    <option v-for="role in roller" :value="role.name" v-text="role.name"></option>
+                                </select>
+                            </span>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn grey btn-danger" data-dismiss="modal">Kapat</button>
@@ -299,7 +307,7 @@ Kullanıcılar
                         email: '',
                         password: '',
                         id: '',
-                        role: 2
+                        role: 'uye'
                     };
                     $('#modalAc').modal('show');
                 }else if(tip == 'yetki'){
