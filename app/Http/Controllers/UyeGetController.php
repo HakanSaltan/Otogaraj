@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Uyeler;
@@ -24,8 +25,8 @@ class UyeGetController extends Controller
         return view('pages.uye.home');
     }
     public function profil()
-    {   
-        $profile = Uyeler::where('id','=',Auth::user()->id)->first();
+    {
+        $profile = User::where('id','=',Auth::user()->id)->with('uye')->first(); //User modelindeki uye fonksiyonundan gelir
         return $profile;
         return view('pages.uye.profile')->with('profil',$profile);
     }
