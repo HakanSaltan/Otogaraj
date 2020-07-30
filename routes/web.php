@@ -4,25 +4,34 @@ Auth::routes();
 
 Route::get('/', function () { return view('welcome');});
 Route::get('/home', array('as'=>'index','uses'=>'HomeController@index'));
+Route::get('/muhasebe', array('as'=>'index','uses'=>'HomeController@muhasebe'));
+
 Route::group(['prefix' => 'admin', 'middleware' => 'role:super-admin'], function(){
     Route::get('/home', 'AdminGetController@index')->name('adminHome');
 
     Route::get('/kullanicilar', 'AdminGetController@kullanicilar');
     Route::post('/kullanicilar', 'AdminPostController@kullanicilar');
+
     Route::post('/uyeOnay', 'AdminPostController@uyeOnay');
+    Route::get('/show', 'AdminGetController@show');
+
     Route::get('/profile','AdminGetController@profile');
     Route::post('/profile','AdminPostController@kullanicilar');
-    Route::get('/show', 'AdminGetController@show');
+
+    Route::get('/muhasebe', 'AdminGetController@muhasebe')->name('adminMuhasebe');
 
 });
 
 Route::group(['prefix' => 'uye', 'middleware' => ['role:super-admin|uye']], function () {
     Route::get('/home', 'UyeGetController@index')->name('uyeHome');
     Route::get('/profile', 'UyeGetController@profil')->name('uyeProfil');
+    Route::get('/muhasebe', 'UyeGetController@muhasebe')->name('uyeMuhasebe');
 });
 
 Route::group(['prefix' => 'tedarikci', 'middleware' => ['role:super-admin|tedarikci']], function () {
     Route::get('/home', 'TedarikciGetController@index')->name('tedarikciHome');
+    Route::get('/profile', 'TedarikciGetController@profil')->name('tedarikciProfil');
+    Route::get('/muhasebe', 'TedarikciGetController@muhasebe')->name('tedarikciMuhasebe');
 });
 
 Route::group(['prefix' => 'reload'], function(){
@@ -30,21 +39,21 @@ Route::group(['prefix' => 'reload'], function(){
     Route::get('/admin/basvurular', 'AdminReloadController@basvuruOnayla');
 });
 
-// Route::group(['middleware' => ['role:super-admin','auth:web']], function () {
+/* Route::group(['middleware' => ['role:super-admin','auth:web']], function () {
+        Route::get('/permissions', 'RoleManager@permissionsIndex')
+            ->name('permissions.index')
+            ->middleware('permission:KullaniciGor');
 
-//     Route::get('/permissions', 'RoleManager@permissionsIndex')
-//         ->name('permissions.index')
-//         ->middleware('permission:KullaniciGor');
+        Route::get('/roles', 'RoleManager@rolesIndex')
+            ->name('roles.index')
+            ->middleware('permission:RolleriGor');
 
-//     Route::get('/roles', 'RoleManager@rolesIndex')
-//         ->name('roles.index')
-//         ->middleware('permission:RolleriGor');
+        Route::post('/roles/{role}/assign/{user}', 'RoleManager@rolesAddUser')
+            ->name('roles.addUser')
+            ->middleware('permission:RoleAta');
 
-//     Route::post('/roles/{role}/assign/{user}', 'RoleManager@rolesAddUser')
-//         ->name('roles.addUser')
-//         ->middleware('permission:RoleAta');
-
-//     Route::post('/roles/{role}/unassign/{user}', 'RoleManager@rolesRemoveUser')
-//         ->name('roles.removeUser')
-//         ->middleware('permission:RoleKaldir');
-// });
+        Route::post('/roles/{role}/unassign/{user}', 'RoleManager@rolesRemoveUser')
+            ->name('roles.removeUser')
+            ->middleware('permission:RoleKaldir');
+    });
+ */

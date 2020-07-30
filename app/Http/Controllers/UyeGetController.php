@@ -26,8 +26,15 @@ class UyeGetController extends Controller
     }
     public function profil()
     {
-        $profile = User::where('id','=',Auth::user()->id)->with('uye')->first(); //User modelindeki uye fonksiyonundan gelir
-        return $profile;
+        // $profile = User::where('id','=',Auth::user()->id)->with('uye')->first(); //User modelindeki uye fonksiyonundan gelir
+        $profile = User::select('*')
+        ->join('user_uye','user_uye.user_id','users.id')
+        ->join('uyeler','uyeler.id','user_uye.uye_id')
+        ->first();
         return view('pages.uye.profile')->with('profil',$profile);
+    }
+    public function muhasebe()
+    {
+        return view('pages.uye.muhasebe');
     }
 }

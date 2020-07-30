@@ -1,6 +1,18 @@
-@extends('layouts.uye._profile')
+@extends('layouts.profile')
 @section('baslik')
 Profil
+@endsection
+@section('subheader')
+<h2 class="text-white font-weight-bold my-2 mr-5">Profil</h2>
+@endsection
+@section('subheaderalt')
+<a href="{{URL::asset('/')}}" class="opacity-75 hover-opacity-100">
+    <i class="flaticon2-shelter text-white icon-1x"></i>
+</a>
+<span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
+<a href="{{URL::asset('/')}}" class="text-white text-hover-white opacity-75 hover-opacity-100">Anasayfa</a>
+<span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
+<a href="#" class="text-white text-hover-white opacity-75 hover-opacity-100">Profil</a>
 @endsection
 @section("content")
 <div class="card card-custom gutter-b">
@@ -543,7 +555,7 @@ Profil
             <!--begin::Header-->
             <div class="card-header border-0 pt-5">
                 <h3 class="card-title font-weight-bolder">Action Needed</h3>
-
+                
             </div>
             <!--end::Header-->
             <!--begin::Body-->
@@ -571,7 +583,7 @@ Profil
             postUrl: "#"
         },
         methods: {
-
+            
         },
 
     });

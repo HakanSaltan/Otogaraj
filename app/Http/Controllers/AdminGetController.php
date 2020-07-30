@@ -41,6 +41,11 @@ class AdminGetController extends Controller
         $profile = User::where('id','=',Auth::user()->id)->first();
         return view('pages.admin.profile')->with('profil',$profile);
     }
+
+    public function muhasebe()
+    {
+        return view('pages.admin.muhasebe');
+    }
     public function show()
     {
         $veri = User::where('id',Auth::user()->id)

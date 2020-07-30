@@ -10,7 +10,7 @@
 
 			<!--begin::Header Logo-->
 			<div class="header-logo">
-				<a href="index.html">
+				<a href="{{URL::asset('/home')}}">
 					<img alt="Logo" src="{{URL::asset('assets/media/logos/logo-letter-9.png')}}" class="logo-default max-h-40px" />
 					<img alt="Logo" src="{{URL::asset('assets/media/logos/logo-letter-1.png')}}" class="logo-sticky max-h-40px" />
 				</a>
@@ -29,8 +29,7 @@
 						<li class="menu-item  menu-item-open menu-item-here menu-item-submenu menu-item-rel menu-item-open menu-item-here" data-menu-toggle="click" aria-haspopup="true"><a href="javascript:;" class="menu-link menu-toggle"><span class="menu-text">Otogaraj</span><i class="menu-arrow"></i></a>
 							<div class="menu-submenu menu-submenu-classic menu-submenu-left">
 								<ul class="menu-subnav">
-									<li class="menu-item  menu-item-active " aria-haspopup="true"><a href="{{URL::asset('/')}}" class="menu-link "><span class="menu-text">Anasayfa</span><span class="menu-desc"></span></a></li>
-									<li class="menu-item " aria-haspopup="true"><a  href="{{URL::asset('/admin/profile')}}" class="menu-link "><span class="menu-text">Profil</span><span class="menu-desc"></span></a></li>
+									<li class="menu-item  menu-item-active " aria-haspopup="true"><a href="{{URL::asset('/')}}" class="menu-link "><span class="menu-text">Giriş Sayfası</span><span class="menu-desc"></span></a></li>
 								</ul>
 							</div>
 						</li>

@@ -17,11 +17,11 @@
 
 </head>
 
-<body id="kt_body"  class="page-loading-enabled page-loading quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled aside-enabled aside-static page-loading">
+<body id="kt_body" style="background-image: url({{URL::asset('assets/media/bg/bg-10.jpg')}})" class="page-loading-enabled page-loading quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled aside-enabled aside-static page-loading">
     <!--begin::Main Mainin-->
     @include('layouts.partials._page-loader')
     @include('layouts.partials._header-mobile')
-    <div class="d-flex flex-column flex-root" style="background-image: url({{URL::asset('assets/media/bg/bg-10.jpg')}});  background-repeat:no-repeat; background-size: cover;">
+    <div class="d-flex flex-column flex-root">
         @auth()
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf
@@ -36,8 +36,7 @@
 
                 <!--begin::Content-->
                 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
-
-                    @include('layouts.uye._uyecontent')
+                    @include('layouts.uye._profilecontent')
                 </div>
                 <!--end::Content-->
                 @include('layouts.partials._footer.compact')
@@ -119,11 +118,8 @@
             },
             "font-family": "Poppins"
         };
-
     </script>
     <script>
-
-
         toastr.options = {
           "closeButton": true,
           "debug": false,
@@ -141,8 +137,6 @@
           "showMethod": "fadeIn",
           "hideMethod": "fadeOut"
         };
-
-
     </script>
     <!-- VUE JS-->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>

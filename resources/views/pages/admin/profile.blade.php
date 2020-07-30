@@ -1,4 +1,4 @@
-@extends('layouts.profile')
+@extends('layouts.admin._profile')
 @section('baslik')
 Profil
 @endsection
