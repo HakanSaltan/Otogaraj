@@ -69,5 +69,26 @@ class HomeController extends Controller
         }
     }
 
+    public function araclar()
+    {
+
+        if(Auth::user()->hasRole('super-admin')){
+            return redirect()->route('adminAraclar');
+        }else if(Auth::user()->hasRole('uye')){
+            $u = User::where('id','=',Auth::user()->id)->with('uye')->first();
+            if($u->uye[0]->durum =='0'){
+                return view('home');
+            }else if($u->uye[0]->durum =='1'){
+                return redirect()->route('uyeAraclar');
+            }else{
+                return 'Sen Reddedilmişsin Yiğenim';
+            }
+        }else if(Auth::user()->hasRole('tedarikci')){
+            return redirect()->route('tedarikciAraclar');
+        }else{
+            return view('home');
+        }
+    }
+
 
 }

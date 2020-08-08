@@ -5,6 +5,7 @@ Auth::routes();
 Route::get('/', function () { return view('welcome');});
 Route::get('/home', array('as'=>'index','uses'=>'HomeController@index'));
 Route::get('/muhasebe', array('as'=>'index','uses'=>'HomeController@muhasebe'));
+Route::get('/araclar', array('as'=>'index','uses'=>'HomeController@araclar'));
 
 Route::group(['prefix' => 'admin', 'middleware' => 'role:super-admin'], function(){
     Route::get('/home', 'AdminGetController@index')->name('adminHome');
@@ -26,6 +27,8 @@ Route::group(['prefix' => 'uye', 'middleware' => ['role:super-admin|uye']], func
     Route::get('/home', 'UyeGetController@index')->name('uyeHome');
     Route::get('/profile', 'UyeGetController@profil')->name('uyeProfil');
     Route::get('/muhasebe', 'UyeGetController@muhasebe')->name('uyeMuhasebe');
+    Route::get('/araclar', 'UyeGetController@araclar')->name('uyeAraclar');
+    Route::get('/aracDetay', 'UyeGetController@aracDetay')->name('uyeAracDetay');
 });
 
 Route::group(['prefix' => 'tedarikci', 'middleware' => ['role:super-admin|tedarikci']], function () {

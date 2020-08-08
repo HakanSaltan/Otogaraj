@@ -37,4 +37,12 @@ class UyeGetController extends Controller
     {
         return view('pages.uye.muhasebe');
     }
+    public function araclar()
+    {
+        return view('pages.uye.araclar');
+    }
+    public function aracDetay()
+    {
+        return view('pages.uye.arac-detay');
+    }
 }
