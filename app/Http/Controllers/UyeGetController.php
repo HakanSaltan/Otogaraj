@@ -35,7 +35,11 @@ class UyeGetController extends Controller
     }
     public function muhasebe()
     {
-        return view('pages.uye.muhasebe');
+        $profile = User::select('*')
+            ->join('user_uye','user_uye.user_id','users.id')
+            ->join('uyeler','uyeler.id','user_uye.uye_id')
+            ->first();
+        return view('pages.uye.muhasebe')->with('profil',$profile);
     }
     public function araclar()
     {
