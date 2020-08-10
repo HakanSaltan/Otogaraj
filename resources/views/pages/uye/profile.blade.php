@@ -4,7 +4,6 @@ Profil
 @endsection
 @section("content")
 <div class="card card-custom gutter-b">
-    {{$profil}}
     <div class="card-body">
         <!--begin::Details-->
         <div class="d-flex mb-9">

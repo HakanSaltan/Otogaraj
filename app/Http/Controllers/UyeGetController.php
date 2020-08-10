@@ -30,6 +30,7 @@ class UyeGetController extends Controller
         $profile = User::select('*')
         ->join('user_uye','user_uye.user_id','users.id')
         ->join('uyeler','uyeler.id','user_uye.uye_id')
+        ->where('users.id',Auth::user()->id)
         ->first();
         return view('pages.uye.profile')->with('profil',$profile);
     }
@@ -38,6 +39,7 @@ class UyeGetController extends Controller
         $profile = User::select('*')
             ->join('user_uye','user_uye.user_id','users.id')
             ->join('uyeler','uyeler.id','user_uye.uye_id')
+            ->where('users.id',Auth::user()->id)
             ->first();
         return view('pages.uye.muhasebe')->with('profil',$profile);
     }
