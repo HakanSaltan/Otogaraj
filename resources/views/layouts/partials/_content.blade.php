@@ -2,7 +2,7 @@
 <div class="d-flex flex-column-fluid">
     <div class="container-fluid ">
         <div class="d-lg-flex flex-row-fluid">
-            @include('layouts.uye._menu')
+            @include('layouts.partials._aside')
             <div class="content-wrapper flex-row-fluid">
                 <div class="row">
                     <div class="col-md-12">

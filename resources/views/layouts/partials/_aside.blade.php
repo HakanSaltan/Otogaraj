@@ -36,7 +36,7 @@
                 @endcan
 				<li class="menu-item  menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover"><a href="javascript:;" class="menu-link menu-toggle"><span class="svg-icon menu-icon">
 
-							<!--begin::Svg Icon | path:assets/media/svg/icons/Layout/Layout-4-blocks.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+							<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 								<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 									<rect x="0" y="0" width="24" height="24" />
 									<rect fill="#000000" x="4" y="4" width="7" height="7" rx="1.5" />
@@ -44,7 +44,7 @@
 								</g>
 							</svg>
 
-							<!--end::Svg Icon--></span><span class="menu-text">Araç & Profil</span><i class="menu-arrow"></i></a>
+						</span><span class="menu-text">Araç & Profil</span><i class="menu-arrow"></i></a>
 					<div class="menu-submenu "><i class="menu-arrow"></i>
 						<ul class="menu-subnav">
 							<li class="menu-item  menu-item-parent" aria-haspopup="true"><span class="menu-link"><span class="menu-text">Araç & Profil</span></span></li>
