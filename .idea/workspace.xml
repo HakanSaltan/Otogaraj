@@ -20,13 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cc0eae08-d7c1-4783-a9b0-a2b2b6ba04e4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/commandlinetools/Laravel_9_08_2020_22_00.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/commandlinetools/schemas/frameworkDescriptionVersion1.1.4.xsd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Otogaraj.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Otogaraj.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UyeGetController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UyeGetController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/uye/muhasebe.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/uye/muhasebe.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/uye/_profile.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/uye/_profile.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/uye/_profilemenu.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/uye/_profilemenu.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/pages/uye/profile.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/uye/profile.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -184,7 +181,8 @@
       <workItem from="1594405412582" duration="6097000" />
       <workItem from="1595265620186" duration="5583000" />
       <workItem from="1595608417617" duration="2858000" />
-      <workItem from="1596999386621" duration="4194000" />
+      <workItem from="1596999386621" duration="4555000" />
+      <workItem from="1597518256701" duration="2731000" />
     </task>
     <servers />
   </component>

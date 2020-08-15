@@ -33,7 +33,6 @@ class UyeGetController extends Controller
         ->leftjoin('uye_ayar','uye_ayar.uye_id','uyeler.id')
         ->where('users.id',Auth::user()->id)
         ->first();
-        dd($profile);
         return view('pages.uye.profile')->with('profil',$profile);
     }
     public function muhasebe()

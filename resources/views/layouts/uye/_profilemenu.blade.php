@@ -1,6 +1,6 @@
 
 	<!--begin::Profile Card-->
-	@role('super-admin')
+	@role('uye')
 	<div class="card card-custom card-stretch">
 		<!--begin::Body-->
 		<div class="card-body pt-4">
@@ -11,7 +11,7 @@
 					<i class="symbol-badge bg-success"></i>
 				</div>
 				<div>
-				<a href="#" class="font-weight-bolder font-size-h5 text-dark-75 text-hover-primary" v-once>@{{kullaniciAdi}}</a>
+				<a href="#" class="font-weight-bolder font-size-h5 text-dark-75 text-hover-primary">Kullanıcı Adı</a>
 
 				</div>
 			</div>
@@ -20,7 +20,7 @@
 			<div class="py-9">
 				<div class="d-flex align-items-center justify-content-between mb-2">
 					<span class="font-weight-bold mr-2">Mail Adresi:</span>
-					<a href="#" class="text-muted text-hover-primary" v-once>@{{kullaniciMail}}</a>
+					<a href="#" class="text-muted text-hover-primary">Mail Adresi</a>
 				</div>
 				<div class="d-flex align-items-center justify-content-between mb-2">
 					<span class="font-weight-bold mr-2">Telefon:</span>
@@ -35,7 +35,7 @@
 			<!--begin::Nav-->
 			<div class="navi navi-bold navi-hover navi-active navi-link-rounded">
 				<div class="navi-item mb-2">
-					<a href="{{URL::asset('/admin/profile')}}" class="navi-link py-4 active">
+					<a href="{{URL::asset('/admin/profile')}}" class="navi-link py-4" v-bind:class="{active:genelAyarlar}">
 						<span class="navi-icon mr-2">
 							<span class="svg-icon">
 								<!--begin::Svg Icon | path:../../../../../../../../../metronic/themes/metronic/theme/html/demo2/dist/-->
