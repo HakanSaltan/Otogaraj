@@ -46,6 +46,11 @@ class AdminGetController extends Controller
     {
         return view('pages.admin.muhasebe');
     }
+
+    public function araclar()
+    {
+        return view('pages.admin.araclar');
+    }
     public function show()
     {
         $veri = User::where('id',Auth::user()->id)

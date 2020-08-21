@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\AracMarka;
 use App\User;
 use App\Roles;
 use App\Permissions;
@@ -19,6 +20,37 @@ class AdminReloadController extends Controller
         $this->middleware(['role:super-admin']);
     }
 
+/*
+	@author: Hakan SALTAN
+    @since: 21.08.2020
+    @desc: Gelen veriler ile analiz yapılarak tabloya yazdırılır.
+	@param $request->page: current page
+	@param $request->aranacakKelime: aranacak içerik
+	@param $request->aranacakSutun: aranacak sütun
+	@param $request->orderbycolumn: sıralanacak kolon
+	@param $request->orderbytype: desc | asc
+    */
+
+    public function araclar(Request $request)
+    {
+        $aranacakKelime = $request->aranacakKelime;
+        $aranacakSutun =  $request->aranacakSutun;
+        $orderbycolumn =  $request->orderbycolumn;
+        $orderbytype = $request->orderbytype;
+        $veri = AracMarka::select(
+            'arac_marka.id',
+            'arac_model.id as ModelId',
+            'arac_marka.name as MarkaAdi',
+            'arac_model.name as ModelAdi'
+        )
+        ->Join('arac_model','arac_model.marka_id','arac_marka.id');
+        if(!empty($aranacakKelime)){
+            $veri = $veri->where($aranacakSutun,'like','%'.$aranacakKelime.'%');
+        }
+        $veri = $veri->orderBy($orderbycolumn,$orderbytype)
+        ->paginate(10);
+        return $veri;
+    }
 
     /*
 	@author: Hakan SALTAN

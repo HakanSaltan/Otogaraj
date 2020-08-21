@@ -19,6 +19,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'role:super-admin'], function
     Route::get('/profile','AdminGetController@profile');
     Route::post('/profile','AdminPostController@kullanicilar');
 
+    Route::get('/araclar', 'AdminGetController@araclar')->name('adminAraclar');
+
     Route::get('/muhasebe', 'AdminGetController@muhasebe')->name('adminMuhasebe');
 
 });
@@ -38,25 +40,7 @@ Route::group(['prefix' => 'tedarikci', 'middleware' => ['role:super-admin|tedari
 });
 
 Route::group(['prefix' => 'reload'], function(){
+    Route::get('/admin/araclar', 'AdminReloadController@araclar');
     Route::get('/admin/kullanicilar', 'AdminReloadController@kullanicilar');
     Route::get('/admin/basvurular', 'AdminReloadController@basvuruOnayla');
 });
-
-/* Route::group(['middleware' => ['role:super-admin','auth:web']], function () {
-        Route::get('/permissions', 'RoleManager@permissionsIndex')
-            ->name('permissions.index')
-            ->middleware('permission:KullaniciGor');
-
-        Route::get('/roles', 'RoleManager@rolesIndex')
-            ->name('roles.index')
-            ->middleware('permission:RolleriGor');
-
-        Route::post('/roles/{role}/assign/{user}', 'RoleManager@rolesAddUser')
-            ->name('roles.addUser')
-            ->middleware('permission:RoleAta');
-
-        Route::post('/roles/{role}/unassign/{user}', 'RoleManager@rolesRemoveUser')
-            ->name('roles.removeUser')
-            ->middleware('permission:RoleKaldir');
-    });
- */
