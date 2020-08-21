@@ -152,29 +152,26 @@ Anasayfa
 <script>
     let vm = new Vue({
         el: '#app',
-        components: {
-            'content-loader': window.contentLoaders.ListLoader,
-        },
         data: {
             loading: false,
             gelenBilgi: [],
-            secilenBilgi: {
-                tip: 'yeni',
-                plaka: '',
-                sase: '',
-                km: '',
-                marka: '0',
-                model: ''
-            },
+            secilenBilgi: {},
             postUrl: "#",
             reloadUrl: "#",
             markalar:{!! json_encode($arac_markalar) !!},
             modeller:{!! json_encode($arac_modeller) !!},
-            secilenModeller:[]
         },
         methods: {
             async sendInfo(veri, tip) {
                 if(tip == 'yeni'){
+                    this.secilenBilgi={
+                        tip: tip,
+                        plaka: '',
+                        sase: '',
+                        km: '',
+                        marka: '0',
+                        model: '0'
+                    }
                     $('#aracEkle').modal('show');
                 }
             },
@@ -191,18 +188,6 @@ Anasayfa
                 });
 
             },
-        },
-        watch: {
-            secilenBilgi: {
-                deep: true,
-                handler: function () {
-                    // this.modellerFilter();
-                    // $.each(this.modeller.find(x => x.marka_id == this.secilenBilgi.marka), function(value) {
-                    //     this.secilenModeller.push(value);
-                    // });
-                },
-
-            }
         },
     });
 </script>
