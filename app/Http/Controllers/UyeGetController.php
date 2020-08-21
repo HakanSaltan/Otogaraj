@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\AracModel;
+use App\AracMarka;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Uyeler;
@@ -22,7 +24,9 @@ class UyeGetController extends Controller
 
     public function index()
     {
-        return view('pages.uye.home');
+        $arac_markalar = AracMarka::all();
+        $arac_modeller = AracModel::all();
+        return view('pages.uye.home')->with('arac_markalar',$arac_markalar)->with('arac_modeller',$arac_modeller);
     }
     public function profil()
     {

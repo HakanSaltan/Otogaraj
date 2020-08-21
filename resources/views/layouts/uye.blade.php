@@ -12,6 +12,7 @@
     <link href="{{URL::asset('assets/plugins/custom/prismjs/prismjs.bundle.css?v=7.0.5')}}" rel="stylesheet" type="text/css" />
     <link href="{{URL::asset('assets/css/style.bundle.css?v=7.0.5')}}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="{{URL::asset('css/app.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{URL::asset('css/modalrl.css')}}">
     <link rel="shortcut icon" href="{{URL::asset('assets/media/logos/favicon.ico')}}" />
     @yield('css')
 
