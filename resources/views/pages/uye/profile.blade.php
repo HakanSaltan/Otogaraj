@@ -16,8 +16,9 @@ Profil
 @endsection
 @section("content")
     <div class="flex-row-fluid ml-lg-8">
+        <transition name="fade" mode="out-in">
         <!--begin::Card-->
-        <div class="card card-custom" v-if="genelAyarlar == true">
+        <div class="card card-custom" key="1" v-if="genelAyarlar == true">
             <!--begin::Header-->
             <div class="card-header py-3">
                 <div class="card-title align-items-start flex-column">
@@ -69,7 +70,7 @@ Profil
             <!--end::Form-->
         </div>
         <!--İsyeri Bilgileri-->
-        <div class="card card-custom" v-if="isYeriAyarlar == true">
+        <div class="card card-custom" key="2" v-else-if="isYeriAyarlar == true">
             <div class="card-header py-3">
                 <div class="card-title align-items-start flex-column">
                     <h3 class="card-label font-weight-bolder text-dark">İsyeri Bilgileri</h3>
@@ -132,7 +133,7 @@ Profil
         </div>
         <!--İsyeri Bilgileri-->
         <!--Abonelik Bilgileri-->
-        <div class="card card-custom" v-if="abonelikBilgileri == true">
+        <div class="card card-custom" key="3" v-else-if="abonelikBilgileri == true">
             <div class="card-header py-3">
                 <div class="card-title align-items-start flex-column">
                     <h3 class="card-label font-weight-bolder text-dark">Abonelik Bilgileriniz</h3>
@@ -171,7 +172,7 @@ Profil
         </div>
         <!--Abonelik Bilgileri-->
         <!--Finansal  Bilgileri-->
-        <div class="card card-custom" v-if="finansalVeri == true">
+        <div class="card card-custom" key="4" v-else-if="finansalVeri == true">
             <div class="card-header py-3">
                 <div class="card-title align-items-start flex-column">
                     <h3 class="card-label font-weight-bolder text-dark">Finansal Verileriniz</h3>
@@ -196,6 +197,7 @@ Profil
             </div>
         </div>
         <!--Finansal Bilgileri-->
+        </transition>
     </div>
 @endsection
 
@@ -247,5 +249,12 @@ Profil
 </script>
 @endsection
 @section('css')
-
+<style>
+    .fade-enter-active, .fade-leave-active {
+    transition: opacity .5s;
+    }
+    .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
+    }
+</style>
 @endsection

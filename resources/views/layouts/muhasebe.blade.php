@@ -18,7 +18,7 @@
 
 </head>
 
-<body id="kt_body" style="background-image: url({{URL::asset('assets/media/bg/bg-10.jpg')}})" class="page-loading-enabled page-loading quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled aside-enabled aside-static page-loading">
+<body id="kt_body" style="background-image: url({{URL::asset('assets/media/bg/bg-10.jpg')}})" class="page-loading-enabled page-loading quick-panel-right demo-panel-right offcanvas-right header-fixed aside-enabled aside-static page-loading">
     <!--begin::Main Mainin-->
     @include('layouts.partials._page-loader')
     @include('layouts.partials._header-mobile')

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Permissions;
 use App\Roles;
+use App\Uyeler;
+use App\User;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -52,14 +54,15 @@ class Controller extends BaseController
         return $islemlerSonucu;
 
     }
-    public function roleName($id){
-        $role = Roles::where('id','=',$id)->first();
-        return $role->name;
+    public function uyeID($id){
+        $uye = User::select('*')
+        ->join('user_uye','user_uye.user_id','users.id')
+        ->join('uyeler','uyeler.id','user_uye.uye_id')
+        // ->leftjoin('uye_ayar','uye_ayar.uye_id','uyeler.id')
+        ->where('users.id',$id)
+        ->first();
+        return $uye->uye_id;
 
     }
-    public function permissionName($id){
-        $role = Permissions::where('id','=',$id)->first();
-        return $role->name;
 
-    }
 }
