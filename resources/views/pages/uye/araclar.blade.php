@@ -12,22 +12,24 @@ Araçlar
                 <span class="text-muted mt-3 font-weight-bold font-size-sm" v-text="'Toplam ' + gelenBilgi.total + ' Adet Araç Bulunmakta'"> </span>
             </h3>
             <div class="card-toolbar">
+
                 <ul class="nav nav-pills nav-pills-sm nav-dark">
+                    <li class="nav-item ml-0 p-3"><strong style="cursor:pointer; text-transform: uppercase" data-toggle="tooltip" data-placement="top" title="Aramak İstediğiniz Bölüme Gelene Kadar Tıklayınız" @click="aranacakSutunDegistir" v-text="aranacakSutun + ' Ara'"></strong></li>
+                    <li class="nav-item ml-0 p-2"><input class="form-control" data-toggle="tooltip" data-placement="top" title="Aramak İstediğiniz Kelimeyi Yazıp Enter'a Basınız"  v-model="aranacakKelime" type="text"></li>
                     <li class="nav-item ml-0"><a class="nav-link py-2 px-4 font-weight-bolder font-size-sm"
                             @click="sayfayaGit(gelenBilgi.current_page-1)"><i class="flaticon2-fast-back"></i></a>
                     </li>
                     <li class="nav-item ml-0"><a class="nav-link py-2 px-4 font-weight-bolder font-size-sm"
                             @click="sayfayaGit(gelenBilgi.current_page+1)"><i class="flaticon2-fast-next"></i></a>
                     </li>
-                    {{-- <li class="nav-item ml-0"><a class="nav-link py-2 px-4 font-weight-bolder font-size-sm"
-                            v-on:click="aramaAc"><i class="flaticon-search"></i></a>
-                    </li> --}}
+                    <li class="nav-item ml-0"><a class="nav-link py-2 px-4 font-weight-bolder font-size-sm"
+                        v-on:click="sendInfo('yeni','yeni')"><i class="flaticon-add"></i></a>
+                    </li>
                     <li class="nav-item ml-0"><a class="nav-link py-2 px-4 font-weight-bolder font-size-sm"
                             v-on:click="reload"><i class="flaticon-refresh"></i></a>
                     </li>
                 </ul>
-                <a @click="sendInfo('yeni','yeni')" class="btn btn-success font-weight-bolder font-size-sm">
-                    Yeni Araç Ekle</a>
+
             </div>
         </div>
         <!--end::Header-->
@@ -208,8 +210,9 @@ Araçlar
             secilenBilgi: {},
             postUrl: "#",
             reloadUrl: "/reload/uye/araclar",
+            aranacakSira : 0,
             aranacakKelime: '',
-            aranacakSutun: 'name',
+            aranacakSutun: 'plaka',
             orderByColumn: 'created_at',
             orderByType: 'DESC',
             page: 1,
@@ -260,10 +263,24 @@ Araçlar
                     this.gelenBilgi = response.data;
                     this.loading = true;
                 });
-            }
+            },
+            aranacakSutunDegistir(){
+                let aranacaklar = ['plaka','sase','marka','model'];
+                this.aranacakSira += 1;
+                this.aranacakSira == 4 ? this.aranacakSira = 0 : this.aranacakSira;
+                this.aranacakSutun = aranacaklar[this.aranacakSira];
+            },
         },
         mounted() {
         this.reload();
+        },
+        created: function () {
+            document.addEventListener('keypress', function (e) {
+                console.log(e);
+                if (e.key === 'Enter') {
+                    vm.reload();
+                }
+            });
         },
         watch: {
             page: {
