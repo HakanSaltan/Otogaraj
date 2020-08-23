@@ -9,58 +9,78 @@ Araçlar
         <div class="card-header border-0 py-5">
             <h3 class="card-title align-items-start flex-column">
                 <span class="card-label font-weight-bolder text-dark">Araçlarım</span>
-                <span class="text-muted mt-3 font-weight-bold font-size-sm">1 Adet Araç Bulunmakta</span>
+                <span class="text-muted mt-3 font-weight-bold font-size-sm" v-text="'Toplam ' + gelenBilgi.total + ' Adet Araç Bulunmakta'"> </span>
             </h3>
             <div class="card-toolbar">
+                <ul class="nav nav-pills nav-pills-sm nav-dark">
+                    <li class="nav-item ml-0"><a class="nav-link py-2 px-4 font-weight-bolder font-size-sm"
+                            @click="sayfayaGit(gelenBilgi.current_page-1)"><i class="flaticon2-fast-back"></i></a>
+                    </li>
+                    <li class="nav-item ml-0"><a class="nav-link py-2 px-4 font-weight-bolder font-size-sm"
+                            @click="sayfayaGit(gelenBilgi.current_page+1)"><i class="flaticon2-fast-next"></i></a>
+                    </li>
+                    {{-- <li class="nav-item ml-0"><a class="nav-link py-2 px-4 font-weight-bolder font-size-sm"
+                            v-on:click="aramaAc"><i class="flaticon-search"></i></a>
+                    </li> --}}
+                    <li class="nav-item ml-0"><a class="nav-link py-2 px-4 font-weight-bolder font-size-sm"
+                            v-on:click="reload"><i class="flaticon-refresh"></i></a>
+                    </li>
+                </ul>
                 <a @click="sendInfo('yeni','yeni')" class="btn btn-success font-weight-bolder font-size-sm">
-                Yeni Araç Ekle</a>
+                    Yeni Araç Ekle</a>
             </div>
         </div>
         <!--end::Header-->
         <!--begin::Body-->
-        <div class="card-body pt-0 pb-3">
+        <content-loader v-if="!loading" :speed="2" :animate="true"></content-loader>
+        <div class="card-body pt-0 pb-3" v-if="loading">
             <!--begin::Table-->
             <div class="table-responsive">
                 <table class="table table-head-custom table-head-bg table-vertical-center table-borderless">
                     <thead>
                         <tr class="bg-gray-100 text-left">
-                            <th style="min-width: 250px" class="pl-7">
+                            <th style="min-width: 250px" class="pl-7" :class="{'asc' : orderByType == 'ASC' && orderByColumn == 'plaka','desc' : orderByType != 'ASC' && orderByColumn == 'plaka'}"
+                                @click="sirala('plaka')">
                                 <span class="text-dark-75">PLAKA</span>
                             </th>
-                            <th style="min-width: 130px">MARKA</th>
-                            <th style="min-width: 120px">MDOEL</th>
-                            <th style="min-width: 120px">KM</th>
-                            <th style="min-width: 110px">ŞASE</th>
+                            <th :class="{'asc' : orderByType == 'ASC' && orderByColumn == 'markaAdi','desc' : orderByType != 'ASC' && orderByColumn == 'markaAdi'}"
+                                @click="sirala('markaAdi')" style="min-width: 130px">MARKA</th>
+                            <th :class="{'asc' : orderByType == 'ASC' && orderByColumn == 'modelAdi','desc' : orderByType != 'ASC' && orderByColumn == 'modelAdi'}"
+                                @click="sirala('modelAdi')" style="min-width: 120px">MODEL</th>
+                            <th :class="{'asc' : orderByType == 'ASC' && orderByColumn == 'km','desc' : orderByType != 'ASC' && orderByColumn == 'km'}"
+                                @click="sirala('km')" style="min-width: 120px">KM</th>
+                            <th :class="{'asc' : orderByType == 'ASC' && orderByColumn == 'sase','desc' : orderByType != 'ASC' && orderByColumn == 'sase'}"
+                                @click="sirala('sase')" style="min-width: 110px">ŞASE</th>
                             <th style="min-width: 110px"></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="arac in araclar">
+                        <tr v-for="(bilgi,index) in gelenBilgi.data">
                             <td class="pl-0 py-8">
                                 <div class="d-flex align-items-center">
                                     <div class="symbol symbol-50 flex-shrink-0 mr-4">
                                         <div class="symbol-label" style="background-image: url('https://www.qrcode-monkey.com/img/default-preview-qr.svg')"></div>
                                     </div>
                                     <div>
-                                        <a href="#" class="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg" v-text="arac.plaka"></a>
+                                        <a href="#" class="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg" v-text="bilgi.plaka"></a>
                                         <span class="text-muted font-weight-bold d-block"> Hakan SALTAN </span>
                                     </div>
                                 </div>
                             </td>
                             <td>
-                                <span class="text-dark-75 font-weight-bolder d-block font-size-lg" v-text="arac.markaAdi"></span>
+                                <span class="text-dark-75 font-weight-bolder d-block font-size-lg" v-text="bilgi.markaAdi"></span>
                                 <span class="text-muted font-weight-bold">Onaylandı</span>
                             </td>
                             <td>
-                                <span class="text-dark-75 font-weight-bolder d-block font-size-lg" v-text="arac.modelAdi"></span>
+                                <span class="text-dark-75 font-weight-bolder d-block font-size-lg" v-text="bilgi.modelAdi"></span>
                                 <span class="text-muted font-weight-bold">Onaylandı</span>
                             </td>
                             <td>
-                                <span class="text-dark-75 font-weight-bolder d-block font-size-lg" v-text="arac.km"></span>
+                                <span class="text-dark-75 font-weight-bolder d-block font-size-lg" v-text="bilgi.km"></span>
                                 <span class="text-muted font-weight-bold">KM</span>
                             </td>
                             <td>
-                                <span class="label label-lg label-light-primary label-inline" v-text="arac.sase"></span>
+                                <span class="label label-lg label-light-primary label-inline" v-text="bilgi.sase"></span>
                             </td>
                             <td class="pr-0 text-right">
                                 <a href="#" class="btn btn-icon btn-light btn-hover-primary btn-sm mr-3">
@@ -92,6 +112,33 @@ Araçlar
                         </tr>
                     </tbody>
                 </table>
+            </div>
+            <div class="d-flex justify-content-between align-items-center flex-wrap">
+                <div class="d-flex flex-wrap py-2 mr-3">
+                    <a @click="sayfayaGit(1)" class="btn btn-icon btn-sm btn-light mr-2 my-1"><i
+                            class="ki ki-bold-double-arrow-back icon-xs"></i></a>
+                    <a @click="sayfayaGit(gelenBilgi.current_page-1)" class="btn btn-icon btn-sm btn-light mr-2 my-1"><i
+                            class="ki ki-bold-arrow-back icon-xs"></i></a>
+                    <template v-for="page in gelenBilgi.last_page"
+                        v-if="page >= gelenBilgi.current_page - 3 && page <= gelenBilgi.current_page + 3">
+                        <a href="#"
+                            :class="{'btn btn-icon btn-sm border-0 btn-light btn-hover-primary active mr-2 my-1' : gelenBilgi.current_page == page, 'btn btn-icon btn-sm border-0 btn-light mr-2 my-1' : gelenBilgi.current_page != page}"
+                            v-text="page" @click="sayfayaGit(page)"></a>
+                    </template>
+                    <a @click="sayfayaGit(gelenBilgi.last_page)" class="btn btn-icon btn-sm btn-light mr-2 my-1"><i
+                            class="ki ki-bold-arrow-next icon-xs"></i></a>
+                    <a @click="sayfayaGit(gelenBilgi.current_page-1)" class="btn btn-icon btn-sm btn-light mr-2 my-1"><i
+                            class="ki ki-bold-double-arrow-next icon-xs"></i></a>
+                </div>
+                <div class="d-flex align-items-center py-3">
+                    <div class="d-flex align-items-center" v-if='!loading2'>
+                        <div class="mr-2 text-muted">Güncelleniyor...</div>
+                        <div class="spinner mr-10"></div>
+                    </div>
+                    <span class="text-muted">Toplam <strong v-text="gelenBilgi.total"></strong> Kayıttan <strong
+                            v-text="gelenBilgi.from + ' - ' + gelenBilgi.to"></strong>
+                        Arası Kayıt Gösteriliyor.</span>
+                </div>
             </div>
             <!--end::Table-->
         </div>
@@ -151,15 +198,23 @@ Araçlar
 <script>
     let vm = new Vue({
         el: '#app',
+        components: {
+            'content-loader': window.contentLoaders.ListLoader,
+        },
         data: {
             loading: false,
+            loading2: true,
             gelenBilgi: [],
             secilenBilgi: {},
             postUrl: "#",
-            reloadUrl: "#",
+            reloadUrl: "/reload/uye/araclar",
+            aranacakKelime: '',
+            aranacakSutun: 'name',
+            orderByColumn: 'created_at',
+            orderByType: 'DESC',
+            page: 1,
             markalar:{!! json_encode($arac_markalar) !!},
-            modeller:{!! json_encode($arac_modeller) !!},
-            araclar: {!! json_encode($araclar)!!}
+            modeller:{!! json_encode($arac_modeller) !!}
         },
         methods: {
             async sendInfo(veri, tip) {
@@ -175,6 +230,14 @@ Araçlar
                     $('#aracEkle').modal('show');
                 }
             },
+            sirala(sira) {
+                this.orderByColumn = sira;
+                this.orderByType = this.orderByType == "ASC" ? "DESC" : "ASC";
+                vm.reload();
+            },
+            sayfayaGit(page) {
+                this.page = page;
+            },
             post() {
                 axios({
                     url: "#",
@@ -188,8 +251,27 @@ Araçlar
                 });
 
             },
+            async reload() {
+                $('#aramaAc').modal('hide');
+                this.loading = false;
+                await axios.get(this.reloadUrl + "?page=" + this.page + "&aranacakKelime=" + this
+                    .aranacakKelime + "&aranacakSutun=" + this.aranacakSutun + "&orderbycolumn=" + this
+                    .orderByColumn + "&orderbytype=" + this.orderByType, {}).then((response) => {
+                    this.gelenBilgi = response.data;
+                    this.loading = true;
+                });
+            }
         },
-
+        mounted() {
+        this.reload();
+        },
+        watch: {
+            page: {
+                handler: function (value) {
+                    this.reload();
+                }
+            }
+        }
     });
 
 </script>

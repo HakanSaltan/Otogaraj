@@ -14,6 +14,11 @@
     <link rel="stylesheet" type="text/css" href="{{URL::asset('css/app.css')}}">
     <link rel="stylesheet" type="text/css" href="{{URL::asset('css/modalrl.css')}}">
     <link rel="shortcut icon" href="{{URL::asset('assets/media/logos/favicon.ico')}}" />
+    <style>
+        .table-responsive th {
+            cursor: pointer;
+        }
+    </style>
     @yield('css')
 
 </head>
