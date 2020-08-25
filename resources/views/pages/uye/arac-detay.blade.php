@@ -164,17 +164,17 @@ Araç Detay
                             <!--begin::Header-->
                             <div class="d-flex flex-column flex-center">
                                 <!--begin::Symbol-->
-                                <div class="symbol symbol-120 symbol-circle symbol-success overflow-hidden">
+                                <div class="symbol symbol-120 overflow-hidden">
                                     <span class="symbol-label">
-                                        <img src="assets/media/svg/avatars/007-boy-2.svg" class="h-75 align-self-end" alt="">
+                                        <img :src="aracDetay.qrCode" class="h-75 align-self-end" alt="">
                                     </span>
                                 </div>
                                 <!--end::Symbol-->
                                 <!--begin::Username-->
-                                <a href="#" class="card-title font-weight-bolder text-dark-75 text-hover-primary font-size-h4 m-0 pt-7 pb-1">Jerry Kane</a>
+                                <a href="#" class="card-title font-weight-bolder text-dark-75 text-hover-primary font-size-h4 m-0 pt-7 pb-1" v-text="aracDetay.markaAdi + ' ' + aracDetay.modelAdi"></a>
                                 <!--end::Username-->
                                 <!--begin::Info-->
-                                <div class="font-weight-bold text-dark-50 font-size-sm pb-6">Grade 8, AE3 Student</div>
+                                <div class="font-weight-bold text-dark-50 font-size-sm pb-6" v-text="aracDetay.sase"></div>
                                 <!--end::Info-->
                             </div>
                             <!--end::Header-->
@@ -206,12 +206,12 @@ Araç Detay
                                     <!--end::Symbol-->
                                     <!--begin::Text-->
                                     <div class="d-flex flex-column flex-grow-1">
-                                        <a href="#" class="text-dark-75 text-hover-primary mb-1 font-size-lg font-weight-bolder">Ricky Hunt</a>
-                                        <span class="text-muted font-weight-bold">PHP, SQLite, Artisan CLI</span>
+                                        <a href="#" class="text-dark-75 text-hover-primary mb-1 font-size-lg font-weight-bolder">Marka</a>
+                                        <span class="text-muted font-weight-bold">Onaylandı</span>
                                     </div>
                                     <!--end::Text-->
                                     <!--begin::label-->
-                                    <span class="font-weight-bolder label label-xl label-light-success label-inline px-3 py-5 min-w-45px">2.8</span>
+                                    <span class="font-weight-bolder label label-xl label-light-success label-inline px-3 py-5 min-w-45px" v-text="aracDetay.markaAdi"></span>
                                     <!--end::label-->
                                 </div>
                                 <!--end::Item-->
@@ -236,12 +236,12 @@ Araç Detay
                                     <!--end::Symbol-->
                                     <!--begin::Text-->
                                     <div class="d-flex flex-column flex-grow-1">
-                                        <a href="#" class="text-dark-75 text-hover-primary mb-1 font-size-lg font-weight-bolder">Modules</a>
-                                        <span class="text-muted font-weight-bold">Successful Fellas</span>
+                                        <a href="#" class="text-dark-75 text-hover-primary mb-1 font-size-lg font-weight-bolder">Model</a>
+                                        <span class="text-muted font-weight-bold">Onaylandı</span>
                                     </div>
                                     <!--end::Text-->
                                     <!--begin::label-->
-                                    <span class="font-weight-bolder label label-xl label-light-danger label-inline px-3 py-5 min-w-45px">7</span>
+                                    <span class="font-weight-bolder label label-xl label-light-danger label-inline px-3 py-5 min-w-45px"  v-text="aracDetay.modelAdi"></span>
                                     <!--end::label-->
                                 </div>
                                 <!--end::Item-->
@@ -266,12 +266,12 @@ Araç Detay
                                     <!--end::Symbol-->
                                     <!--begin::Text-->
                                     <div class="d-flex flex-column flex-grow-1">
-                                        <a href="#" class="text-dark-75 text-hover-primary mb-1 font-size-lg font-weight-bolder">Progress</a>
-                                        <span class="text-muted font-weight-bold">Successful Fellas</span>
+                                        <a href="#" class="text-dark-75 text-hover-primary mb-1 font-size-lg font-weight-bolder">KM</a>
+                                        <span class="text-muted font-weight-bold">Onaylandı</span>
                                     </div>
                                     <!--end::Text-->
                                     <!--begin::label-->
-                                    <span class="font-weight-bolder label label-xl label-light-info label-inline py-5 min-w-45px">+23</span>
+                                    <span class="font-weight-bolder label label-xl label-light-info label-inline py-5 min-w-45px"  v-text="aracDetay.km"></span>
                                     <!--end::label-->
                                 </div>
                                 <!--end::Item-->
@@ -594,7 +594,8 @@ Araç Detay
     let vm = new Vue({
         el: '#app',
         data: {
-            postUrl: "#"
+            postUrl: "#",
+            aracDetay: {!! $aracDetay !!}
         },
         methods: {
 

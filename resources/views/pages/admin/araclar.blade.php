@@ -1,5 +1,5 @@
 
-@extends('layouts.app')
+@extends('layouts.admin')
 @section('baslik')
 Araçlar
 @endsection
@@ -45,50 +45,50 @@ Araçlar
     </div>
 @can('KullaniciGor')
     <content-loader v-if="!loading" :speed="2" :animate="true"></content-loader>
-    <div class="card-body" v-if="loading">
-
-        <table class="table table-borderless mb-6">
-            <thead>
-                <tr>
-                    <th :class="{'asc' : orderByType == 'ASC' && orderByColumn == 'id','desc' : orderByType != 'ASC' && orderByColumn == 'id'}"
-                        @click="sirala('id')">Marka ID</th>
-                    <th>Model ID</th>
-                    <th :class="{'asc' : orderByType == 'ASC' && orderByColumn == 'name','desc' : orderByType != 'ASC' && orderByColumn == 'name'}"
-                        @click="sirala('name')">Marka</th>
-                    <th>Model</th>
-                    {{-- <th class="pr-0 text-right">İşlemler</th> --}}
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="(bilgi,index) in gelenBilgi.data">
-                    <td><a v-text="bilgi.id"></a></td>
-                    <td><a v-text="bilgi.ModelId"></a></td>
-                    <td><a v-text="bilgi.MarkaAdi"></a></td>
-                    <td><a v-text="bilgi.ModelAdi"></a></td>
-                    {{-- <td class="pr-0 text-right">
-                        <a v-on:click="sendInfo(bilgi,'sil')" class="btn btn-icon btn-light btn-hover-primary btn-sm">
-                            <span class="svg-icon svg-icon-md svg-icon-primary">
-                                <!--begin::Svg Icon | path:../../../../../metronic/themes/metronic/theme/html/demo2/dist/assets/media/svg/icons/General/Trash.svg-->
-                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                    width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                        <rect x="0" y="0" width="24" height="24"></rect>
-                                        <path
-                                            d="M6,8 L6,20.5 C6,21.3284271 6.67157288,22 7.5,22 L16.5,22 C17.3284271,22 18,21.3284271 18,20.5 L18,8 L6,8 Z"
-                                            fill="#000000" fill-rule="nonzero"></path>
-                                        <path
-                                            d="M14,4.5 L14,4 C14,3.44771525 13.5522847,3 13,3 L11,3 C10.4477153,3 10,3.44771525 10,4 L10,4.5 L5.5,4.5 C5.22385763,4.5 5,4.72385763 5,5 L5,5.5 C5,5.77614237 5.22385763,6 5.5,6 L18.5,6 C18.7761424,6 19,5.77614237 19,5.5 L19,5 C19,4.72385763 18.7761424,4.5 18.5,4.5 L14,4.5 Z"
-                                            fill="#000000" opacity="0.3"></path>
-                                    </g>
-                                </svg>
-                                <!--end::Svg Icon-->
-                            </span>
-                        </a>
-                    </td> --}}
-                </tr>
-            </tbody>
-        </table>
-
+    <div class="card-body card-body pt-0 pb-3" v-if="loading">
+        <div class="table-responsive">
+            <table class="table table-head-custom table-head-bg table-vertical-center table-borderless">
+                <thead>
+                    <tr class="bg-gray-100 text-left">
+                        <th class="pl-7" :class="{'asc' : orderByType == 'ASC' && orderByColumn == 'id','desc' : orderByType != 'ASC' && orderByColumn == 'id'}"
+                            @click="sirala('id')"><span class="text-dark-75">Marka ID</span></th>
+                        <th>Model ID</th>
+                        <th :class="{'asc' : orderByType == 'ASC' && orderByColumn == 'name','desc' : orderByType != 'ASC' && orderByColumn == 'name'}"
+                            @click="sirala('name')">Marka</th>
+                        <th>Model</th>
+                        {{-- <th class="pr-0 text-right">İşlemler</th> --}}
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(bilgi,index) in gelenBilgi.data">
+                        <td class="pl-0 py-8"><a v-text="bilgi.id"></a></td>
+                        <td><a v-text="bilgi.ModelId"></a></td>
+                        <td><a v-text="bilgi.MarkaAdi"></a></td>
+                        <td><a v-text="bilgi.ModelAdi"></a></td>
+                        {{-- <td class="pr-0 text-right">
+                            <a v-on:click="sendInfo(bilgi,'sil')" class="btn btn-icon btn-light btn-hover-primary btn-sm">
+                                <span class="svg-icon svg-icon-md svg-icon-primary">
+                                    <!--begin::Svg Icon | path:../../../../../metronic/themes/metronic/theme/html/demo2/dist/assets/media/svg/icons/General/Trash.svg-->
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                        width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                            <rect x="0" y="0" width="24" height="24"></rect>
+                                            <path
+                                                d="M6,8 L6,20.5 C6,21.3284271 6.67157288,22 7.5,22 L16.5,22 C17.3284271,22 18,21.3284271 18,20.5 L18,8 L6,8 Z"
+                                                fill="#000000" fill-rule="nonzero"></path>
+                                            <path
+                                                d="M14,4.5 L14,4 C14,3.44771525 13.5522847,3 13,3 L11,3 C10.4477153,3 10,3.44771525 10,4 L10,4.5 L5.5,4.5 C5.22385763,4.5 5,4.72385763 5,5 L5,5.5 C5,5.77614237 5.22385763,6 5.5,6 L18.5,6 C18.7761424,6 19,5.77614237 19,5.5 L19,5 C19,4.72385763 18.7761424,4.5 18.5,4.5 L14,4.5 Z"
+                                                fill="#000000" opacity="0.3"></path>
+                                        </g>
+                                    </svg>
+                                    <!--end::Svg Icon-->
+                                </span>
+                            </a>
+                        </td> --}}
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <div class="d-flex justify-content-between align-items-center flex-wrap">
             <div class="d-flex flex-wrap py-2 mr-3">
                 <a @click="sayfayaGit(1)" class="btn btn-icon btn-sm btn-light mr-2 my-1"><i
@@ -101,9 +101,9 @@ Araçlar
                         :class="{'btn btn-icon btn-sm border-0 btn-light btn-hover-primary active mr-2 my-1' : gelenBilgi.current_page == page, 'btn btn-icon btn-sm border-0 btn-light mr-2 my-1' : gelenBilgi.current_page != page}"
                         v-text="page" @click="sayfayaGit(page)"></a>
                 </template>
-                <a @click="sayfayaGit(gelenBilgi.last_page)" class="btn btn-icon btn-sm btn-light mr-2 my-1"><i
+                <a @click="sayfayaGit(gelenBilgi.current_page+1)" class="btn btn-icon btn-sm btn-light mr-2 my-1"><i
                         class="ki ki-bold-arrow-next icon-xs"></i></a>
-                <a @click="sayfayaGit(gelenBilgi.current_page-1)" class="btn btn-icon btn-sm btn-light mr-2 my-1"><i
+                <a @click="sayfayaGit(gelenBilgi.last_page)" class="btn btn-icon btn-sm btn-light mr-2 my-1"><i
                         class="ki ki-bold-double-arrow-next icon-xs"></i></a>
             </div>
             <div class="d-flex align-items-center py-3">

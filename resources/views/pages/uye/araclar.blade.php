@@ -61,7 +61,7 @@ Araçlar
                             <td class="pl-0 py-8">
                                 <div class="d-flex align-items-center">
                                     <div class="symbol symbol-50 flex-shrink-0 mr-4">
-                                        <div class="symbol-label" style="background-image: url('https://www.qrcode-monkey.com/img/default-preview-qr.svg')"></div>
+                                        <div class="symbol-label" :style="{'background-image': 'url('+ bilgi.qrCode +')'}"></div>
                                     </div>
                                     <div>
                                         <a href="#" class="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg" v-text="bilgi.plaka"></a>
@@ -97,7 +97,7 @@ Araçlar
                                         <!--end::Svg Icon-->
                                     </span>
                                 </a>
-                                <a href="{{URL::asset('/uye/aracDetay')}}" class="btn btn-icon btn-light btn-hover-primary btn-sm">
+                                <a :href="'/uye/aracDetay/'+ bilgi.sase" class="btn btn-icon btn-light btn-hover-primary btn-sm">
                                     <span class="svg-icon svg-icon-md svg-icon-primary">
                                         <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Arrow-right.svg-->
                                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -127,10 +127,10 @@ Araçlar
                             :class="{'btn btn-icon btn-sm border-0 btn-light btn-hover-primary active mr-2 my-1' : gelenBilgi.current_page == page, 'btn btn-icon btn-sm border-0 btn-light mr-2 my-1' : gelenBilgi.current_page != page}"
                             v-text="page" @click="sayfayaGit(page)"></a>
                     </template>
+                    <a @click="sayfayaGit(gelenBilgi.current_page+1)" class="btn btn-icon btn-sm btn-light mr-2 my-1"><i
+                        class="ki ki-bold-arrow-next icon-xs"></i></a>
                     <a @click="sayfayaGit(gelenBilgi.last_page)" class="btn btn-icon btn-sm btn-light mr-2 my-1"><i
-                            class="ki ki-bold-arrow-next icon-xs"></i></a>
-                    <a @click="sayfayaGit(gelenBilgi.current_page-1)" class="btn btn-icon btn-sm btn-light mr-2 my-1"><i
-                            class="ki ki-bold-double-arrow-next icon-xs"></i></a>
+                        class="ki ki-bold-double-arrow-next icon-xs"></i></a>
                 </div>
                 <div class="d-flex align-items-center py-3">
                     <div class="d-flex align-items-center" v-if='!loading2'>

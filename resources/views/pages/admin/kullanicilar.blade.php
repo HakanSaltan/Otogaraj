@@ -1,5 +1,5 @@
 
-@extends('layouts.app')
+@extends('layouts.admin')
 @section('baslik')
 Kullanıcılar
 @endsection
@@ -149,10 +149,10 @@ Kullanıcılar
                         :class="{'btn btn-icon btn-sm border-0 btn-light btn-hover-primary active mr-2 my-1' : gelenBilgi.current_page == page, 'btn btn-icon btn-sm border-0 btn-light mr-2 my-1' : gelenBilgi.current_page != page}"
                         v-text="page" @click="sayfayaGit(page)"></a>
                 </template>
+                <a @click="sayfayaGit(gelenBilgi.current_page+1)" class="btn btn-icon btn-sm btn-light mr-2 my-1"><i
+                    class="ki ki-bold-arrow-next icon-xs"></i></a>
                 <a @click="sayfayaGit(gelenBilgi.last_page)" class="btn btn-icon btn-sm btn-light mr-2 my-1"><i
-                        class="ki ki-bold-arrow-next icon-xs"></i></a>
-                <a @click="sayfayaGit(gelenBilgi.current_page-1)" class="btn btn-icon btn-sm btn-light mr-2 my-1"><i
-                        class="ki ki-bold-double-arrow-next icon-xs"></i></a>
+                    class="ki ki-bold-double-arrow-next icon-xs"></i></a>
             </div>
             <div class="d-flex align-items-center py-3">
                 <div class="d-flex align-items-center" v-if='!loading2'>

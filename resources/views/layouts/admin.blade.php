@@ -43,7 +43,7 @@
                 <!--begin::Content-->
                 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
                     @include('layouts.partials._subheader')
-                    @include('layouts.partials._content')
+                    @include('layouts.admin._content')
                 </div>
                 <!--end::Content-->
                 @include('layouts.partials._footer.compact')

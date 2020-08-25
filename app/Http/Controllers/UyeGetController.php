@@ -56,8 +56,22 @@ class UyeGetController extends Controller
         $arac_modeller = AracModel::all();
         return view('pages.uye.araclar')->with('arac_markalar',$arac_markalar)->with('arac_modeller',$arac_modeller);
     }
-    public function aracDetay()
+    public function aracDetay($sase=0)
     {
-        return view('pages.uye.arac-detay');
+        $aracDetay = Araclar::select(
+            'araclar.*',
+            'arac_marka.name as markaAdi',
+            'arac_model.name as modelAdi',
+            )
+        ->join('arac_uye','arac_uye.arac_id','araclar.id')
+        ->join('arac_marka','arac_marka.id','araclar.marka_id')
+        ->join('arac_model',function($join){
+			$join->on('arac_marka.id','=','arac_model.marka_id')
+			->on('arac_model.id','=','araclar.model_id');
+        })
+        ->where('araclar.sase',$sase)
+        ->where('arac_uye.uye_id',$this->uyeID(Auth::user()->id))
+        ->first();
+        return view('pages.uye.arac-detay')->with('aracDetay',$aracDetay);
     }
 }

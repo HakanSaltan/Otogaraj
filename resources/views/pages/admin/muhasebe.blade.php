@@ -1,4 +1,4 @@
-@extends('layouts.profile')
+@extends('layouts.admin._profile')
 @section('baslik')
 Profil
 @endsection
@@ -555,7 +555,7 @@ Profil
             <!--begin::Header-->
             <div class="card-header border-0 pt-5">
                 <h3 class="card-title font-weight-bolder">Action Needed</h3>
-                
+
             </div>
             <!--end::Header-->
             <!--begin::Body-->
@@ -577,13 +577,13 @@ Profil
     let vm = new Vue({
         el: '#app',
         data: {
-            isId:'{{$profil->id}}',
-            isYeri:'{{$profil->isyeri_adi}}',
-            isAdres:'{{$profil->isyeri_adres}}',
+            isId:'{{$profil->id ?? "Admin"}}',
+            isYeri:'{{$profil->isyeri_adi ?? "Admin"}}',
+            isAdres:'{{$profil->isyeri_adres ?? "Admin"}}',
             postUrl: "#"
         },
         methods: {
-            
+
         },
 
     });
