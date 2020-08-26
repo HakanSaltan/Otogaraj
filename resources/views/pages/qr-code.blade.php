@@ -1,6 +1,6 @@
 @extends('layouts.qr')
 @section("content")
-<div class="col-md-12">
+<div class="col-xl-12">
     <div class="row">
         <div class="col-xl-12">
             <!--begin::Nav Panel Widget 2-->
