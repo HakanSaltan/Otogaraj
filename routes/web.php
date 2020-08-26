@@ -4,8 +4,9 @@ Auth::routes();
 
 Route::get('/', function () { return view('welcome');});
 Route::get('/home', array('as'=>'index','uses'=>'HomeController@index'));
-Route::get('/muhasebe', array('as'=>'index','uses'=>'HomeController@muhasebe'));
-Route::get('/araclar', array('as'=>'index','uses'=>'HomeController@araclar'));
+Route::get('/muhasebe', array('uses'=>'HomeController@muhasebe'));
+Route::get('/araclar', array('uses'=>'HomeController@araclar'));
+Route::get('/qrcode/{sase?}', array('uses'=>'NoAuthController@qrCode'));
 
 Route::group(['prefix' => 'admin', 'middleware' => 'role:super-admin'], function(){
     Route::get('/home', 'AdminGetController@index')->name('adminHome');

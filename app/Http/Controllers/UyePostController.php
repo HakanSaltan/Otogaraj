@@ -37,7 +37,7 @@ class UyePostController extends Controller
         try{
             DB::beginTransaction();
                 if($request->tip=='yeni'){
-                    $qrCode = "https://chart.googleapis.com/chart?cht=qr&chs=512x512&chl=" . $this->uyeID(Auth::user()->id) ."|". strtoupper($request->sase);
+                    $qrCode = "https://chart.googleapis.com/chart?cht=qr&chs=512x512&chl=https://otogaraj.kodgaraj.com/qrcode/" . strtoupper($request->sase);
                     $arac = new Araclar;
                     $arac->plaka=strtoupper($request->plaka);
                     $arac->km=$request->km;
@@ -60,12 +60,14 @@ class UyePostController extends Controller
                 }elseif($request->tip=='sil'){
                     $arac = Araclar::where('id',$request->id)->delete();
                 }elseif($request->tip=='guncelle'){
+                    $qrCode = "https://chart.googleapis.com/chart?cht=qr&chs=512x512&chl=https://otogaraj.kodgaraj.com/qrcode/" . strtoupper($request->sase);
                     $arac = Araclar::where('sase',$request->sase)->first();
                     $arac->plaka=strtoupper($request->plaka);
                     $arac->km=$request->km;
                     $arac->sase=strtoupper($request->sase);
                     $arac->marka_id=$request->marka;
                     $arac->model_id=$request->model;
+                    $arac->qrCode=$qrCode;
                     $arac->update();
                     $aracUye = AracUye::where('arac_id',$arac->id)->where('uye_id',$this->uyeID(Auth::user()->id))->first();
                     $aracUye->sahip_ad_soyad = $request->sahipAdi;
