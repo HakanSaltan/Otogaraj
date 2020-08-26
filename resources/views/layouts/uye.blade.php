@@ -18,6 +18,14 @@
         .table-responsive th {
             cursor: pointer;
         }
+        .zoom {
+            transition: transform .2s; /* Animation */
+        }
+
+        .zoom:hover {
+            position: fixed;
+            transform: scale(2.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+        }
     </style>
     @yield('css')
 

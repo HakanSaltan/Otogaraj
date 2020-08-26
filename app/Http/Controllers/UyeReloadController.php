@@ -42,6 +42,8 @@ class UyeReloadController extends Controller
             'araclar.*',
             'arac_marka.name as markaAdi',
             'arac_model.name as modelAdi',
+            'arac_uye.sahip_ad_soyad as sahipAdi',
+            'arac_uye.sahip_tel as sahipTel',
             )
         ->join('arac_uye','arac_uye.arac_id','araclar.id')
         ->join('arac_marka','arac_marka.id','araclar.marka_id')

@@ -14,7 +14,7 @@ Araçlar
             <div class="card-toolbar">
 
                 <ul class="nav nav-pills nav-pills-sm nav-dark">
-                    <li class="nav-item ml-0 p-3"><strong style="cursor:pointer; text-transform: uppercase" data-toggle="tooltip" data-placement="top" title="Aramak İstediğiniz Bölüme Gelene Kadar Tıklayınız" @click="aranacakSutunDegistir" v-text="aranacakSutun + ' Ara'"></strong></li>
+                    <li class="nav-item ml-0 p-3"><strong style="cursor:pointer; text-transform: uppercase" data-toggle="tooltip" data-placement="top" title="Aramak İstediğiniz Bölüme Gelene Kadar Tıklayınız" @click="aranacakSutunDegistir" v-text="aranacakSutun == 'arac_uye.sahip_ad_soyad' ? 'Ad Soyad Ara' : aranacakSutun + ' Ara'"></strong></li>
                     <li class="nav-item ml-0 p-2"><input class="form-control" data-toggle="tooltip" data-placement="top" title="Aramak İstediğiniz Kelimeyi Yazıp Enter'a Basınız"  v-model="aranacakKelime" type="text"></li>
                     <li class="nav-item ml-0"><a class="nav-link py-2 px-4 font-weight-bolder font-size-sm"
                             @click="sayfayaGit(gelenBilgi.current_page-1)"><i class="flaticon2-fast-back"></i></a>
@@ -22,10 +22,10 @@ Araçlar
                     <li class="nav-item ml-0"><a class="nav-link py-2 px-4 font-weight-bolder font-size-sm"
                             @click="sayfayaGit(gelenBilgi.current_page+1)"><i class="flaticon2-fast-next"></i></a>
                     </li>
-                    <li class="nav-item ml-0"><a class="nav-link py-2 px-4 font-weight-bolder font-size-sm"
+                    <li class="nav-item ml-0" style="cursor:pointer;"><a class="nav-link py-2 px-4 font-weight-bolder font-size-sm"
                         v-on:click="sendInfo('yeni','yeni')"><i class="flaticon-add"></i></a>
                     </li>
-                    <li class="nav-item ml-0"><a class="nav-link py-2 px-4 font-weight-bolder font-size-sm"
+                    <li class="nav-item ml-0" style="cursor:pointer;"><a class="nav-link py-2 px-4 font-weight-bolder font-size-sm"
                             v-on:click="reload"><i class="flaticon-refresh"></i></a>
                     </li>
                 </ul>
@@ -61,11 +61,11 @@ Araçlar
                             <td class="pl-0 py-8">
                                 <div class="d-flex align-items-center">
                                     <div class="symbol symbol-50 flex-shrink-0 mr-4">
-                                        <div class="symbol-label" :style="{'background-image': 'url('+ bilgi.qrCode +')'}"></div>
+                                        <div class="symbol-label zoom" :style="{'background-image': 'url('+ bilgi.qrCode +')'}"></div>
                                     </div>
                                     <div>
                                         <a href="#" class="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg" v-text="bilgi.plaka"></a>
-                                        <span class="text-muted font-weight-bold d-block"> Hakan SALTAN </span>
+                                        <span class="text-muted font-weight-bold d-block" v-text="bilgi.sahipAdi"> </span>
                                     </div>
                                 </div>
                             </td>
@@ -85,7 +85,7 @@ Araçlar
                                 <span class="label label-lg label-light-primary label-inline" v-text="bilgi.sase"></span>
                             </td>
                             <td class="pr-0 text-right">
-                                <a href="#" class="btn btn-icon btn-light btn-hover-primary btn-sm mr-3">
+                                <a data-toggle="tooltip" data-placement="top" title="Güncelle" @click="sendInfo(bilgi,'guncelle')" class="btn btn-icon btn-light btn-hover-primary btn-sm mr-3">
                                     <span class="svg-icon svg-icon-md svg-icon-primary">
                                         <!--begin::Svg Icon | path:assets/media/svg/icons/General/Bookmark.svg-->
                                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -97,7 +97,7 @@ Araçlar
                                         <!--end::Svg Icon-->
                                     </span>
                                 </a>
-                                <a :href="'/uye/aracDetay/'+ bilgi.sase" class="btn btn-icon btn-light btn-hover-primary btn-sm">
+                                <a data-toggle="tooltip" data-placement="top" title="Detay" :href="'/uye/aracDetay/'+ bilgi.sase" class="btn btn-icon btn-light btn-hover-primary btn-sm">
                                     <span class="svg-icon svg-icon-md svg-icon-primary">
                                         <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Arrow-right.svg-->
                                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -158,8 +158,16 @@ Araçlar
             </div>
             <div class="modal-body">
                 <div class="form-group">
+                    <label for="">Ad Soyad</label>
+                    <input type="text" class="form-control" v-model="secilenBilgi.sahipAdi">
+                </div>
+                <div class="form-group">
+                    <label for="">Telefon</label>
+                    <input type="text" class="form-control" v-model="secilenBilgi.sahipTel">
+                </div>
+                <div class="form-group">
                     <label for="">Plaka</label>
-                    <input type="text" class="form-control" v-model="secilenBilgi.plaka">
+                    <input type="text" id="plaka" required class="form-control" v-model="secilenBilgi.plaka">
                 </div>
                 <div class="form-group">
                     <label for="">Şase No</label>
@@ -208,7 +216,7 @@ Araçlar
             loading2: true,
             gelenBilgi: [],
             secilenBilgi: {},
-            postUrl: "#",
+            postUrl: "/uye/aracPost",
             reloadUrl: "/reload/uye/araclar",
             aranacakSira : 0,
             aranacakKelime: '',
@@ -227,11 +235,30 @@ Araçlar
                         plaka: '',
                         sase: '',
                         km: '',
+                        sahipAdi: '',
+                        sahipTel: '',
                         marka: '0',
                         model: '0'
                     }
                     $('#aracEkle').modal('show');
                 }
+                if(tip == 'guncelle'){
+                    this.secilenBilgi={
+                        tip: tip,
+                        plaka: veri.plaka,
+                        sase: veri.sase,
+                        km: veri.km,
+                        sahipAdi: veri.sahipAdi,
+                        sahipTel: veri.sahipTel,
+                        marka: veri.marka_id,
+                        model: veri.model_id
+                    }
+                    $('#aracEkle').modal('show');
+                }
+            },
+            plakaTest() {
+                var x = document.getElementById("plaka");
+                this.secilenBilgi.plaka = x.value.replace(/[^a-zA-Z0-9]/g, "").toUpperCase().trim();
             },
             sirala(sira) {
                 this.orderByColumn = sira;
@@ -243,7 +270,7 @@ Araçlar
             },
             post() {
                 axios({
-                    url: "#",
+                    url: this.postUrl,
                     method: "POST",
                     data: this.secilenBilgi
                 }).then(function (data) {
@@ -265,9 +292,9 @@ Araçlar
                 });
             },
             aranacakSutunDegistir(){
-                let aranacaklar = ['plaka','sase','marka','model'];
+                let aranacaklar = ['plaka','sase','arac_uye.sahip_ad_soyad'];
                 this.aranacakSira += 1;
-                this.aranacakSira == 4 ? this.aranacakSira = 0 : this.aranacakSira;
+                this.aranacakSira == 3 ? this.aranacakSira = 0 : this.aranacakSira;
                 this.aranacakSutun = aranacaklar[this.aranacakSira];
             },
         },

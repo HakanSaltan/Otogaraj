@@ -164,25 +164,22 @@ Araç Detay
                             <!--begin::Header-->
                             <div class="d-flex flex-column flex-center">
                                 <!--begin::Symbol-->
-                                <div class="symbol symbol-120 overflow-hidden">
-                                    <span class="symbol-label">
-                                        <img :src="aracDetay.qrCode" class="h-75 align-self-end" alt="">
-                                    </span>
+                                <div class="symbol symbol-150 overflow-hidden ">
+                                    <img :src="aracDetay.qrCode" class="h-75 align-self-end" alt="">
                                 </div>
                                 <!--end::Symbol-->
                                 <!--begin::Username-->
-                                <a href="#" class="card-title font-weight-bolder text-dark-75 text-hover-primary font-size-h4 m-0 pt-7 pb-1" v-text="aracDetay.markaAdi + ' ' + aracDetay.modelAdi"></a>
+                                <a class="card-title font-weight-bolder text-dark-75 text-hover-primary font-size-h4 m-0 pt-7 pb-1" v-text="aracDetay.plaka"></a>
                                 <!--end::Username-->
                                 <!--begin::Info-->
-                                <div class="font-weight-bold text-dark-50 font-size-sm pb-6" v-text="aracDetay.sase"></div>
+                                <a class="card-title font-weight-bolder text-dark-75 text-hover-primary font-size-h4" v-text="aracDetay.sase"></a>
+                                <a :href="'tel:'+ aracDetay.sahipTel" class="font-weight-bold text-dark-50 font-size-sm pb-6" v-text="aracDetay.sahipAdi + ' | ' + aracDetay.sahipTel"></a>
                                 <!--end::Info-->
+
                             </div>
                             <!--end::Header-->
                             <!--begin::Body-->
                             <div class="pt-1">
-                                <!--begin::Text-->
-                                <p class="text-dark-75 font-weight-nirmal font-size-lg m-0 pb-7">Outlines keep you honest. If poorly thought-out metaphors driving or create keep structure</p>
-                                <!--end::Text-->
                                 <!--begin::Item-->
                                 <div class="d-flex align-items-center pb-9">
                                     <!--begin::Symbol-->

@@ -111,6 +111,14 @@ Anasayfa
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
+                        <label for="">Ad Soyad</label>
+                        <input type="text" class="form-control" v-model="secilenBilgi.sahipAdi">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Telefon</label>
+                        <input type="text" class="form-control" v-model="secilenBilgi.sahipTel">
+                    </div>
+                    <div class="form-group">
                         <label for="">Plaka</label>
                         <input type="text" class="form-control" v-model="secilenBilgi.plaka">
                     </div>
@@ -156,7 +164,7 @@ Anasayfa
             loading: false,
             gelenBilgi: [],
             secilenBilgi: {},
-            postUrl: "#",
+            postUrl: "/uye/aracPost",
             reloadUrl: "#",
             markalar:{!! json_encode($arac_markalar) !!},
             modeller:{!! json_encode($arac_modeller) !!},
@@ -169,6 +177,8 @@ Anasayfa
                         plaka: '',
                         sase: '',
                         km: '',
+                        sahipAdi: '',
+                        sahipTel: '',
                         marka: '0',
                         model: '0'
                     }
@@ -177,7 +187,7 @@ Anasayfa
             },
             post() {
                 axios({
-                    url: "#",
+                    url: this.postUrl,
                     method: "POST",
                     data: this.secilenBilgi
                 }).then(function (data) {

@@ -7,4 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class AracUye extends Model
 {
     protected $table = 'arac_uye';
+    public $timestamps = false;
 }

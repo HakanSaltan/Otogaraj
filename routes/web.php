@@ -30,6 +30,7 @@ Route::group(['prefix' => 'uye', 'middleware' => ['role:super-admin|uye']], func
     Route::get('/profile', 'UyeGetController@profil')->name('uyeProfil');
     Route::get('/muhasebe', 'UyeGetController@muhasebe')->name('uyeMuhasebe');
     Route::get('/araclar', 'UyeGetController@araclar')->name('uyeAraclar');
+    Route::post('/aracPost', 'UyePostController@aracPost')->name('uyeAracPost');
     Route::get('/aracDetay/{sase}', 'UyeGetController@aracDetay')->name('uyeAracDetay');
 });
 

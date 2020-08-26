@@ -54,6 +54,14 @@ class Controller extends BaseController
         return $islemlerSonucu;
 
     }
+    public function roleName($id){
+        $role = Roles::where('id','=',$id)->first();
+        return $role->name;
+    }
+    public function permissionName($id){
+        $role = Permissions::where('id','=',$id)->first();
+        return $role->name;
+    }
     public function uyeID($id){
         $uye = User::select('*')
         ->join('user_uye','user_uye.user_id','users.id')
