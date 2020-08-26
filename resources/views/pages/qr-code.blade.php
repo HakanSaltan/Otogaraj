@@ -10,13 +10,13 @@
                     <!--begin::Nav Tabs-->
                     <ul class="dashboard-tabs nav nav-pills nav-danger row row-paddingless m-0 p-0" role="tablist">
                         <!--begin::Item-->
-                        <li class="nav-item d-flex col flex-grow-1 flex-shrink-0 mr-3 mb-3 mb-lg-0">
+                        {{-- <li class="nav-item d-flex col flex-grow-1 flex-shrink-0 mr-3 mb-3 mb-lg-0">
                             <a class="nav-link border py-10 d-flex flex-grow-1 rounded flex-column align-items-center">
                                 <span class="nav-text font-size-lg py-2 font-weight-bold text-center">
                                     <img :src="aracDetay.qrCode" width="125px" class=" align-self-end" alt="">
                                 </span>
                             </a>
-                        </li>
+                        </li> --}}
                         <!--end::Item-->
                         <!--begin::Item-->
                         <li class="nav-item d-flex col flex-grow-1 flex-shrink-0 mr-3 mb-3 mb-lg-0">
@@ -79,7 +79,7 @@
                         </li>
                         <!--end::Item-->
                         <!--begin::Item-->
-                        <li class="nav-item d-flex col flex-grow-1 flex-shrink-0 mr-3 ">
+                        <li class="nav-item d-flex col flex-grow-1 flex-shrink-0 mr-3 mb-3 mb-lg-0 ">
                             <a class="nav-link border py-10 d-flex flex-grow-1 rounded flex-column align-items-center">
                                 <span class="nav-icon py-2 w-auto">
                                     <span class="svg-icon svg-icon-3x">
