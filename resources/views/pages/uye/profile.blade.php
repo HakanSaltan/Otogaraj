@@ -26,7 +26,7 @@ Profil
                     <span class="text-muted font-weight-bold font-size-sm mt-1">Hesap bilgilerinizi guncelleyin</span>
                 </div>
                 <div class="card-toolbar">
-                    <button type="submit" class="btn btn-success mr-2">Bilgileri Güncelle</button>
+                    <button type="submit" @click="hesapUpdate()" class="btn btn-success mr-2">Bilgileri Güncelle</button>
                 </div>
             </div>
             <!--end::Header-->
@@ -62,7 +62,18 @@ Profil
                 <div class="form-group row">
                     <label class="col-xl-3 col-lg-3 col-form-label">Şifre</label>
                     <div class="col-lg-9 col-xl-6">
-                        <input type="text" class="form-control form-control-lg form-control-solid" v-model='kullaniciSifre' placeholder="Şifre">
+                        <input type="password" class="form-control form-control-lg form-control-solid" v-model='kullaniciSifre' placeholder="Şifre">
+                        <small>Sifrenizi Değiştirmek Önceki Şifrenizi Geçersiz Kılar</small>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-xl-3 col-lg-3 col-form-label"></label>
+                    <div class="col-lg-9 col-xl-6">
+                        <div class="checkbox-inline">
+                            <label class="checkbox checkbox-outline checkbox-success">
+                                <input type="checkbox" v-model="kullaniciSifreOnay" name="kullaniciSifreOnay">
+                                <span></span>Şifremi Değiştirmek İstiyorum</label>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -104,15 +115,27 @@ Profil
                 <div class="form-group row">
                     <label class="col-xl-3 col-lg-3 col-form-label">Ticari Ünvanınız Adı</label>
                     <div class="col-lg-9 col-xl-6">
-                        <input class="form-control form-control-lg form-control-solid" type="text">
+                        <input class="form-control form-control-lg form-control-solid" v-model="ticariUnvan" type="text">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-xl-3 col-lg-3 col-form-label">Adresiniz</label>
                     <div class="col-lg-9 col-xl-6">
                         <div class="input-group input-group-lg input-group-solid">
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+                            <textarea class="form-control" v-model="ticariAdres" id="exampleFormControlTextarea1" rows="2"></textarea>
                         </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-xl-3 col-lg-3 col-form-label">Vergi No</label>
+                    <div class="col-lg-9 col-xl-6">
+                        <input class="form-control form-control-lg form-control-solid" v-model="ticariVergiNo" type="text">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-xl-3 col-lg-3 col-form-label">Sektör</label>
+                    <div class="col-lg-9 col-xl-6">
+                        <input class="form-control form-control-lg form-control-solid" v-model="ticariSektor" type="text">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -126,6 +149,14 @@ Profil
                     <div class="col-lg-9 col-xl-6">
                         <div class="input-group input-group-lg input-group-solid">
                             <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-xl-3 col-lg-3 col-form-label">Sloganınız</label>
+                    <div class="col-lg-9 col-xl-6">
+                        <div class="input-group input-group-lg input-group-solid">
+                            <textarea class="form-control" v-model="ticariSlogan" id="exampleFormControlTextarea1" rows="2"></textarea>
                         </div>
                     </div>
                 </div>
@@ -140,33 +171,23 @@ Profil
                 </div>
             </div>
             <div class="card-body">
-                <div class="form-group row">
-                    <label class="col-xl-3 col-lg-3 col-form-label">Ticari Ünvanınız Adı</label>
-                    <div class="col-lg-9 col-xl-6">
-                        <input class="form-control form-control-lg form-control-solid" type="text">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-xl-3 col-lg-3 col-form-label">Adresiniz</label>
-                    <div class="col-lg-9 col-xl-6">
-                        <div class="input-group input-group-lg input-group-solid">
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+                <div class="row justify-content-center text-center my-0 my-md-25">
+                    <!-- begin: Pricing-->
+                    <div class="col-md-4 col-xxl-3 bg-primary my-md-n15 rounded shadow-sm">
+                        <div class="pt-25 pt-md-37 pb-25 pb-md-10 py-md-28 px-4">
+                            <h4 class="text-white mb-15">Ücretsiz Lisans</h4>
+                            <span class="px-7 py-3 bg-white d-inline-flex flex-center rounded-lg mb-15 bg-white">
+														<span class="pr-2 text-primary opacity-70">₺</span>
+														<span class="pr-2 font-size-h1 font-weight-bold text-primary">0</span>
+														<span class="text-primary opacity-70">/&nbsp;&nbsp;Aylık Ödeme Planı</span>
+													</span>
+                            <br>
+                            <p class="text-white mb-10 d-flex flex-column">
+                                <span>Ücretsiz ödeme planı uygulandı</span>
+                            </p>
                         </div>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-xl-3 col-lg-3 col-form-label">Telefon Numaranız</label>
-                    <div class="col-lg-9 col-xl-6">
-                        <input class="form-control form-control-lg form-control-solid" type="text">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-xl-3 col-lg-3 col-form-label">Banka Hesap Bilgileriniz</label>
-                    <div class="col-lg-9 col-xl-6">
-                        <div class="input-group input-group-lg input-group-solid">
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
-                        </div>
-                    </div>
+                    <!-- end: Pricing-->
                 </div>
             </div>
         </div>
@@ -209,7 +230,17 @@ Profil
             genelAyarlar: true,
             isYeriAyarlar:false,
             abonelikBilgileri:false,
-            finansalVeri:false
+            finansalVeri:false,
+            kullaniciAdi:'{!! $profil->name !!}',
+            kullaniciMail:'{!! $profil->email !!}',
+            kullaniciSifre:'*****',
+            kullaniciSifreOnay:false,
+            ticariUnvan:'{!! $profil->isyeri_adi !!}',
+            ticariAdres:'{!! $profil->isyeri_adres !!}',
+            ticariVergiNo:'{!! $profil->vergi_no !!}',
+            ticariSektor:'{!! $profil->sektor !!}',
+            ticariSlogan:'{!! $profil->hakkinda !!}'
+
         },
         methods: {
             goster(menu)
@@ -241,6 +272,10 @@ Profil
                     vm.genelAyarlar = false;
                     vm.abonelikBilgileri = false;
                 }
+            },
+            hesapUpdate()
+            {
+                let hesapGuncelle = '';
             }
         },
 

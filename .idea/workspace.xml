@@ -20,6 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cc0eae08-d7c1-4783-a9b0-a2b2b6ba04e4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/uye/_profilemenu.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/uye/_profilemenu.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/pages/uye/profile.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/uye/profile.blade.php" afterDir="false" />
@@ -153,6 +154,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/layouts" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -180,7 +182,8 @@
       <workItem from="1595265620186" duration="5583000" />
       <workItem from="1595608417617" duration="2858000" />
       <workItem from="1596999386621" duration="4555000" />
-      <workItem from="1597518256701" duration="8541000" />
+      <workItem from="1597518256701" duration="8597000" />
+      <workItem from="1598804882393" duration="2991000" />
     </task>
     <servers />
   </component>

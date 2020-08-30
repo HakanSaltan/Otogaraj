@@ -11,7 +11,7 @@
 					<i class="symbol-badge bg-success"></i>
 				</div>
 				<div>
-				<a href="#" class="font-weight-bolder font-size-h5 text-dark-75 text-hover-primary">Kullanıcı Adı</a>
+				<a href="javascript:;" class="font-weight-bolder font-size-h5 text-dark-75 text-hover-primary" v-once>@{{kullaniciAdi}}</a>
 
 				</div>
 			</div>
@@ -20,7 +20,7 @@
 			<div class="py-9">
 				<div class="d-flex align-items-center justify-content-between mb-2">
 					<span class="font-weight-bold mr-2">Mail Adresi:</span>
-					<a href="#" class="text-muted text-hover-primary">Mail Adresi</a>
+					<a href="javascript:;" class="text-muted text-hover-primary" v-once>@{{kullaniciMail}}</a>
 				</div>
 				<div class="d-flex align-items-center justify-content-between mb-2">
 					<span class="font-weight-bold mr-2">Telefon:</span>
