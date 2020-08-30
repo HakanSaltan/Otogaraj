@@ -33,6 +33,8 @@ Route::group(['prefix' => 'uye', 'middleware' => ['role:super-admin|uye']], func
     Route::get('/araclar', 'UyeGetController@araclar')->name('uyeAraclar');
     Route::post('/aracPost', 'UyePostController@aracPost')->name('uyeAracPost');
     Route::get('/aracDetay/{sase}', 'UyeGetController@aracDetay')->name('uyeAracDetay');
+    Route::post('/hesapguncelle','UyePostController@hesapguncelle')->name('hesapguncelle');
+    Route::post('/ticariGuncelle','UyePostController@ticariGuncelle')->name('ticariGuncelle');
 });
 
 Route::group(['prefix' => 'tedarikci', 'middleware' => ['role:super-admin|tedarikci']], function () {

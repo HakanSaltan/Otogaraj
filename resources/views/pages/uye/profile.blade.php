@@ -88,7 +88,7 @@ Profil
                     <span class="text-muted font-weight-bold font-size-sm mt-1">İsyeri bilgilerinizi guncelleyin</span>
                 </div>
                 <div class="card-toolbar">
-                    <button type="submit" class="btn btn-success mr-2">Bilgileri Güncelle</button>
+                    <button type="submit" @click="ticariBilgiUpdate()" class="btn btn-success mr-2">Bilgileri Güncelle</button>
                 </div>
             </div>
             <div class="card-body">
@@ -239,7 +239,8 @@ Profil
             ticariAdres:'{!! $profil->isyeri_adres !!}',
             ticariVergiNo:'{!! $profil->vergi_no !!}',
             ticariSektor:'{!! $profil->sektor !!}',
-            ticariSlogan:'{!! $profil->hakkinda !!}'
+            ticariSlogan:'{!! $profil->hakkinda !!}',
+            idTicari:'{!! $profil->uye_id !!}'
 
         },
         methods: {
@@ -275,8 +276,38 @@ Profil
             },
             hesapUpdate()
             {
-                let hesapGuncelle = '';
-            }
+                let hesapGuncelle = '/uye/hesapguncelle';
+                let formData = new FormData();
+                formData.append('kullaniciAdi',vm.kullaniciAdi);
+                formData.append('kullaniciMail',vm.kullaniciMail);
+                formData.append('kullaniciSifre',vm.kullaniciSifre);
+                formData.append('kullaniciSifreOnay',vm.kullaniciSifreOnay);
+                axios.post(hesapGuncelle,formData)
+                .then(function (response){
+                    if (response.data == true)
+                    {
+                        Swal.fire("İşlem Başarılı!", "Hesap Bilgileri Guncellendi!", "success");
+                    }
+                })
+            },
+            ticariBilgiUpdate()
+            {
+                let ticariGuncelle = '/uye/ticariGuncelle';
+                let formData = new FormData();
+                formData.append('ticariUnvan',vm.ticariUnvan);
+                formData.append('ticariAdres',vm.ticariAdres);
+                formData.append('ticariVergiNo',vm.ticariVergiNo);
+                formData.append('ticariSektor',vm.ticariSektor);
+                formData.append('ticariSlogan',vm.ticariSlogan);
+                formData.append('idTicari',vm.idTicari);
+                axios.post(ticariGuncelle,formData)
+                .then(function (response){
+                   if (response.data == true)
+                   {
+                       Swal.fire("İşlem Başarılı!", "Ticari Bilgiler Guncellendi!", "success");
+                   }
+                });
+            },
         },
 
     });

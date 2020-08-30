@@ -6,6 +6,8 @@ use DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Araclar;
+use App\User;
+use App\Uyeler;
 use App\AracUye;
 
 class UyePostController extends Controller
@@ -83,6 +85,55 @@ class UyePostController extends Controller
             return response(["error"=>false]);
         }catch(Exception $e){
             return response(["error"=>true]);
+        }
+    }
+    /*
+       @author: Batuhan Haymana
+       @since: 30.08.2020
+       @desc: Uye Profil Sayfalarından Gelen Verilerin Guncellenmesi (Kullanıcı ve Ticari Bilgiler)
+       @param $request->kullaniciAdi: adı
+       @param $request->kullaniciMail: email
+       @param $request->kullaniciSifre: şifre
+       @param $request->ticariUnvan : Ünvan
+       @param $request->ticariAdres: Adres
+       @param $request->ticariVergiNo : Vergi No
+       @param $request->ticariSektor : Sektör
+       @param $request->ticariSlogan : Slogan
+
+   */
+    public function hesapguncelle(Request $request)
+    {
+        if ($request->kullaniciSifreOnay == 'true')
+        {
+            $hesapGuncelle = User::where('id','=',Auth::user()->id)->update(array(
+                'name'=>$request->kullaniciAdi,
+                'email'=>$request->kullaniciMail,
+                'password'=>bcrypt($request->kullaniciSifre)
+            ));
+        }
+        else{
+            $hesapGuncelle = User::where('id','=',Auth::user()->id)->update(array(
+                'name'=>$request->kullaniciAdi,
+                'email'=>$request->kullaniciMail
+            ));
+        }
+        if ($hesapGuncelle)
+        {
+            return 'true';
+        }
+    }
+    public function ticariGuncelle(Request $request)
+    {
+        $ticariGuncelle = uyeler::where('id','=',$request->idTicari)->update(array(
+            'isyeri_adi'=>$request->ticariUnvan,
+            'isyeri_adres'=>$request->ticariAdres,
+            'vergi_no'=>$request->ticariVergiNo,
+            'sektor'=>$request->ticariSektor,
+            'hakkinda'=>$request->ticariSlogan
+        ));
+        if ($ticariGuncelle)
+        {
+            return 'true';
         }
     }
 
