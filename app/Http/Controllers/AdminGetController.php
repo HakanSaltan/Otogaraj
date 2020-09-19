@@ -59,4 +59,8 @@ class AdminGetController extends Controller
         ->first();
         return view('pages.roles.show')->with('veri',$veri);
     }
+    public function test()
+    {
+        return view('pages.admin.test');
+    }
 }

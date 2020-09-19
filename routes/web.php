@@ -23,6 +23,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'role:super-admin'], function
     Route::get('/araclar', 'AdminGetController@araclar')->name('adminAraclar');
 
     Route::get('/muhasebe', 'AdminGetController@muhasebe')->name('adminMuhasebe');
+    Route::get('/test','AdminGetController@test')->name('test');
 
 });
 

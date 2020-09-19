@@ -20,10 +20,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cc0eae08-d7c1-4783-a9b0-a2b2b6ba04e4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/layouts/admin2.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/Test.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/pages/admin/test.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AdminGetController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AdminGetController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/admin2.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/admin2.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +42,13 @@
   </component>
   <component name="EditorConfigPreviewManager">
     <editorConfig file="$PROJECT_DIR$/.editorconfig" previewFile="$PROJECT_DIR$/resources/js/app.js" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Vue Single File Component" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -190,7 +203,7 @@
       <workItem from="1600537134495" duration="968000" />
       <workItem from="1600538490141" duration="353000" />
       <workItem from="1600539175893" duration="108000" />
-      <workItem from="1600539926760" duration="586000" />
+      <workItem from="1600539926760" duration="4206000" />
     </task>
     <servers />
   </component>
@@ -210,10 +223,10 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="463" y="328" key="NewPhpFileDialog" timestamp="1600540024708">
+    <state x="463" y="328" key="NewPhpFileDialog" timestamp="1600540689052">
       <screen x="0" y="23" width="1280" height="749" />
     </state>
-    <state x="463" y="328" key="NewPhpFileDialog/0.23.1280.749@0.23.1280.749" timestamp="1600540024708" />
+    <state x="463" y="328" key="NewPhpFileDialog/0.23.1280.749@0.23.1280.749" timestamp="1600540689052" />
     <state x="303" y="121" width="672" height="678" key="search.everywhere.popup" timestamp="1600538220390">
       <screen x="0" y="0" width="1280" height="800" />
     </state>

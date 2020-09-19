@@ -150,9 +150,6 @@
 
 
 </script>
-<!-- VUE JS-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.js"></script>
-<!-- END VUE JS-->
 @yield('js')
 
 </body>
