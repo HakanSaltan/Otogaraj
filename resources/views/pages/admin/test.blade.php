@@ -1,7 +1,7 @@
 
 @extends('layouts.admin2')
 @section('baslik')
-    Araçlar
+    Vue Test
 @endsection
 @section('subheader')
     <h2 class="text-white font-weight-bold my-2 mr-5">Araçlar</h2>
@@ -17,8 +17,8 @@
 @endsection
 @section("content")
 
-    <div id="app">
-        <test-component></test-component>
+    <div id="otoApp">
+        <test></test>
     </div>
 
     <script src="{{asset('js/app.js')}}"></script>

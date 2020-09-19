@@ -1919,27 +1919,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      test: 'Merhaba'
+      mesaj: 'Merhaba'
     };
   },
   mounted: function mounted() {
     this.alert();
   },
   methods: {
-    alert: function (_alert) {
-      function alert() {
-        return _alert.apply(this, arguments);
-      }
-
-      alert.toString = function () {
-        return _alert.toString();
-      };
-
-      return alert;
-    }(function () {
+    alert: function alert() {
       console.log('merhaba dunya');
-      alert('test');
-    })
+    }
   }
 });
 
@@ -37254,15 +37243,9 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("h3", {
-      model: {
-        value: _vm.test,
-        callback: function($$v) {
-          _vm.test = $$v
-        },
-        expression: "test"
-      }
-    })
+    _c("div", { staticClass: "card card-custom card-stretch gutter-b" }, [
+      _c("h2", { domProps: { textContent: _vm._s(_vm.mesaj) } })
+    ])
   ])
 }
 var staticRenderFns = []
@@ -49446,7 +49429,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 Vue.component('test', __webpack_require__(/*! ./components/Test */ "./resources/js/components/Test.vue")["default"]);
 var vm = new Vue({
-  el: '#app'
+  el: '#otoApp'
 });
 
 /***/ }),

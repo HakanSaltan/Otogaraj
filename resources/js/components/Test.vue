@@ -1,15 +1,16 @@
 <template>
-    <div>
-        <h3 v-model="test"></h3>
+<div>
+    <div class="card card-custom card-stretch gutter-b">
+        <h2 v-text="mesaj"></h2>
     </div>
+</div>
 </template>
 
 <script>
 export default {
     data() {
         return {
-            test:'Merhaba',
-
+            mesaj:'Merhaba'
         }
     },
     mounted(){

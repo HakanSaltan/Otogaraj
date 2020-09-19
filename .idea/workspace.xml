@@ -23,7 +23,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/ExampleComponent.vue" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/Test.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Test.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/pages/admin/test.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/admin/test.blade.php" afterDir="false" />
     </list>
@@ -199,7 +198,7 @@
       <workItem from="1600537134495" duration="968000" />
       <workItem from="1600538490141" duration="353000" />
       <workItem from="1600539175893" duration="108000" />
-      <workItem from="1600539926760" duration="4706000" />
+      <workItem from="1600539926760" duration="5869000" />
     </task>
     <servers />
   </component>
@@ -219,6 +218,10 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="104" y="58" width="1071" height="714" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600546254200">
+      <screen x="0" y="23" width="1280" height="749" />
+    </state>
+    <state x="104" y="58" width="1071" height="714" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1280.749@0.23.1280.749" timestamp="1600546254200" />
     <state x="378" y="151" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1600544932293">
       <screen x="0" y="23" width="1280" height="749" />
     </state>
