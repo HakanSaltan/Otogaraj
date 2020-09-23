@@ -14,6 +14,7 @@
     <link rel="stylesheet" type="text/css" href="{{URL::asset('css/app.css')}}">
     <link rel="stylesheet" type="text/css" href="{{URL::asset('css/modalrl.css')}}">
     <link rel="shortcut icon" href="{{URL::asset('assets/media/logos/favicon.ico')}}" />
+    <link rel="stylesheet" href="https://unpkg.com/vue-multiselect@2.1.0/dist/vue-multiselect.min.css">
     <style>
         .table-responsive th {
             cursor: pointer;

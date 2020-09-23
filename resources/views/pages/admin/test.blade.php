@@ -18,7 +18,9 @@
 @section("content")
 
     <div id="otoApp">
-        <test></test>
+        <div class="card card-custom card-stretch gutter-b">
+            <test props-title="Merhaba Dünya"></test>
+        </div>
     </div>
 
     <script src="{{asset('js/app.js')}}"></script>
