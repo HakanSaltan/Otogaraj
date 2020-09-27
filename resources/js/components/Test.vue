@@ -37,7 +37,7 @@
                     <th style="min-width: 110px"></th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody> 
                 <tr v-for="(bilgi,index) in gelenBilgi.data">
                     <td class="pl-0 py-8"><a v-text="bilgi.durum == 0 ? 'Onaysız' : Onaylı"></a></td>
                     <td><a v-text="bilgi.name"></a></td>
@@ -141,7 +141,8 @@ export default {
         propsAddUrl: String,
         propsUpdateUrl: String,
         propsDeleteUrl: String,
-        propsTitle:String
+        propsTitle:String,
+        columns:Array
     },
     data() {
         return {

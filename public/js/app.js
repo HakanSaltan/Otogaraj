@@ -2829,7 +2829,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     propsAddUrl: String,
     propsUpdateUrl: String,
     propsDeleteUrl: String,
-    propsTitle: String
+    propsTitle: String,
+    columns: Array
   },
   data: function data() {
     return {
