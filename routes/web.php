@@ -24,7 +24,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'role:super-admin'], function
 
     Route::get('/muhasebe', 'AdminGetController@muhasebe')->name('adminMuhasebe');
     Route::get('/test','AdminGetController@test')->name('test');
-
+    Route::get('/apiAraclar','AdminGetController@apiAraclar')->name('apiAraclar');
 });
 
 Route::group(['prefix' => 'uye', 'middleware' => ['role:super-admin|uye']], function () {

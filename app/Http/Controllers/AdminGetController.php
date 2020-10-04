@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Araclar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
@@ -62,5 +63,9 @@ class AdminGetController extends Controller
     public function test()
     {
         return view('pages.admin.test');
+    }
+    public function apiAraclar()
+    {
+        return Araclar::all();
     }
 }

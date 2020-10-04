@@ -20,7 +20,7 @@
     <div id="otoApp">
         <div class="card card-custom card-stretch gutter-b">
             <test props-title="Merhaba Dünya"
-                  props-api-url="{{URL::asset('/')}}"
+                  props-api-url="{{URL::asset('/admin/apiAraclar')}}"
                   :columns="[
                     {title: 'id',field: 'id',fieldType: 'text',inputType:'textBox',update:false,create:false,list:true}
                   ]"

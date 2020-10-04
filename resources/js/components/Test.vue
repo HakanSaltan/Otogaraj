@@ -16,7 +16,7 @@
                                              v-on:click="aramaAc"><i class="flaticon-search"></i></a>
                 </li>
                 <li class="nav-item ml-0"><a class="nav-link py-2 px-4 font-weight-bolder font-size-sm"
-                                             v-on:click="reload"><i class="flaticon-refresh"></i></a>
+                                             v-on:click="veriGet"><i class="flaticon-refresh"></i></a>
                 </li>
             </ul>
         </div>
@@ -26,18 +26,12 @@
             <table class="table table-head-custom table-head-bg table-vertical-center table-borderless">
                 <thead>
                 <tr class="bg-gray-100 text-left">
-                    <th class="pl-7" :class="{'asc' : orderByType == 'ASC' && orderByColumn == 'durum','desc' : orderByType != 'ASC' && orderByColumn == 'durum'}"
-                        @click="sirala('durum')"><span class="text-dark-75">Durum</span></th>
-                    <th :class="{'asc' : orderByType == 'ASC' && orderByColumn == 'name','desc' : orderByType != 'ASC' && orderByColumn == 'name'}"
-                        @click="sirala('name')">Uye Adı</th>
-                    <th :class="{'asc' : orderByType == 'ASC' && orderByColumn == 'isyeri_adi','desc' : orderByType != 'ASC' && orderByColumn == 'isyeri_adi'}"
-                        @click="sirala('isyeri_adi')">Firma Adı</th>
-                    <th :class="{'asc' : orderByType == 'ASC' && orderByColumn == 'created_at','desc' : orderByType != 'ASC' && orderByColumn == 'created_at'}"
-                        @click="sirala('created_at')">Oluşturulma Tarihi</th>
-                    <th style="min-width: 110px"></th>
+                    <th class="pl-7" v-for="column in columns" v-if="column.list">
+                        {{column.title}}
+                    </th>
                 </tr>
                 </thead>
-                <tbody> 
+                <tbody>
                 <tr v-for="(bilgi,index) in gelenBilgi.data">
                     <td class="pl-0 py-8"><a v-text="bilgi.durum == 0 ? 'Onaysız' : Onaylı"></a></td>
                     <td><a v-text="bilgi.name"></a></td>
@@ -142,11 +136,16 @@ export default {
         propsUpdateUrl: String,
         propsDeleteUrl: String,
         propsTitle:String,
-        columns:Array
+        propsFiltered:String,
+        columns:Array,
+    },
+    created: async function(){
+        await this.veriGet();
     },
     data() {
         return {
             data:[],
+            testVeri:[],
             loading: false,
             loading2: true,
             gelenBilgi: [],
@@ -160,10 +159,14 @@ export default {
             orderByColumn: 'created_at',
             orderByType: 'DESC',
             page: 1,
+            options: {
+                search: true,
+                showColumns: true
+            },
         }
     },
     mounted(){
-        this.reload();
+        //this.reload();
     },
     methods:{
         async sendInfo(veri, tip) {
@@ -179,6 +182,13 @@ export default {
                 this.post();
             }
 
+        },
+        veriGet()
+        {
+          axios.get(this.propsApiUrl)
+            .then(response=>{
+                this.testVeri = response.data;
+            })
         },
         aramaAc() {
             $('#aramaAc').modal('show');

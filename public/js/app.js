@@ -2817,12 +2817,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     propsApiUrl: String,
@@ -2830,11 +2824,36 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     propsUpdateUrl: String,
     propsDeleteUrl: String,
     propsTitle: String,
+    propsFiltered: String,
     columns: Array
   },
+  created: function () {
+    var _created = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return this.veriGet();
+
+            case 2:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee, this);
+    }));
+
+    function created() {
+      return _created.apply(this, arguments);
+    }
+
+    return created;
+  }(),
   data: function data() {
     return {
       data: [],
+      testVeri: [],
       loading: false,
       loading2: true,
       gelenBilgi: [],
@@ -2847,20 +2866,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       aranacakSutun: 'name',
       orderByColumn: 'created_at',
       orderByType: 'DESC',
-      page: 1
+      page: 1,
+      options: {
+        search: true,
+        showColumns: true
+      }
     };
   },
-  mounted: function mounted() {
-    this.reload();
+  mounted: function mounted() {//this.reload();
   },
   methods: {
     sendInfo: function sendInfo(veri, tip) {
       var _this = this;
 
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
-            switch (_context.prev = _context.next) {
+            switch (_context2.prev = _context2.next) {
               case 0:
                 _this.secilenBilgi = {
                   tip: tip,
@@ -2876,11 +2898,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 3:
               case "end":
-                return _context.stop();
+                return _context2.stop();
             }
           }
-        }, _callee);
+        }, _callee2);
       }))();
+    },
+    veriGet: function veriGet() {
+      var _this2 = this;
+
+      axios.get(this.propsApiUrl).then(function (response) {
+        _this2.testVeri = response.data;
+      });
     },
     aramaAc: function aramaAc() {
       $('#aramaAc').modal('show');
@@ -2906,27 +2935,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.page = page;
     },
     reload: function reload() {
-      var _this2 = this;
+      var _this3 = this;
 
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
           while (1) {
-            switch (_context2.prev = _context2.next) {
+            switch (_context3.prev = _context3.next) {
               case 0:
                 $('#aramaAc').modal('hide');
-                _this2.loading = false;
-                _context2.next = 4;
-                return axios.get(_this2.reloadUrl + "?page=" + _this2.page + "&aranacakKelime=" + _this2.aranacakKelime + "&aranacakSutun=" + _this2.aranacakSutun + "&orderbycolumn=" + _this2.orderByColumn + "&orderbytype=" + _this2.orderByType, {}).then(function (response) {
-                  _this2.gelenBilgi = response.data;
-                  _this2.loading = true;
+                _this3.loading = false;
+                _context3.next = 4;
+                return axios.get(_this3.reloadUrl + "?page=" + _this3.page + "&aranacakKelime=" + _this3.aranacakKelime + "&aranacakSutun=" + _this3.aranacakSutun + "&orderbycolumn=" + _this3.orderByColumn + "&orderbytype=" + _this3.orderByType, {}).then(function (response) {
+                  _this3.gelenBilgi = response.data;
+                  _this3.loading = true;
                 });
 
               case 4:
               case "end":
-                return _context2.stop();
+                return _context3.stop();
             }
           }
-        }, _callee2);
+        }, _callee3);
       }))();
     }
   },
@@ -38925,7 +38954,7 @@ var render = function() {
               {
                 staticClass:
                   "nav-link py-2 px-4 font-weight-bolder font-size-sm",
-                on: { click: _vm.reload }
+                on: { click: _vm.veriGet }
               },
               [_c("i", { staticClass: "flaticon-refresh" })]
             )
@@ -38945,94 +38974,22 @@ var render = function() {
               },
               [
                 _c("thead", [
-                  _c("tr", { staticClass: "bg-gray-100 text-left" }, [
-                    _c(
-                      "th",
-                      {
-                        staticClass: "pl-7",
-                        class: {
-                          asc:
-                            _vm.orderByType == "ASC" &&
-                            _vm.orderByColumn == "durum",
-                          desc:
-                            _vm.orderByType != "ASC" &&
-                            _vm.orderByColumn == "durum"
-                        },
-                        on: {
-                          click: function($event) {
-                            return _vm.sirala("durum")
-                          }
-                        }
-                      },
-                      [
-                        _c("span", { staticClass: "text-dark-75" }, [
-                          _vm._v("Durum")
-                        ])
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "th",
-                      {
-                        class: {
-                          asc:
-                            _vm.orderByType == "ASC" &&
-                            _vm.orderByColumn == "name",
-                          desc:
-                            _vm.orderByType != "ASC" &&
-                            _vm.orderByColumn == "name"
-                        },
-                        on: {
-                          click: function($event) {
-                            return _vm.sirala("name")
-                          }
-                        }
-                      },
-                      [_vm._v("Uye Adı")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "th",
-                      {
-                        class: {
-                          asc:
-                            _vm.orderByType == "ASC" &&
-                            _vm.orderByColumn == "isyeri_adi",
-                          desc:
-                            _vm.orderByType != "ASC" &&
-                            _vm.orderByColumn == "isyeri_adi"
-                        },
-                        on: {
-                          click: function($event) {
-                            return _vm.sirala("isyeri_adi")
-                          }
-                        }
-                      },
-                      [_vm._v("Firma Adı")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "th",
-                      {
-                        class: {
-                          asc:
-                            _vm.orderByType == "ASC" &&
-                            _vm.orderByColumn == "created_at",
-                          desc:
-                            _vm.orderByType != "ASC" &&
-                            _vm.orderByColumn == "created_at"
-                        },
-                        on: {
-                          click: function($event) {
-                            return _vm.sirala("created_at")
-                          }
-                        }
-                      },
-                      [_vm._v("Oluşturulma Tarihi")]
-                    ),
-                    _vm._v(" "),
-                    _c("th", { staticStyle: { "min-width": "110px" } })
-                  ])
+                  _c(
+                    "tr",
+                    { staticClass: "bg-gray-100 text-left" },
+                    _vm._l(_vm.columns, function(column) {
+                      return column.list
+                        ? _c("th", { staticClass: "pl-7" }, [
+                            _vm._v(
+                              "\n                        " +
+                                _vm._s(column.title) +
+                                "\n                    "
+                            )
+                          ])
+                        : _vm._e()
+                    }),
+                    0
+                  )
                 ]),
                 _vm._v(" "),
                 _c(
