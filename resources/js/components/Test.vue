@@ -126,7 +126,7 @@ export default {
         filteredList()
         {
             return this.data.filter(post => {
-                return post[this.propsFiltered].toLowerCase().includes(this.q.toLowerCase())
+                return post[this.propsFiltered].toLowerCase().includes(this.arama.toLowerCase())
             })
         }
     },
@@ -147,6 +147,7 @@ export default {
             orderByColumn: 'created_at',
             orderByType: 'DESC',
             page: 1,
+            arama:'',
             options: {
                 search: true,
                 showColumns: true

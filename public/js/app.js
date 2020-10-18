@@ -2835,7 +2835,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       return this.data.filter(function (post) {
-        return post[_this.propsFiltered].toLowerCase().includes(_this.q.toLowerCase());
+        return post[_this.propsFiltered].toLowerCase().includes(_this.arama.toLowerCase());
       });
     }
   },
@@ -2856,6 +2856,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       orderByColumn: 'created_at',
       orderByType: 'DESC',
       page: 1,
+      arama: '',
       options: {
         search: true,
         showColumns: true
