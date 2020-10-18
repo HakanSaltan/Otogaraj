@@ -19,10 +19,13 @@
 
     <div id="otoApp">
         <div class="card card-custom card-stretch gutter-b">
-            <test props-title="Merhaba Dünya"
+            <test props-title="Sisteme Kayıtlı Araçlar"
                   props-api-url="{{URL::asset('/admin/apiAraclar')}}"
+                  props-filtered="plaka"
                   :columns="[
-                    {title: 'id',field: 'id',fieldType: 'text',inputType:'textBox',update:false,create:false,list:true}
+                    {title: 'id',field: 'id',fieldType: 'text',inputType:'textBox',update:false,create:false,list:true},
+                    {title: 'Plaka',field: 'plaka',fieldType: 'text',inputType:'textBox',update:false,create:false,list:true},
+                    {title: 'Km',field: 'km',fieldType: 'text',inputType:'textBox',update:false,create:false,list:true}
                   ]"
             ></test>
         </div>

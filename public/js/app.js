@@ -2797,26 +2797,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     propsApiUrl: String,
@@ -2850,6 +2830,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
     return created;
   }(),
+  computed: {
+    filteredList: function filteredList() {
+      var _this = this;
+
+      return this.data.filter(function (post) {
+        return post[_this.propsFiltered].toLowerCase().includes(_this.q.toLowerCase());
+      });
+    }
+  },
   data: function data() {
     return {
       data: [],
@@ -2877,23 +2866,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   methods: {
     sendInfo: function sendInfo(veri, tip) {
-      var _this = this;
+      var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                _this.secilenBilgi = {
+                _this2.secilenBilgi = {
                   tip: tip,
                   id: veri.id
                 };
                 console.log(veri);
 
                 if (tip == "reddet") {
-                  _this.post();
+                  _this2.post();
                 } else if (tip == "onayla") {
-                  _this.post();
+                  _this2.post();
                 }
 
               case 3:
@@ -2905,10 +2894,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     veriGet: function veriGet() {
-      var _this2 = this;
+      var _this3 = this;
 
       axios.get(this.propsApiUrl).then(function (response) {
-        _this2.testVeri = response.data;
+        _this3.testVeri = response.data;
       });
     },
     aramaAc: function aramaAc() {
@@ -2935,7 +2924,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.page = page;
     },
     reload: function reload() {
-      var _this3 = this;
+      var _this4 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
@@ -2943,11 +2932,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context3.prev = _context3.next) {
               case 0:
                 $('#aramaAc').modal('hide');
-                _this3.loading = false;
+                _this4.loading = false;
                 _context3.next = 4;
-                return axios.get(_this3.reloadUrl + "?page=" + _this3.page + "&aranacakKelime=" + _this3.aranacakKelime + "&aranacakSutun=" + _this3.aranacakSutun + "&orderbycolumn=" + _this3.orderByColumn + "&orderbytype=" + _this3.orderByType, {}).then(function (response) {
-                  _this3.gelenBilgi = response.data;
-                  _this3.loading = true;
+                return axios.get(_this4.reloadUrl + "?page=" + _this4.page + "&aranacakKelime=" + _this4.aranacakKelime + "&aranacakSutun=" + _this4.aranacakSutun + "&orderbycolumn=" + _this4.orderByColumn + "&orderbytype=" + _this4.orderByType, {}).then(function (response) {
+                  _this4.gelenBilgi = response.data;
+                  _this4.loading = true;
                 });
 
               case 4:
@@ -38963,370 +38952,192 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _vm.loading
-      ? _c("div", { staticClass: "card-body pt-0 pb-3" }, [
-          _c("div", { staticClass: "table-responsive" }, [
-            _c(
-              "table",
-              {
-                staticClass:
-                  "table table-head-custom table-head-bg table-vertical-center table-borderless"
-              },
-              [
-                _c("thead", [
-                  _c(
-                    "tr",
-                    { staticClass: "bg-gray-100 text-left" },
-                    _vm._l(_vm.columns, function(column) {
-                      return column.list
-                        ? _c("th", { staticClass: "pl-7" }, [
-                            _vm._v(
-                              "\n                        " +
-                                _vm._s(column.title) +
-                                "\n                    "
-                            )
-                          ])
-                        : _vm._e()
-                    }),
-                    0
-                  )
-                ]),
-                _vm._v(" "),
-                _c(
-                  "tbody",
-                  _vm._l(_vm.gelenBilgi.data, function(bilgi, index) {
-                    return _c("tr", [
-                      _c("td", { staticClass: "pl-0 py-8" }, [
-                        _c("a", {
-                          domProps: {
-                            textContent: _vm._s(
-                              bilgi.durum == 0 ? "Onaysız" : _vm.Onaylı
-                            )
-                          }
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _c("a", {
-                          domProps: { textContent: _vm._s(bilgi.name) }
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _c("a", {
-                          domProps: { textContent: _vm._s(bilgi.isyeri_adi) }
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _c("a", {
-                          domProps: { textContent: _vm._s(bilgi.created_at) }
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _c("td", { staticClass: "pr-0 text-right" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass:
-                              "btn btn-icon btn-light btn-hover-danger btn-sm",
-                            attrs: {
-                              "data-toggle": "tooltip",
-                              "data-placement": "top",
-                              title: "Reddet"
-                            },
-                            on: {
-                              click: function($event) {
-                                return _vm.sendInfo(bilgi, "reddet")
-                              }
-                            }
-                          },
-                          [
-                            _c(
-                              "span",
-                              {
-                                staticClass:
-                                  "svg-icon svg-icon-primary svg-icon-2x"
-                              },
-                              [
-                                _c(
-                                  "svg",
-                                  {
-                                    attrs: {
-                                      xmlns: "http://www.w3.org/2000/svg",
-                                      "xmlns:xlink":
-                                        "http://www.w3.org/1999/xlink",
-                                      width: "24px",
-                                      height: "24px",
-                                      viewBox: "0 0 24 24",
-                                      version: "1.1"
-                                    }
-                                  },
-                                  [
-                                    _c(
-                                      "g",
-                                      {
-                                        attrs: {
-                                          stroke: "none",
-                                          "stroke-width": "1",
-                                          fill: "none",
-                                          "fill-rule": "evenodd"
-                                        }
-                                      },
-                                      [
-                                        _c(
-                                          "g",
-                                          {
-                                            attrs: {
-                                              transform:
-                                                "translate(12.000000, 12.000000) rotate(-45.000000) translate(-12.000000, -12.000000) translate(4.000000, 4.000000)",
-                                              fill: "#000000"
-                                            }
-                                          },
-                                          [
-                                            _c("rect", {
-                                              attrs: {
-                                                x: "0",
-                                                y: "7",
-                                                width: "16",
-                                                height: "2",
-                                                rx: "1"
-                                              }
-                                            }),
-                                            _vm._v(" "),
-                                            _c("rect", {
-                                              attrs: {
-                                                opacity: "0.3",
-                                                transform:
-                                                  "translate(8.000000, 8.000000) rotate(-270.000000) translate(-8.000000, -8.000000) ",
-                                                x: "0",
-                                                y: "7",
-                                                width: "16",
-                                                height: "2",
-                                                rx: "1"
-                                              }
-                                            })
-                                          ]
-                                        )
-                                      ]
-                                    )
-                                  ]
-                                )
-                              ]
-                            )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "a",
-                          {
-                            staticClass:
-                              "btn btn-icon btn-light btn-hover-primary btn-sm",
-                            attrs: {
-                              "data-toggle": "tooltip",
-                              "data-placement": "top",
-                              title: "Onayla"
-                            },
-                            on: {
-                              click: function($event) {
-                                return _vm.sendInfo(bilgi, "onayla")
-                              }
-                            }
-                          },
-                          [
-                            _c(
-                              "span",
-                              {
-                                staticClass:
-                                  "svg-icon svg-icon-primary svg-icon-2x"
-                              },
-                              [
-                                _c(
-                                  "svg",
-                                  {
-                                    attrs: {
-                                      xmlns: "http://www.w3.org/2000/svg",
-                                      "xmlns:xlink":
-                                        "http://www.w3.org/1999/xlink",
-                                      width: "24px",
-                                      height: "24px",
-                                      viewBox: "0 0 24 24",
-                                      version: "1.1"
-                                    }
-                                  },
-                                  [
-                                    _c(
-                                      "g",
-                                      {
-                                        attrs: {
-                                          stroke: "none",
-                                          "stroke-width": "1",
-                                          fill: "none",
-                                          "fill-rule": "evenodd"
-                                        }
-                                      },
-                                      [
-                                        _c("polygon", {
-                                          attrs: {
-                                            points: "0 0 24 0 24 24 0 24"
-                                          }
-                                        }),
-                                        _vm._v(" "),
-                                        _c("path", {
-                                          attrs: {
-                                            d:
-                                              "M4.26193932,17.6476484 C3.90425297,18.0684559 3.27315905,18.1196257 2.85235158,17.7619393 C2.43154411,17.404253 2.38037434,16.773159 2.73806068,16.3523516 L11.2380607,6.35235158 C11.6013618,5.92493855 12.2451015,5.87991302 12.6643638,6.25259068 L17.1643638,10.2525907 C17.5771466,10.6195087 17.6143273,11.2515811 17.2474093,11.6643638 C16.8804913,12.0771466 16.2484189,12.1143273 15.8356362,11.7474093 L12.0997854,8.42665306 L4.26193932,17.6476484 Z",
-                                            fill: "#000000",
-                                            "fill-rule": "nonzero",
-                                            transform:
-                                              "translate(9.999995, 12.000002) rotate(-180.000000) translate(-9.999995, -12.000002) "
-                                          }
-                                        })
-                                      ]
-                                    )
-                                  ]
-                                )
-                              ]
-                            )
-                          ]
+    _c("div", { staticClass: "card-body pt-0 pb-3" }, [
+      _c("div", { staticClass: "table-responsive" }, [
+        _c(
+          "table",
+          {
+            staticClass:
+              "table table-head-custom table-head-bg table-vertical-center table-borderless"
+          },
+          [
+            _c("thead", [
+              _c(
+                "tr",
+                { staticClass: "bg-gray-100 text-left" },
+                _vm._l(_vm.columns, function(column) {
+                  return column.list
+                    ? _c("th", { staticClass: "pl-7" }, [
+                        _vm._v(
+                          "\n                        " +
+                            _vm._s(column.title) +
+                            "\n                    "
                         )
                       ])
-                    ])
+                    : _vm._e()
+                }),
+                0
+              )
+            ]),
+            _vm._v(" "),
+            _c(
+              "tbody",
+              _vm._l(_vm.testVeri, function(item) {
+                return _c(
+                  "tr",
+                  _vm._l(_vm.columns, function(column) {
+                    return column.list
+                      ? _c("td", { staticClass: "pr-0" }, [
+                          column.fieldType == "text"
+                            ? _c("a", [
+                                _c("span", {}, [
+                                  _vm._v(
+                                    _vm._s(
+                                      _vm._f("subStr")(item[column.field])
+                                    ) + " "
+                                  )
+                                ])
+                              ])
+                            : _vm._e()
+                        ])
+                      : _vm._e()
                   }),
                   0
                 )
-              ]
+              }),
+              0
             )
-          ]),
-          _vm._v(" "),
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass:
+            "d-flex justify-content-between align-items-center flex-wrap"
+        },
+        [
           _c(
             "div",
-            {
-              staticClass:
-                "d-flex justify-content-between align-items-center flex-wrap"
-            },
+            { staticClass: "d-flex flex-wrap py-2 mr-3" },
             [
               _c(
-                "div",
-                { staticClass: "d-flex flex-wrap py-2 mr-3" },
+                "a",
+                {
+                  staticClass: "btn btn-icon btn-sm btn-light mr-2 my-1",
+                  on: {
+                    click: function($event) {
+                      return _vm.sayfayaGit(1)
+                    }
+                  }
+                },
                 [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "btn btn-icon btn-sm btn-light mr-2 my-1",
-                      on: {
-                        click: function($event) {
-                          return _vm.sayfayaGit(1)
-                        }
-                      }
-                    },
-                    [
-                      _c("i", {
-                        staticClass: "ki ki-bold-double-arrow-back icon-xs"
-                      })
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    {
-                      staticClass: "btn btn-icon btn-sm btn-light mr-2 my-1",
-                      on: {
-                        click: function($event) {
-                          return _vm.sayfayaGit(_vm.gelenBilgi.current_page - 1)
-                        }
-                      }
-                    },
-                    [_c("i", { staticClass: "ki ki-bold-arrow-back icon-xs" })]
-                  ),
-                  _vm._v(" "),
-                  _vm._l(_vm.gelenBilgi.last_page, function(page) {
-                    return page >= _vm.gelenBilgi.current_page - 3 &&
-                      page <= _vm.gelenBilgi.current_page + 3
-                      ? [
-                          _c("a", {
-                            class: {
-                              "btn btn-icon btn-sm border-0 btn-light btn-hover-primary active mr-2 my-1":
-                                _vm.gelenBilgi.current_page == page,
-                              "btn btn-icon btn-sm border-0 btn-light mr-2 my-1":
-                                _vm.gelenBilgi.current_page != page
-                            },
-                            attrs: { href: "#" },
-                            domProps: { textContent: _vm._s(page) },
-                            on: {
-                              click: function($event) {
-                                return _vm.sayfayaGit(page)
-                              }
-                            }
-                          })
-                        ]
-                      : _vm._e()
-                  }),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    {
-                      staticClass: "btn btn-icon btn-sm btn-light mr-2 my-1",
-                      on: {
-                        click: function($event) {
-                          return _vm.sayfayaGit(_vm.gelenBilgi.last_page)
-                        }
-                      }
-                    },
-                    [_c("i", { staticClass: "ki ki-bold-arrow-next icon-xs" })]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    {
-                      staticClass: "btn btn-icon btn-sm btn-light mr-2 my-1",
-                      on: {
-                        click: function($event) {
-                          return _vm.sayfayaGit(_vm.gelenBilgi.current_page - 1)
-                        }
-                      }
-                    },
-                    [
-                      _c("i", {
-                        staticClass: "ki ki-bold-double-arrow-next icon-xs"
-                      })
-                    ]
-                  )
-                ],
-                2
+                  _c("i", {
+                    staticClass: "ki ki-bold-double-arrow-back icon-xs"
+                  })
+                ]
               ),
               _vm._v(" "),
-              _c("div", { staticClass: "d-flex align-items-center py-3" }, [
-                !_vm.loading2
-                  ? _c("div", { staticClass: "d-flex align-items-center" }, [
-                      _c("div", { staticClass: "mr-2 text-muted" }, [
-                        _vm._v("Güncelleniyor...")
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "spinner mr-10" })
-                    ])
-                  : _vm._e(),
-                _vm._v(" "),
-                _c("span", { staticClass: "text-muted" }, [
-                  _vm._v("Toplam "),
-                  _c("strong", {
-                    domProps: { textContent: _vm._s(_vm.gelenBilgi.total) }
-                  }),
-                  _vm._v(" Kayıttan "),
-                  _c("strong", {
-                    domProps: {
-                      textContent: _vm._s(
-                        _vm.gelenBilgi.from + " - " + _vm.gelenBilgi.to
-                      )
+              _c(
+                "a",
+                {
+                  staticClass: "btn btn-icon btn-sm btn-light mr-2 my-1",
+                  on: {
+                    click: function($event) {
+                      return _vm.sayfayaGit(_vm.gelenBilgi.current_page - 1)
                     }
-                  }),
-                  _vm._v("\n                    Arası Kayıt Gösteriliyor.")
+                  }
+                },
+                [_c("i", { staticClass: "ki ki-bold-arrow-back icon-xs" })]
+              ),
+              _vm._v(" "),
+              _vm._l(_vm.gelenBilgi.last_page, function(page) {
+                return page >= _vm.gelenBilgi.current_page - 3 &&
+                  page <= _vm.gelenBilgi.current_page + 3
+                  ? [
+                      _c("a", {
+                        class: {
+                          "btn btn-icon btn-sm border-0 btn-light btn-hover-primary active mr-2 my-1":
+                            _vm.gelenBilgi.current_page == page,
+                          "btn btn-icon btn-sm border-0 btn-light mr-2 my-1":
+                            _vm.gelenBilgi.current_page != page
+                        },
+                        attrs: { href: "#" },
+                        domProps: { textContent: _vm._s(page) },
+                        on: {
+                          click: function($event) {
+                            return _vm.sayfayaGit(page)
+                          }
+                        }
+                      })
+                    ]
+                  : _vm._e()
+              }),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "btn btn-icon btn-sm btn-light mr-2 my-1",
+                  on: {
+                    click: function($event) {
+                      return _vm.sayfayaGit(_vm.gelenBilgi.last_page)
+                    }
+                  }
+                },
+                [_c("i", { staticClass: "ki ki-bold-arrow-next icon-xs" })]
+              ),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "btn btn-icon btn-sm btn-light mr-2 my-1",
+                  on: {
+                    click: function($event) {
+                      return _vm.sayfayaGit(_vm.gelenBilgi.current_page - 1)
+                    }
+                  }
+                },
+                [
+                  _c("i", {
+                    staticClass: "ki ki-bold-double-arrow-next icon-xs"
+                  })
+                ]
+              )
+            ],
+            2
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "d-flex align-items-center py-3" }, [
+            !_vm.loading2
+              ? _c("div", { staticClass: "d-flex align-items-center" }, [
+                  _c("div", { staticClass: "mr-2 text-muted" }, [
+                    _vm._v("Güncelleniyor...")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "spinner mr-10" })
                 ])
-              ])
-            ]
-          )
-        ])
-      : _vm._e(),
+              : _vm._e(),
+            _vm._v(" "),
+            _c("span", { staticClass: "text-muted" }, [
+              _vm._v("Toplam "),
+              _c("strong", {
+                domProps: { textContent: _vm._s(_vm.gelenBilgi.total) }
+              }),
+              _vm._v(" Kayıttan "),
+              _c("strong", {
+                domProps: {
+                  textContent: _vm._s(
+                    _vm.gelenBilgi.from + " - " + _vm.gelenBilgi.to
+                  )
+                }
+              }),
+              _vm._v("\n                    Arası Kayıt Gösteriliyor.")
+            ])
+          ])
+        ]
+      )
+    ]),
     _vm._v(" "),
     _vm.loading
       ? _c(
