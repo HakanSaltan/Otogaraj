@@ -35,8 +35,14 @@
                 <tr v-for="item in testVeri">
                     <td class="pr-0" v-for="column in columns" v-if="column.list">
                         <a v-if="column.fieldType == 'text'">
-                            <span v-html="">{{ item[column.field] | subStr() }} </span>
+                            <span>{{ item[column.field] }} </span>
                         </a>
+                        <div class="btn-group" v-if="column.fieldType == 'settings'">
+                            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-edit"></i></button>
+                            <div class="dropdown-menu" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-242px, 31px, 0px);">
+                                <a class="dropdown-item" v-if="modul.position=='menu'" :href="link(item,modul.url)" v-for="modul in module">{{propsSingularTitle}} {{modul.title}}</a>
+                            </div>
+                        </div>
                     </td>
                 </tr>
                 </tbody>
@@ -117,7 +123,10 @@ export default {
         propsDeleteUrl: String,
         propsTitle:String,
         propsFiltered:String,
+        propsSingularTitle:String,
+        propsId: String,
         columns:Array,
+        module:Array
     },
     created: async function(){
         await this.veriGet();
@@ -212,7 +221,21 @@ export default {
                 this.gelenBilgi = response.data;
                 this.loading = true;
             });
-        }
+        },
+        link(item,url)
+        {
+            if( item.length==0)
+            {
+                return url;
+            }
+            if(item && typeof(url) !== 'undefined')
+            {
+                return url+item[this.propsId];
+            }else
+            {
+                return null;
+            }
+        },
     },
     watch: {
         page: {

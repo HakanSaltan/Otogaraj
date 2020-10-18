@@ -2797,6 +2797,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     propsApiUrl: String,
@@ -2805,7 +2811,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     propsDeleteUrl: String,
     propsTitle: String,
     propsFiltered: String,
-    columns: Array
+    propsSingularTitle: String,
+    propsId: String,
+    columns: Array,
+    module: Array
   },
   created: function () {
     var _created = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
@@ -2947,6 +2956,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee3);
       }))();
+    },
+    link: function link(item, url) {
+      if (item.length == 0) {
+        return url;
+      }
+
+      if (item && typeof url !== 'undefined') {
+        return url + item[this.propsId];
+      } else {
+        return null;
+      }
     }
   },
   watch: {
@@ -38991,13 +39011,51 @@ var render = function() {
                       ? _c("td", { staticClass: "pr-0" }, [
                           column.fieldType == "text"
                             ? _c("a", [
-                                _c("span", {}, [
-                                  _vm._v(
-                                    _vm._s(
-                                      _vm._f("subStr")(item[column.field])
-                                    ) + " "
-                                  )
+                                _c("span", [
+                                  _vm._v(_vm._s(item[column.field]) + " ")
                                 ])
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          column.fieldType == "settings"
+                            ? _c("div", { staticClass: "btn-group" }, [
+                                _vm._m(0, true),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass: "dropdown-menu",
+                                    staticStyle: {
+                                      position: "absolute",
+                                      "will-change": "transform",
+                                      top: "0px",
+                                      left: "0px",
+                                      transform:
+                                        "translate3d(-242px, 31px, 0px)"
+                                    }
+                                  },
+                                  _vm._l(_vm.module, function(modul) {
+                                    return modul.position == "menu"
+                                      ? _c(
+                                          "a",
+                                          {
+                                            staticClass: "dropdown-item",
+                                            attrs: {
+                                              href: _vm.link(item, modul.url)
+                                            }
+                                          },
+                                          [
+                                            _vm._v(
+                                              _vm._s(_vm.propsSingularTitle) +
+                                                " " +
+                                                _vm._s(modul.title)
+                                            )
+                                          ]
+                                        )
+                                      : _vm._e()
+                                  }),
+                                  0
+                                )
                               ])
                             : _vm._e()
                         ])
@@ -39159,7 +39217,7 @@ var render = function() {
                 { staticClass: "modal-dialog", attrs: { role: "document" } },
                 [
                   _c("div", { staticClass: "modal-content" }, [
-                    _vm._m(0),
+                    _vm._m(1),
                     _vm._v(" "),
                     _c("div", { staticClass: "modal-body" }, [
                       _c("div", { staticClass: "form-group" }, [
@@ -39272,6 +39330,24 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "btn btn-info dropdown-toggle",
+        attrs: {
+          type: "button",
+          "data-toggle": "dropdown",
+          "aria-haspopup": "true",
+          "aria-expanded": "false"
+        }
+      },
+      [_c("i", { staticClass: "fa fa-edit" })]
+    )
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
