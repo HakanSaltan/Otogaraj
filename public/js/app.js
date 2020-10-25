@@ -2803,6 +2803,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     propsApiUrl: String,
@@ -39018,45 +39021,37 @@ var render = function() {
                             : _vm._e(),
                           _vm._v(" "),
                           column.fieldType == "settings"
-                            ? _c("div", { staticClass: "btn-group" }, [
-                                _vm._m(0, true),
-                                _vm._v(" "),
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass: "dropdown-menu",
-                                    staticStyle: {
-                                      position: "absolute",
-                                      "will-change": "transform",
-                                      top: "0px",
-                                      left: "0px",
-                                      transform:
-                                        "translate3d(-242px, 31px, 0px)"
-                                    }
-                                  },
-                                  _vm._l(_vm.module, function(modul) {
-                                    return modul.position == "menu"
-                                      ? _c(
-                                          "a",
-                                          {
-                                            staticClass: "dropdown-item",
-                                            attrs: {
-                                              href: _vm.link(item, modul.url)
-                                            }
-                                          },
-                                          [
-                                            _vm._v(
-                                              _vm._s(_vm.propsSingularTitle) +
-                                                " " +
-                                                _vm._s(modul.title)
-                                            )
-                                          ]
-                                        )
-                                      : _vm._e()
-                                  }),
-                                  0
-                                )
-                              ])
+                            ? _c(
+                                "div",
+                                {
+                                  staticClass: "btn-group",
+                                  attrs: {
+                                    role: "group",
+                                    "aria-label": "Basic example"
+                                  }
+                                },
+                                _vm._l(_vm.module, function(modul) {
+                                  return modul.position == "menu"
+                                    ? _c(
+                                        "a",
+                                        {
+                                          staticClass: "btn btn-info btn-sm",
+                                          attrs: {
+                                            href: _vm.link(item, modul.url)
+                                          }
+                                        },
+                                        [
+                                          _vm._v(
+                                            _vm._s(_vm.propsSingularTitle) +
+                                              " " +
+                                              _vm._s(modul.title)
+                                          )
+                                        ]
+                                      )
+                                    : _vm._e()
+                                }),
+                                0
+                              )
                             : _vm._e()
                         ])
                       : _vm._e()
@@ -39217,7 +39212,7 @@ var render = function() {
                 { staticClass: "modal-dialog", attrs: { role: "document" } },
                 [
                   _c("div", { staticClass: "modal-content" }, [
-                    _vm._m(1),
+                    _vm._m(0),
                     _vm._v(" "),
                     _c("div", { staticClass: "modal-body" }, [
                       _c("div", { staticClass: "form-group" }, [
@@ -39330,24 +39325,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass: "btn btn-info dropdown-toggle",
-        attrs: {
-          type: "button",
-          "data-toggle": "dropdown",
-          "aria-haspopup": "true",
-          "aria-expanded": "false"
-        }
-      },
-      [_c("i", { staticClass: "fa fa-edit" })]
-    )
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

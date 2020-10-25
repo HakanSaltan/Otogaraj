@@ -37,11 +37,14 @@
                         <a v-if="column.fieldType == 'text'">
                             <span>{{ item[column.field] }} </span>
                         </a>
-                        <div class="btn-group" v-if="column.fieldType == 'settings'">
+                       <!-- <li class="btn-group" v-if="column.fieldType == 'settings'">
                             <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-edit"></i></button>
                             <div class="dropdown-menu" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-242px, 31px, 0px);">
                                 <a class="dropdown-item" v-if="modul.position=='menu'" :href="link(item,modul.url)" v-for="modul in module">{{propsSingularTitle}} {{modul.title}}</a>
                             </div>
+                        </li> -->
+                        <div class="btn-group" role="group" v-if="column.fieldType == 'settings'" aria-label="Basic example">
+                            <a class="btn btn-info btn-sm" v-if="modul.position=='menu'" :href="link(item,modul.url)" v-for="modul in module">{{propsSingularTitle}} {{modul.title}}</a>
                         </div>
                     </td>
                 </tr>
